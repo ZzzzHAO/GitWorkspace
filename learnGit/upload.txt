@@ -1,2 +1,2 @@
 第一次上传
-分支修改
+Creating a new branch is quick AND simple.
