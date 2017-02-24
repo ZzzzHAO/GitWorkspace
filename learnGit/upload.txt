@@ -1,4 +1,4 @@
 第一次上传
 Creating a new branch is quick and simple.
 try --no-ff
-try again
+try again...
