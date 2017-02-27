@@ -15,11 +15,12 @@ git push -u origin master //把当前分支master推送到远程(-u参数，第�
 							Git不但会把本地的master分支内容推送的远程新的master分支，还会							把本地的master分支和远程的master分支关联起来)
 git clone url //克隆一个远程库(git地址要比https地址速度快)
 git checkout -b dev //创建dev分支，然后切换到dev分支(没有-b表示切换分支)
-git checkout -b dev origin/dev
+git checkout -b branch-name origin/branch-name //在本地创建和远程分支对应的分支
 git checkout -- file //可以丢弃工作区的修改
 git branch //查看当前分支
 git branch -d dev //删除指定(dev)分支
 git branch -D dev //强行删除指定(dev)没有被合并过的分支
+git branch --set-upstream-to=origin/dev //建立本地分支和远程分支的关联
 git merge dev //合并指定分支(dev)到当前分支
 git merge --no-ff -m "comment" dev //合并指定分支(dev)到当前分支，禁止Fast forward模式，merge时生成一个新的commit
 git stash //可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
