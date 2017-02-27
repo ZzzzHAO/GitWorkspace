@@ -13,6 +13,7 @@ git reflog //记录你的每一次命令，查看命令历史，以便确定要�
 git rm file //删除文件，也可以用'git add file'达到相同的目的(先物理删除文件，再执行此命令)
 git push -u origin master //把当前分支master推送到远程(-u参数，第一次关联的时候要加，
 							Git不但会把本地的master分支内容推送的远程新的master分支，还会							把本地的master分支和远程的master分支关联起来)
+git push origin :dev //删除远程分支
 git clone url //克隆一个远程库(git地址要比https地址速度快)
 git checkout -b dev //创建dev分支，然后切换到dev分支(没有-b表示切换分支)
 git checkout -b branch-name origin/branch-name //在本地创建和远程分支对应的分支
