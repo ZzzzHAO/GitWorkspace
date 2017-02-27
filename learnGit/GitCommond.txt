@@ -30,4 +30,4 @@ git stash apply stash@{0} //恢复stash@{0}的工作现场
 git stash drop stash@{0} //删除stash@{0}的工作现场
 git stash pop //恢复并删除stash@{0}的工作现场
 git remote //查看远程库信息
-git remote -v //显示更详细的信息
+git remote -v //显示更详细的信息1111111111111111111
