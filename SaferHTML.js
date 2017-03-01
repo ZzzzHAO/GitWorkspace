@@ -1,3 +1,4 @@
+//ES6 过滤HTML，经过处理的特殊字符都将被转义
 var message =
     SaferHTML `<p>${sender} has sent you a message.</p>`;
 
