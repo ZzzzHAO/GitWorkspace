@@ -21,7 +21,7 @@ git checkout -- file //可以丢弃工作区的修改
 git branch //查看当前分支
 git branch -d dev //删除指定(dev)分支
 git branch -D dev //强行删除指定(dev)没有被合并过的分支
-git branch --set-upstream-to=origin/dev //建立本地分支和远程分支的关联
+git branch --set-upstream-to=origin/dev //建立本地分支和远程分支的关联，以后只需要直接git pull和git push就可以了
 git merge dev //合并指定分支(dev)到当前分支
 git merge --no-ff -m "comment" dev //合并指定分支(dev)到当前分支，禁止Fast forward模式，merge时生成一个新的commit
 git stash //可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
@@ -30,4 +30,4 @@ git stash apply stash@{0} //恢复stash@{0}的工作现场
 git stash drop stash@{0} //删除stash@{0}的工作现场
 git stash pop //恢复并删除stash@{0}的工作现场
 git remote //查看远程库信息
-git remote -v //显示更详细的信息1111111111111111111
+git remote -v //显示更详细的信息
