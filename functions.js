@@ -17,3 +17,11 @@ function SaferHTML(templateData) {
     }
     return s;
 }
+
+
+//ES6测试一个字符由两个字节还是由四个字节组成
+function is32Bit(c) {
+    return c.codePointAt(0) > 0xFFFF;
+}
+is32Bit("𠮷"); // true
+is32Bit("a"); // false
