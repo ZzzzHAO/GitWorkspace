@@ -1,0 +1,109 @@
+﻿1.JavaScript内部，字符以UTF-16的格式储存，每个字符固定为2个字节。对于那些需要4个字节储存的字符（Unicode码点大于0xFFFF的字符	  ），JavaScript会认为它们是两个字符。
+2.对于这种4个字节的字符，JavaScript不能正确处理，字符串长度会误判为2。
+3.字符串可以被for...of循环遍历。
+4.ES5对字符串对象提供charAt方法，返回字符串给定位置的字符。该方法不能识别码点大于0xFFFF的字符。目前(ES6)					  ，有一个提案，提出字符串实例的at方法，可以识别Unicode编号大于0xFFFF的字符，返回正确的字符。
+5.所谓类似数组的对象，本质特征只有一点，即必须有length属性。因此，任何有length属性的对象，都可以通过Array.from方法转为数组，  而此时扩展运算符就无法转换。
+6.Map和Set数据结构有一个has方法，需要注意与includes区分。
+  Map结构的has方法，是用来查找键名的，比如Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。Set结构的has方法，是用来查找值的，比如Set.prototype.has(value)、WeakSet.prototype.has(value)。
+7.function foo({x, y = 5}) {
+  	console.log(x, y);
+  }
+  只有当函数foo的参数是一个对象时，变量x和y才会通过解构赋值而生成。如果函数foo调用时参数不是对象，变量x和y就不会生成，从而报错。如果参数对象没有y属性，y的默认值5才会生效。
+8.通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认    值，实际上这个参数是没法省略的。
+9.// 写法一
+  function m1({ x = 0, y = 0 } = {}) {
+    return [x, y];
+  }
+  // 写法二
+  function m2({ x, y } = { x: 0, y: 0 }) {
+    return [x, y];
+  }
+  // 上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值
+
+  //先默认值生效，然后才是解构赋值默认值生效
+
+  // 函数没有参数的情况
+  m1(); // [0, 0]
+  m2(); // [0, 0]
+
+  // x和y都有值的情况
+  m1({ x: 3, y: 8 }); // [3, 8]
+  m2({ x: 3, y: 8 }); // [3, 8]
+
+  // x有值，y无值的情况
+  m1({ x: 3 }); // [3, 0]
+  m2({ x: 3 }); // [3, undefined]
+
+  // x和y都无值的情况
+  m1({}); // [0, 0];
+  m2({}); // [undefined, undefined]
+
+  m1({ z: 3 }); // [0, 0]
+  m2({ z: 3 }); // [undefined, undefined]
+  
+ 10.一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失    。这种语法行为，在不设置参数默认值时，是不会出现的。
+	var x = 1;
+
+	function f(x, y = x) {
+	  console.log(y);
+	}
+
+	f(2) // 2
+  11.《ECMAScript 2016标准》做了一点修改，规定只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。
+  12.箭头函数有几个使用注意点。
+
+（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+
+（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+
+（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。
+
+上面四点中，第一点尤其值得注意。this对象的指向是可变的，但是在箭头函数中，它是固定的。
+13.     如果handler没有设置任何拦截，那就等同于直接通向原对象。
+	var target = {};
+	var handler = {};
+	var proxy = new Proxy(target, handler);
+	proxy.a = 'b';
+	target.a // "b"
+	上面代码中，handler是一个空对象，没有任何拦截效果，访问proxy就等同于访问target。
+14.虽然for...in循环也用到了in运算符，但是has拦截对for...in循环不生效。
+
+let stu1 = {name: '张三', score: 59};
+let stu2 = {name: '李四', score: 99};
+
+let handler = {
+  has(target, prop) {
+    if (prop === 'score' && target[prop] < 60) {
+      console.log(`${target.name} 不及格`);
+      return false;
+    }
+    return prop in target;
+  }
+}
+
+let oproxy1 = new Proxy(stu1, handler);
+let oproxy2 = new Proxy(stu2, handler);
+
+'score' in oproxy1
+// 张三 不及格
+// false
+
+'score' in oproxy2
+// true
+
+for (let a in oproxy1) {
+  console.log(oproxy1[a]);
+}
+// 张三
+// 59
+
+for (let b in oproxy2) {
+  console.log(oproxy2[b]);
+}
+// 李四
+// 99
+15.Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。也就是说，不管Proxy怎么修改默认行为，你总可以在Reflect上获取默认行为。
+16.扩展运算符可以将任何部署了Iterator接口的数据结构，转为数组。也就是说，只要某个数据结构部署了Iterator接口，就可以对它使用扩展运算符，将其转为数组。
+17.for...of循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象（比如arguments对象、DOM NodeList 对象）、后文的 Generator 对象，以及字符串。
