@@ -1,3 +1,4 @@
+Meteor.subscribe('posts');
 // import { Template } from 'meteor/templating';
 // import { ReactiveVar } from 'meteor/reactive-var';
 
