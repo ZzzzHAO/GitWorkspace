@@ -14,7 +14,7 @@ Router.route('/posts/:_id', {
         return Posts.findOne(this.params._id);
     }
 });
-Router.route('/submit', { name: 'postSubmit' });
+Router.route('/submit', { name: 'postSubmit' }); 
 var requireLogin = function() {
     if (!Meteor.user()) {
         if (Meteor.loggingIn()) {
@@ -26,6 +26,6 @@ var requireLogin = function() {
     } else {
         this.next();
     }
-}
+};
 Router.onBeforeAction('dataNotFound', { only: 'postPage' });
 Router.onBeforeAction(requireLogin, { only: 'postSubmit' });
