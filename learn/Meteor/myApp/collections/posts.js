@@ -12,6 +12,13 @@ Meteor.methods({
             title: String,
             url: String
         });
+        if (Meteor.isServer) {
+            postAttributes.title += "(server)";
+            // wait for 5 seconds
+            Meteor._sleepForMs(5000);
+        } else {
+            postAttributes.title += "(client)";
+        }
         var postWithSameLink = Posts.findOne({ url: postAttributes.url });
         if (postWithSameLink) {
             return {
@@ -26,8 +33,24 @@ Meteor.methods({
             submitted: new Date()
         });
         var postId = Posts.insert(post);
+        if (Meteor.isServer) {
+            console.log('server:' + postId);
+        } else {
+            console.log('client:' + postId);
+        }
         return {
             _id: postId
+        };
+    },
+    postRemove: function(postAttributes) {
+        check(Meteor.userId(), String);
+        check(postAttributes, {
+            id: String
+        });
+        var post = Posts.remove({ _id: postAttributes.id });
+        console.log(post);
+        return {
+            post:post
         };
     }
 });
