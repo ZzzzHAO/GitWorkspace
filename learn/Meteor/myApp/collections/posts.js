@@ -5,6 +5,36 @@ Posts = new Mongo.Collection('posts');
 //         return !!userId;
 //     }
 // });
+Posts.allow({
+    update: function(userId, post) {
+        return ownsDocument(userId, post);
+    },
+    remove: function(userId, post) {
+        return ownsDocument(userId, post);
+    }
+});
+Posts.deny({
+    update: function(userId, post, fieldNames) {
+        // 只能更改如下两个字段：
+        return (_.without(fieldNames, 'url', 'title').length > 0);
+    }
+});
+Posts.deny({
+    update: function(userId, post, fieldNames, modifier) {
+        var errors = validatePost(modifier.$set);
+        return errors.title || errors.url;
+    }
+});
+
+validatePost = function(post) {
+    var errors = {};
+    if (!post.title)
+        errors.title = "请填写标题";
+    if (!post.url)
+        errors.url = "请填写 URL";
+    return errors;
+};
+
 Meteor.methods({
     postInsert: function(postAttributes) {
         check(Meteor.userId(), String);
@@ -12,13 +42,9 @@ Meteor.methods({
             title: String,
             url: String
         });
-        if (Meteor.isServer) {
-            postAttributes.title += "(server)";
-            // wait for 5 seconds
-            Meteor._sleepForMs(5000);
-        } else {
-            postAttributes.title += "(client)";
-        }
+        var errors = validatePost(postAttributes);
+        if (errors.title || errors.url)
+            throw new Meteor.Error('invalid-post', "你必须为你的帖子填写标题和 URL");
         var postWithSameLink = Posts.findOne({ url: postAttributes.url });
         if (postWithSameLink) {
             return {
@@ -33,24 +59,36 @@ Meteor.methods({
             submitted: new Date()
         });
         var postId = Posts.insert(post);
-        if (Meteor.isServer) {
-            console.log('server:' + postId);
-        } else {
-            console.log('client:' + postId);
-        }
         return {
             _id: postId
         };
     },
-    postRemove: function(postAttributes) {
+    postUpdate: function(postAttributes) {
         check(Meteor.userId(), String);
         check(postAttributes, {
-            id: String
+            _id: String,
+            title: String,
+            url: String
         });
-        var post = Posts.remove({ _id: postAttributes.id });
-        console.log(post);
+        var errors = validatePost(postAttributes);
+        if (errors.title || errors.url)
+            throw new Meteor.Error('invalid-post', "你必须为你的帖子填写标题和 URL");
+        var postWithSameLink = Posts.findOne({ url: postAttributes.url, title: postAttributes.title });
+        if (postWithSameLink) {
+            return {
+                postExists: true,
+                _id: postWithSameLink._id
+            };
+        }
+        var user = Meteor.user();
+        var post = _.extend(postAttributes, {
+            userId: user._id,
+            author: user.username,
+            updateTime: new Date()
+        });
+        var postId = Posts.update({ _id: postAttributes._id }, post);
         return {
-            post:post
+            _id: postAttributes._id
         };
     }
 });

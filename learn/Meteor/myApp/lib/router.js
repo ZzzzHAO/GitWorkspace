@@ -14,6 +14,10 @@ Router.route('/posts/:_id', {
         return Posts.findOne(this.params._id);
     }
 });
+Router.route('/posts/:_id/edit', {
+  name: 'postEdit',
+  data: function() { return Posts.findOne(this.params._id); }
+});
 Router.route('/submit', { name: 'postSubmit' }); 
 var requireLogin = function() {
     if (!Meteor.user()) {
