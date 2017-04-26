@@ -84,7 +84,8 @@ Meteor.methods({
         var post = _.extend(postAttributes, {
             userId: user._id,
             author: user.username,
-            updateTime: new Date()
+            updateTime: new Date(),
+            commentsCount: 0
         });
         var postId = Posts.update({ _id: postAttributes._id }, post);
         return {
