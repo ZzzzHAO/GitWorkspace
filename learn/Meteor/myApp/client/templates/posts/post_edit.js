@@ -23,8 +23,6 @@ Template.postEdit.events({
         Meteor.call('postUpdate', postProperties, function(error, result) {
             // 显示错误信息并退出
             if (error){
-                
-                debugger;
                 return throwError(error.reason);
             }
             // 显示结果，跳转页面
@@ -37,16 +35,18 @@ Template.postEdit.events({
 
     'click .delete': function(e) {
         e.preventDefault();
-
         if (confirm("Delete this post?")) {
             var currentPostId = this._id;
             Posts.remove(currentPostId);
-            Router.go('postsList');
+            Router.go('home');
         }
     }
 });
 Template.postEdit.onCreated(function() {
     Session.set('postEditErrors', {});
+});
+Template.postEdit.onRendered(function() {
+    console.log(this.data);
 });
 Template.postEdit.helpers({
     errorMessage: function(field) {
