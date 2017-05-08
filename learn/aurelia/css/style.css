@@ -1,0 +1,175 @@
+/*公共样式  start*/
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.mr24 {
+    margin-right: 24px;
+}
+
+.clearfloat:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0
+}
+
+.clearfloat {
+    zoom: 1
+}
+
+
+/*公共样式  end*/
+
+
+/*导航栏样式  start*/
+
+.home-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-height: 50px;
+    background-color: #1a2a2f;
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.nav-logo {
+    color: #ffffff;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+}
+
+.nav-logo span {
+    margin-left: 80px;
+}
+
+.nav-collapse {
+    height: 50px;
+    line-height: 50px;
+    text-align: center
+}
+
+.nav-collapse-ul {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-collapse-ul li {
+    float: left;
+}
+
+.nav-collapse-ul li:nth-child(2),
+.nav-collapse-ul li:nth-child(3),
+.nav-collapse-ul li:nth-child(4) {
+    margin-left: 62px;
+}
+
+.nav-collapse-ul span {
+    display: block;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.nav-right {
+    line-height: 50px;
+}
+
+.nav-right div:only-child {
+    float: right;
+    margin-right: 80px;
+}
+
+.nav-right span {
+    cursor: pointer;
+}
+
+.nav-right button {
+    display: block;
+    height: 28px;
+    width: 92px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #27b8bd;
+    border-radius: 2px;
+    background-color: #1a2a2f;
+    color: #27b8bd;
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+    color: #27b8bd;
+    text-decoration: none;
+}
+
+
+/*导航栏样式  end*/
+
+
+/*底部样式  start*/
+
+.home-footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    min-height: 50px;
+    background-color: #1a2a2f;
+    color: #ffffff;
+    border-radius: 0;
+}
+
+.footer-collapse {
+    height: 50px;
+    line-height: 50px;
+}
+
+.footer-collapse-ul {
+    margin-left: 80px;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-collapse-ul li {
+    float: left;
+}
+
+.footer-collapse-ul li:nth-child(2),
+.footer-collapse-ul li:nth-child(3),
+.footer-collapse-ul li:nth-child(4) {
+    margin-left: 64px;
+}
+
+.footer-collapse-ul span {
+    display: block;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.footer-right{
+	height: 50px;
+	line-height: 50px;
+}
+.footer-right p{
+	float: right;
+	margin-right: 80px;
+	font-size: 16px;
+}
+/*底部样式  end*/
