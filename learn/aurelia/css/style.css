@@ -394,6 +394,7 @@
     opacity: 0.6;
     background-color: #000000;
     background-image: none;
+    transform: rotate(180deg);
   }
   /*优化师样式  end*/
   /*更多品牌样式  start*/
