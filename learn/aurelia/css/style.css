@@ -1,13 +1,5 @@
   /*公共样式  start*/
   
-  .right {
-    float: right;
-  }
-  
-  .left {
-    float: left;
-  }
-  
   .no-padding {
     padding: 0 !important;
   }
@@ -32,44 +24,12 @@
     margin-top: 110px !important;
   }
   
-  .mr24 {
-    margin-right: 24px !important;
-  }
-  
   .mb64 {
     margin-bottom: 64px !important;
   }
   
   .mb78 {
     margin-bottom: 78px !important;
-  }
-  
-  .ml60 {
-    margin-left: 60px !important;
-  }
-  
-  .ml62 {
-    margin-left: 62px !important;
-  }
-  
-  .ml64 {
-    margin-left: 64px !important;
-  }
-  
-  .ml134 {
-    margin-left: 134px !important;
-  }
-  
-  .clearfloat:after {
-    display: block;
-    clear: both;
-    content: "";
-    visibility: hidden;
-    height: 0
-  }
-  
-  .clearfloat {
-    zoom: 1
   }
   /*公共样式  end*/
   /*导航栏样式  start*/
@@ -87,7 +47,7 @@
   
   .nav-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   
   .nav-logo {
@@ -103,10 +63,9 @@
     line-height: 50px;
   }
   
-  .nav-collapse span {
+  .nav-collapse a {
     font-size: 16px;
     color: #ffffff;
-    cursor: pointer;
   }
   
   .nav-right {
@@ -116,14 +75,13 @@
     line-height: 50px;
   }
   
-  .nav-right span {
-    cursor: pointer;
+  .nav-right a {
+    color: #ffffff;
   }
   
   .nav-right button {
     display: block;
     height: 28px;
-    /*width: 92px;*/
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid #27b8bd;
@@ -153,27 +111,23 @@
   
   .footer-collapse {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     line-height: 50px;
   }
   
-  .footer-collapse span {
-    display: block;
+  .footer-collapse a {
     font-size: 16px;
     color: #ffffff;
-    cursor: pointer;
   }
   
   .footer-right {
     display: flex;
-    flex-flow: row wrap;
     justify-content: flex-end;
     line-height: 50px;
   }
   
-  .footer-right p {
+  .footer-right span {
     font-size: 16px;
-    margin: 0;
   }
   /*底部样式  end*/
   /*推广需求样式  start*/
@@ -181,7 +135,7 @@
   .promote-demand {
     position: relative;
     height: 532px;
-    background: url(../img/pic_toutu.png) no-repeat;
+    background: url(../img/landing/pic_toutu.png) no-repeat;
     background-size: cover;
   }
   
@@ -283,6 +237,7 @@
   
   .platform-icon {
     margin-top: 86px;
+    margin-bottom: 60px;
     text-align: center;
   }
   
@@ -335,24 +290,6 @@
     color: #1d2a2f;
   }
   
-  .tool-row {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-  }
-  
-  .tool-content {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
-  
-  .tool-intro {
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-  }
-  
   .tool-intro-title {
     font-size: 20px;
     color: #1d2a2f;
@@ -379,7 +316,7 @@
   
   .master-subtitle {
     margin-top: 34px;
-    margin-bottom: 0px;
+    margin-bottom: 58px;
     font-size: 22px;
     color: #1d2a2f;
   }
@@ -397,7 +334,7 @@
   .swiper-container {
     width: 100%;
     height: 352px;
-    margin: 20px auto;
+    margin-bottom: 60px;
   }
   
   .swiper-slide {
@@ -426,13 +363,9 @@
     border-radius: 5px;
   }
   
-  .swiper-slide-img {
-    height: 100%;
-  }
-  
   .swiper-slide-content {
     height: 100%;
-    padding: 60px 50px 0 50px
+    padding: 9% 6% 0 6%;
   }
   
   .swiper-item-title {
@@ -445,20 +378,8 @@
     color: #808080;
   }
   
-  .swiper-slide-prev {
-    height: 283px;
-    margin-top: 34px;
-    left: -360px;
-  }
-  
-  .swiper-slide-next {
-    height: 283px;
-    margin-top: 34px;
-    right: -360px;
-  }
-  
   .swiper-button-next {
-    right: 28%;
+    right: 21%;
     width: 56px;
     height: 38px;
     opacity: 0.6;
@@ -467,7 +388,7 @@
   }
   
   .swiper-button-prev {
-    left: 28%;
+    left: 21%;
     width: 56px;
     height: 38px;
     opacity: 0.6;
