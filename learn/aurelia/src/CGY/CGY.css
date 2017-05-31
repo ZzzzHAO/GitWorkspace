@@ -1,0 +1,322 @@
+/*自由生活 start*/
+
+.free-life {
+  position: relative;
+  padding-left: 6.7%;
+  height: 532px;
+  background: url(../../img/CGY/pic_tt.png.png) no-repeat;
+  background-size: cover;
+}
+
+.life-title {
+  margin-top: 68px;
+}
+
+.life-title p {
+  font-size: 56px;
+  color: #41494e;
+}
+
+.life-subtitle {
+  margin-top: 54px;
+}
+
+.life-subtitle p {
+  font-size: 26px;
+  color: #666666;
+}
+
+.free-life button {
+  margin-top: 400px;
+  height: 56px;
+  border-radius: 2px;
+  background-color: #27b8bd;
+  color: #ffffff !important;
+  font-size: 26px;
+}
+
+
+/*自由生活 end*/
+
+
+/*月收入 start*/
+
+.monthly-income {
+  position: relative;
+  background-color: #ffffff;
+}
+
+.income-title {
+  margin-top: 118px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  color: #1d2a2f;
+}
+
+.income-subtitle {
+  margin-top: 34px;
+  margin-bottom: 0px;
+  font-size: 22px;
+  color: #1d2a2f;
+}
+
+.oMaster-radio {
+  margin-top: 98px;
+}
+
+.radio-row {
+  padding-left: 14.7%;
+}
+
+.radio-item {
+  text-align: left;
+}
+
+.radio-item input[type='radio'] {
+  -webkit-appearance: none;
+  border: none;
+  width: 14px;
+  height: 14px;
+  float: left;
+  line-height: 34px;
+  background: url(../../img/CGY/icon_ruan-1.png-拷贝.png);
+  background-size: cover;
+  margin-right: 5px;
+}
+
+.radio-item input[type='radio']:checked {
+  background: url(../../img/CGY/icon_ruan-1.png.png);
+  background-size: cover;
+  color: #333;
+}
+
+.radio-item input[type="radio"]:checked+label {
+  color: #27b8bd;
+}
+
+.radio-item label {
+  font-size: 18px;
+  font-weight: normal;
+  color: #808080;
+}
+
+.income-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.income-img {
+  display: flex;
+  height: 128px;
+  background: url(../../img/CGY/pic_kp.png.png) no-repeat center;
+  background-size: contain;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.income-img p:first-child {
+  font-size: 42px;
+  color: #fff;
+}
+
+.income-img p:last-child {
+  font-size: 18px;
+  color: #fff;
+}
+
+.income-des {
+  font-size: 18px;
+  color: #808080;
+  text-align: left;
+  margin-bottom: 118px;
+}
+
+
+/*月收入 end*/
+
+
+/*使用成功易 start*/
+
+.sucyi-use {
+  position: relative;
+  background-color: #ebf0f2;
+}
+
+.use-title {
+  font-size: 40px;
+  color: #1d2a2f;
+  margin-top: 118px;
+}
+
+.use-card {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ffffff;
+  height: 350px;
+  padding-left: 10%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.card-order {
+  font-size: 80px;
+  color: #d6d6d6;
+}
+
+.card-title {
+  font-size: 36px;
+  color: #1d2a2f;
+}
+
+.card-des {
+  font-size: 18px;
+  color: #808080;
+}
+
+.card-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/*使用成功易 end*/
+
+
+/*工作流程 start*/
+
+.workflow {
+  position: relative;
+  background-color: #ffffff;
+}
+
+.workflow-title {
+  font-size: 40px;
+  color: #1d2a2f;
+  margin-top: 118px;
+}
+
+.workflow-content {
+  margin-top: 84px;
+}
+
+.workflow-item1 {
+  height: 155px;
+  background: url(../../img/CGY/1.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item2 {
+  height: 155px;
+  background: url(../../img/CGY/2.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item3 {
+  height: 155px;
+  background: url(../../img/CGY/3.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item4 {
+  height: 155px;
+  background: url(../../img/CGY/4.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item5 {
+  height: 155px;
+  background: url(../../img/CGY/5.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item6 {
+  height: 155px;
+  background: url(../../img/CGY/6.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item7 {
+  height: 155px;
+  background: url(../../img/CGY/7.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-item8 {
+  height: 155px;
+  background: url(../../img/CGY/8.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.workflow-icon p {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #666666;
+}
+
+.workflow-subtitle {
+  margin-top: 108px;
+  padding-left: 9.5%;
+  font-size: 34px;
+  color: #3c4a4f;
+}
+
+.workflow-des {
+  margin-top: 42px;
+  margin-bottom: 118px;
+  padding-left: 9.5%;
+  font-size: 23px;
+  color: #3c4a4f;
+}
+
+
+/*工作流程 end*/
+
+
+/*重启 start*/
+
+.restart {
+  position: relative;
+  background-color: #ebf0f2;
+}
+
+.restart p {
+  margin-top: 118px;
+  font-size: 40px;
+  background-color: color: #1d2a2f;
+}
+
+.restart button {
+  margin-top: 54px;
+  margin-bottom: 118px;
+  height: 56px;
+  border-radius: 2px;
+  background-color: #27b8bd;
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+
+/*重启 end*/

@@ -1,0 +1,199 @@
+/*case-header start*/
+
+.case-header {
+  position: relative;
+  background-color: #ebf0f2;
+}
+
+.business-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.business-item p {
+  font-size: 20px;
+  margin-top: 22px;
+}
+
+
+/*case-header end*/
+
+
+/*服务客户 start*/
+
+.server-subtitle {
+  font-size: 30px;
+  color: #1d2a2f;
+  margin-top: 118px;
+}
+
+.server-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.server-client {
+  position: relative;
+  background-color: #fff;
+}
+
+.server-check {
+  width: 49%;
+}
+
+.check-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.check-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.check-item p {
+  margin-left: 10px;
+  font-size: 22px;
+  color: #666;
+}
+
+.div-line {
+  width: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.div-line span {
+  width: 1px;
+  height: 224px;
+  background-color: #a0a0a0;
+}
+
+.server-des {
+  width: 49%;
+}
+
+.server-des p {
+  font-size: 22px;
+  color: #666;
+}
+
+
+/*服务客户 end*/
+
+
+/*服务案例 start*/
+
+.server-case {
+  position: relative;
+  background-color: #ebf0f2;
+}
+
+.case-card {
+  background-color: #fff;
+  margin-top: 98px;
+  padding: 0 78px;
+}
+
+.case-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.key-item {
+  display: flex;
+}
+
+.key-item p:first-child {
+  font-size: 22px;
+  color: #1d2a2f;
+  white-space: nowrap;
+}
+
+.key-item p:last-child {
+  font-size: 22px;
+  color: #666;
+}
+
+.case-des p:first-child {
+  font-size: 22px;
+  color: #1d2a2f;
+  white-space: nowrap;
+}
+
+.case-des p:last-child {
+  font-size: 22px;
+  color: #666;
+  margin-top: 22px;
+}
+
+.server-case button {
+  margin-top: 54px;
+  margin-bottom: 118px;
+  height: 56px;
+  border-radius: 2px;
+  background-color: #27b8bd;
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+
+/*服务案例 end*/
+
+
+/*case-form start*/
+
+.case-form {
+  position: relative;
+  background-color: #fff;
+  padding: 0 8%;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.case-form input[type='text'] {
+  height: 70px;
+  line-height: 70px;
+  border: none;
+  background-color: #ebf0f2;
+  font-size: 22px;
+}
+
+.case-form textarea {
+  height: 181px;
+  line-height: 70px;
+  border: none;
+  background-color: #ebf0f2;
+  font-size: 22px;
+  resize: none;
+}
+
+.case-form button {
+  margin-top: 54px;
+  margin-bottom: 118px;
+  height: 56px;
+  border-radius: 2px;
+  background-color: #27b8bd;
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+.case-form input::-webkit-input-placeholder {
+  color: #808080;
+  font-size: 22px;
+}
+
+.case-form textarea::-webkit-input-placeholder {
+  color: #808080;
+  font-size: 22px;
+}
+
+
+/*case-form end*/

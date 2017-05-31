@@ -1,0 +1,325 @@
+/*渠道广告 start*/
+
+.channel-adv {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 534px;
+  padding-right: 150px;
+  background: url(../../img/channel/pic_tt.png.png) no-repeat;
+  background-size: cover;
+}
+
+.channel-title {
+  margin-top: 100px;
+  font-size: 72px;
+  color: #1d2a2f;
+}
+
+.channel-subtitle {
+  font-size: 110px;
+  color: #1d2a2f;
+}
+
+.channel-adv button {
+  margin-top: 380px;
+  height: 56px;
+  width: 270px;
+  border-radius: 2px;
+  background-color: #27b8bd;
+  color: #ffffff !important;
+  font-size: 26px;
+}
+
+
+/*渠道广告 end*/
+
+
+/*渠道经验 start*/
+
+.channel-experience {
+  position: relative;
+  background-color: #ffffff;
+}
+
+.experience-title {
+  margin-top: 118px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  color: #1d2a2f;
+}
+
+.experience-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-bottom: 118px;
+}
+
+.experience-item p {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #1d2a2f;
+}
+
+
+/*渠道经验 end*/
+
+
+/*管家收益 start*/
+
+.butler-profit {
+  position: relative;
+  background-color: #ebf0f2;
+}
+
+.profit-title {
+  margin-top: 118px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  color: #1d2a2f;
+}
+
+.profit-subtitle {
+  margin-top: 34px;
+  margin-bottom: 0px;
+  font-size: 22px;
+  color: #1d2a2f;
+}
+
+.profit-card {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  height: 400px;
+  margin-top: 70px;
+  margin-bottom: 118px;
+}
+
+.more-profit {
+  width: 49%;
+}
+
+.card-title {
+  font-size: 30px;
+  color: #1d2a2f;
+}
+
+.card-subtitle {
+  font-size: 20px;
+  color: #1d2a2f;
+  margin-top: 60px;
+}
+
+.card-subtitle span {
+  font-size: 40px;
+  color: #27b8bd;
+}
+.radio-wrap{
+  display: flex;
+  justify-content: space-around;
+}
+.radio-col{
+  display: flex;
+  flex-direction: column;
+}
+.radio-item {
+  text-align: left;
+}
+
+.radio-item input[type='radio'] {
+  -webkit-appearance: none;
+  border: none;
+  width: 14px;
+  height: 14px;
+  float: left;
+  line-height: 34px;
+  background: url(../../img/CGY/icon_ruan-1.png-拷贝.png);
+  background-size: cover;
+  margin-right: 5px;
+}
+
+.radio-item input[type='radio']:checked {
+  background: url(../../img/CGY/icon_ruan-1.png.png);
+  background-size: cover;
+  color: #333;
+}
+
+.radio-item label {
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: normal;
+  color: #808080;
+}
+
+.div-line {
+  width: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 78px;
+}
+
+.div-line span {
+  width: 1px;
+  height: 224px;
+  background-color: #a0a0a0;
+}
+
+.higher-profit {
+  width: 49%;
+}
+
+.card-des {
+  font-size: 18px;
+  color: #808080;
+}
+
+
+/*管家收益 end*/
+/*专家扶持 start*/
+.expert-support{
+  position: relative;
+  background-color: #fff;
+}
+.support-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.support-item{
+  background-color: #ebf0f2;
+  height: 272px;
+}
+.support-item p{
+  font-size: 20px;
+  color: #1d2a2f;
+  margin-top: 50px;
+}
+.support-img{
+  margin-top: 50px;
+
+}
+/*专家扶持 end*/
+/*管理流程 start*/
+.manage-process {
+  position: relative;
+  background-color: #ebf0f2;
+}
+
+.manage-content {
+  margin-top: 84px;
+}
+
+.manage-item1 {
+  height: 155px;
+  background: url(../../img/channel/pic_1.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item2 {
+  height: 155px;
+  background: url(../../img/channel/pic_2.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item3 {
+  height: 155px;
+  background: url(../../img/channel/pic_3.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item4 {
+  height: 155px;
+  background: url(../../img/channel/pic_4.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item5 {
+  height: 155px;
+  background: url(../../img/channel/pic_5.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item6 {
+  height: 155px;
+  background: url(../../img/channel/pic_6.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item7 {
+  height: 155px;
+  background: url(../../img/channel/pic_7.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-item8 {
+  height: 155px;
+  background: url(../../img/channel/pic_8.png.png) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manage-icon p {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #666666;
+}
+
+.manage-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.manage-subtitle{
+  font-size: 30px;
+  color: #3c4a4f;
+}
+.manage-des{
+  margin-top: 28px;
+  font-size: 20px;
+  color: #808080;
+}
+/*管理流程 end*/
+/*企业家 start*/
+
+.Entrepreneur {
+  position: relative;
+  background-color: #fff;
+}
+
+.Entrepreneur p {
+  margin-top: 118px;
+  font-size: 40px;
+  background-color: color: #1d2a2f;
+}
+
+.Entrepreneur button {
+  margin-top: 54px;
+  margin-bottom: 118px;
+  height: 56px;
+  border-radius: 2px;
+  background-color: #27b8bd;
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+
+/*企业家 end*/

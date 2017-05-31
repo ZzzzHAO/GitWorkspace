@@ -4,12 +4,24 @@
     padding: 0 !important;
   }
   
+  .mt13 {
+    margin-top: 13px !important;
+  }
+  
+  .mt32 {
+    margin-top: 32px !important;
+  }
+  
+  .mt46 {
+    margin-top: 46px !important;
+  }
+  
   .mt54 {
     margin-top: 54px !important;
   }
   
-  .mt13 {
-    margin-top: 13px !important;
+  .mt56 {
+    margin-top: 56px !important;
   }
   
   .mt60 {
@@ -20,16 +32,60 @@
     margin-top: 64px !important;
   }
   
+  .mt72 {
+    margin-top: 72px !important;
+  }
+  
+  .mt82 {
+    margin-top: 82px !important;
+  }
+  
+  .mt95 {
+    margin-top: 95px !important;
+  }
+  
   .mt110 {
     margin-top: 110px !important;
   }
   
+  .mb50 {
+    margin-bottom: 50px !important;
+  }
+   .mb58 {
+    margin-bottom: 58px !important;
+  }
   .mb64 {
     margin-bottom: 64px !important;
   }
   
   .mb78 {
     margin-bottom: 78px !important;
+  }
+  
+  .mb118 {
+    margin-bottom: 118px !important;
+  }
+  
+  .module-title {
+    margin-top: 118px;
+    margin-bottom: 0px;
+    font-size: 40px;
+    color: #1d2a2f;
+  }
+  
+  .module-subtitle {
+    font-size: 20px;
+    color: #1d2a2f;
+  }
+  .line{
+    display: block;
+    height: 1px;
+    background-color: #b3b3b3;
+  }
+  .flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
   /*公共样式  end*/
   /*导航栏样式  start*/
@@ -68,6 +124,10 @@
     color: #ffffff;
   }
   
+  .nav-collapse a:hover {
+    color: #ffffff;
+  }
+  
   .nav-right {
     display: flex;
     flex-flow: row wrap;
@@ -76,6 +136,10 @@
   }
   
   .nav-right a {
+    color: #ffffff;
+  }
+  
+  .nav-right a:hover {
     color: #ffffff;
   }
   
@@ -117,6 +181,10 @@
   
   .footer-collapse a {
     font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .footer-collapse a:hover {
     color: #ffffff;
   }
   
@@ -379,21 +447,21 @@
   }
   
   .swiper-button-next {
-    right: 21%;
-    width: 56px;
-    height: 38px;
+    right: 21% !important;
+    width: 56px !important;
+    height: 38px !important;
     opacity: 0.6;
     background-color: #000000;
-    background-image: none;
+    background-image: none !important;
   }
   
   .swiper-button-prev {
-    left: 21%;
-    width: 56px;
-    height: 38px;
+    left: 21% !important;
+    width: 56px !important;
+    height: 38px !important;
     opacity: 0.6;
     background-color: #000000;
-    background-image: none;
+    background-image: none !important;
     transform: rotate(180deg);
   }
   /*优化师样式  end*/

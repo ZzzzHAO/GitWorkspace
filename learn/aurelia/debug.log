@@ -1,0 +1,12 @@
+[0526/230350.686:ERROR:process_reader_win.cc(233)] ReadMemory at 0x56b5fd8 of 32768 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0526/230350.691:WARNING:pe_image_annotations_reader.cc(65)] could not read simple annotations from C:\Program Files (x86)\Google\Chrome\Application\57.0.2987.133\chrome_elf.dll
+[0526/230351.581:ERROR:process_info.cc(389)] NtQuerySystemInformation SystemExtendedHandleInformation: 指定的信息记录长度与请求的信息类别长度不符合。  (0xc0000004)
+[0526/230351.593:ERROR:process_reader_win.cc(233)] ReadMemory at 0xdc5000 of 45056 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0526/230351.593:ERROR:crash_report_exception_handler.cc(111)] WriteEverything failed
+[0526/230351.594:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: 已尝试访问正在退出的过程。  (0xc000010a)
+[0528/013805.364:ERROR:process_reader_win.cc(233)] ReadMemory at 0xfa5fe8 of 32768 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0528/013805.364:WARNING:pe_image_annotations_reader.cc(65)] could not read simple annotations from C:\Program Files (x86)\Google\Chrome\Application\57.0.2987.133\chrome_elf.dll
+[0528/013806.666:ERROR:process_info.cc(389)] NtQuerySystemInformation SystemExtendedHandleInformation: 指定的信息记录长度与请求的信息类别长度不符合。  (0xc0000004)
+[0528/013806.679:ERROR:process_reader_win.cc(233)] ReadMemory at 0x97d000 of 77824 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0528/013806.679:ERROR:crash_report_exception_handler.cc(111)] WriteEverything failed
+[0528/013806.680:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: 已尝试访问正在退出的过程。  (0xc000010a)
