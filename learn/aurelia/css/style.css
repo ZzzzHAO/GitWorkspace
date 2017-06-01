@@ -1,556 +1,602 @@
   /*公共样式  start*/
   
   .no-padding {
-    padding: 0 !important;
+      padding: 0 !important;
   }
   
   .mt13 {
-    margin-top: 13px !important;
+      margin-top: 13px !important;
+  }
+  
+  .mt26 {
+      margin-top: 26px !important;
   }
   
   .mt32 {
-    margin-top: 32px !important;
+      margin-top: 32px !important;
   }
   
   .mt46 {
-    margin-top: 46px !important;
+      margin-top: 46px !important;
   }
   
   .mt54 {
-    margin-top: 54px !important;
+      margin-top: 54px !important;
   }
   
   .mt56 {
-    margin-top: 56px !important;
+      margin-top: 56px !important;
   }
   
   .mt60 {
-    margin-top: 60px !important;
+      margin-top: 60px !important;
   }
   
   .mt64 {
-    margin-top: 64px !important;
+      margin-top: 64px !important;
   }
   
   .mt72 {
-    margin-top: 72px !important;
+      margin-top: 72px !important;
   }
   
   .mt82 {
-    margin-top: 82px !important;
+      margin-top: 82px !important;
   }
   
   .mt95 {
-    margin-top: 95px !important;
+      margin-top: 95px !important;
   }
   
   .mt110 {
-    margin-top: 110px !important;
+      margin-top: 110px !important;
+  }
+  
+  .mt166 {
+      margin-top: 166px !important;
   }
   
   .mb50 {
-    margin-bottom: 50px !important;
+      margin-bottom: 50px !important;
   }
-   .mb58 {
-    margin-bottom: 58px !important;
+  
+  .mb58 {
+      margin-bottom: 58px !important;
   }
+  
   .mb64 {
-    margin-bottom: 64px !important;
+      margin-bottom: 64px !important;
   }
   
   .mb78 {
-    margin-bottom: 78px !important;
+      margin-bottom: 78px !important;
   }
   
   .mb118 {
-    margin-bottom: 118px !important;
+      margin-bottom: 118px !important;
   }
   
   .module-title {
-    margin-top: 118px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 118px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .module-subtitle {
-    font-size: 20px;
-    color: #1d2a2f;
+      font-size: 22px;
+      color: #1d2a2f;
   }
-  .line{
-    display: block;
-    height: 1px;
-    background-color: #b3b3b3;
+  
+  .line {
+      display: block;
+      height: 1px;
+      background-color: #b3b3b3;
   }
-  .flex-center{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  
+  .flex {
+      display: flex;
+      flex-direction: row;
+  }
+  
+  .flex-col {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .flex-col-between {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  
+  .flex-col-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  
+  .flex-center {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+  
+  .flex-space-between {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  
+  .flex-space-around {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
   }
   /*公共样式  end*/
   /*导航栏样式  start*/
   
   .home-nav {
-    position: relative;
-    top: 0;
-    right: 0;
-    left: 0;
-    min-height: 50px;
-    background-color: #1d2a2f;
-    color: #ffffff;
-    border-radius: 0;
+      position: relative;
+      top: 0;
+      right: 0;
+      left: 0;
+      min-height: 50px;
+      background-color: #1d2a2f;
+      color: #ffffff;
+      border-radius: 0;
   }
   
   .nav-content {
-    display: flex;
-    justify-content: space-around;
+      display: flex;
+      justify-content: space-around;
   }
   
   .nav-logo {
-    color: #ffffff;
-    height: 50px;
-    font-size: 18px;
-    line-height: 50px;
+      color: #ffffff;
+      height: 50px;
+      font-size: 18px;
+      line-height: 50px;
   }
   
   .nav-collapse {
-    display: flex;
-    justify-content: space-between;
-    line-height: 50px;
+      display: flex;
+      justify-content: space-between;
+      line-height: 50px;
   }
   
   .nav-collapse a {
-    font-size: 16px;
-    color: #ffffff;
+      font-size: 16px;
+      color: #ffffff;
   }
   
   .nav-collapse a:hover {
-    color: #ffffff;
+      color: #ffffff;
   }
   
   .nav-right {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    line-height: 50px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      line-height: 50px;
   }
   
   .nav-right a {
-    color: #ffffff;
+      color: #ffffff;
   }
   
   .nav-right a:hover {
-    color: #ffffff;
+      color: #ffffff;
   }
   
   .nav-right button {
-    display: block;
-    height: 28px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #27b8bd;
-    border-radius: 2px;
-    background-color: #1d2a2f;
-    color: #27b8bd;
+      display: block;
+      height: 28px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #27b8bd;
+      border-radius: 2px;
+      background-color: #1d2a2f;
+      color: #27b8bd;
   }
   
   .nav-btn:hover,
   .nav-btn:focus {
-    color: #27b8bd;
-    text-decoration: none;
+      color: #27b8bd;
+      text-decoration: none;
   }
   /*导航栏样式  end*/
   /*底部样式  start*/
   
   .home-footer {
-    position: relative;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    min-height: 50px;
-    background-color: #1d2a2f;
-    color: #ffffff;
-    border-radius: 0;
+      position: relative;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      min-height: 50px;
+      background-color: #1d2a2f;
+      color: #ffffff;
+      border-radius: 0;
   }
   
   .footer-collapse {
-    display: flex;
-    justify-content: space-between;
-    line-height: 50px;
+      display: flex;
+      justify-content: space-between;
+      line-height: 50px;
   }
   
   .footer-collapse a {
-    font-size: 16px;
-    color: #ffffff;
+      font-size: 16px;
+      color: #ffffff;
   }
   
   .footer-collapse a:hover {
-    color: #ffffff;
+      color: #ffffff;
   }
   
   .footer-right {
-    display: flex;
-    justify-content: flex-end;
-    line-height: 50px;
+      display: flex;
+      justify-content: flex-end;
+      line-height: 50px;
   }
   
   .footer-right span {
-    font-size: 16px;
+      font-size: 16px;
   }
   /*底部样式  end*/
   /*推广需求样式  start*/
   
   .promote-demand {
-    position: relative;
-    height: 532px;
-    background: url(../img/landing/pic_toutu.png) no-repeat;
-    background-size: cover;
+      position: relative;
+      height: 532px;
+      background: url(../img/landing/pic_toutu.png) no-repeat;
+      background-size: cover;
   }
   
   .promote-demand p {
-    margin-top: 158px;
-    width: 100%;
-    font-size: 52px;
-    color: #ffffff;
+      margin-top: 158px;
+      width: 100%;
+      font-size: 52px;
+      color: #ffffff;
   }
   
   .promote-demand button {
-    margin-top: 38px;
-    width: 270px;
-    height: 60px;
-    border: 1px solid #fdfdfd;
-    border-radius: 2px;
-    background-color: #86afde;
-    color: #fdfdfd !important;
-    font-size: 30px;
+      margin-top: 38px;
+      width: 270px;
+      height: 60px;
+      border: 1px solid #fdfdfd;
+      border-radius: 2px;
+      background-color: #86afde;
+      color: #fdfdfd !important;
+      font-size: 30px;
   }
   /*推广需求样式  end*/
   /*成功易样式  start*/
   
   .suc-yi {
-    position: relative;
-    background-color: #ffffff;
+      position: relative;
+      background-color: #ffffff;
   }
   
   .yi-title {
-    margin-top: 120px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 120px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .yi-subtitle {
-    margin-top: 34px;
-    margin-bottom: 0px;
-    font-size: 22px;
-    color: #1d2a2f;
+      margin-top: 34px;
+      margin-bottom: 0px;
+      font-size: 22px;
+      color: #1d2a2f;
   }
   
   .yi-content {
-    margin-bottom: 0px;
-    font-size: 16px;
-    color: #666666;
+      margin-bottom: 0px;
+      font-size: 16px;
+      color: #666666;
   }
   
   .yi-icon {
-    text-align: center;
-    margin-top: 86px;
-    margin-bottom: 120px;
+      text-align: center;
+      margin-top: 86px;
+      margin-bottom: 120px;
   }
   
   .yi-icon-content {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      list-style: none;
+      padding: 0;
+      margin: 0;
   }
   
   .yi-icon-item {
-    float: left;
+      float: left;
   }
   
   .yi-icon-content li:nth-child(2),
   .yi-icon-content li:nth-child(3) {
-    margin-left: 150px;
+      margin-left: 150px;
   }
   
   .yi-icon-item p {
-    margin-top: 52px;
-    font-size: 20px;
-    color: #1d2a2f;
+      margin-top: 52px;
+      font-size: 20px;
+      color: #1d2a2f;
   }
   /*成功易样式  end*/
   /*媒体平台样式  start*/
   
   .media-platform {
-    position: relative;
-    background-color: #ebf0f2;
+      position: relative;
+      background-color: #ebf0f2;
   }
   
   .platform-title {
-    margin-top: 120px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 120px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .platform-subtitle {
-    margin-top: 34px;
-    margin-bottom: 0px;
-    font-size: 22px;
-    color: #1d2a2f;
+      margin-top: 34px;
+      margin-bottom: 0px;
+      font-size: 22px;
+      color: #1d2a2f;
   }
   
   .platform-icon {
-    margin-top: 86px;
-    margin-bottom: 60px;
-    text-align: center;
+      margin-top: 86px;
+      margin-bottom: 60px;
+      text-align: center;
   }
   
   .platform-icon-content {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      list-style: none;
+      padding: 0;
+      margin: 0;
   }
   
   .platform-icon-item {
-    float: left;
+      float: left;
   }
   
   .platform-icon-content li:nth-child(2),
   .platform-icon-content li:nth-child(3),
   .platform-icon-content li:nth-child(4) {
-    margin-left: 80px;
+      margin-left: 80px;
   }
   
   .platform-icon-item p {
-    margin-top: 20px;
-    font-size: 20px;
-    color: #1d2a2f;
+      margin-top: 20px;
+      font-size: 20px;
+      color: #1d2a2f;
   }
   
   .media-platform button {
-    width: 300px;
-    height: 50px;
-    margin-bottom: 120px;
-    border-radius: 2px;
-    background-color: #27b8bd;
-    color: #ffffff !important;
-    font-size: 16px;
+      width: 300px;
+      height: 50px;
+      margin-bottom: 120px;
+      border-radius: 2px;
+      background-color: #27b8bd;
+      color: #ffffff !important;
+      font-size: 16px;
   }
   /*媒体平台样式  end*/
   /*管理工具样式  start*/
   
   .mgmt-tool {
-    position: relative;
-    background-color: #ffffff;
+      position: relative;
+      background-color: #ffffff;
   }
   
   .tool-title {
-    margin-top: 120px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 120px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .tool-intro-title {
-    font-size: 20px;
-    color: #1d2a2f;
+      font-size: 20px;
+      color: #1d2a2f;
   }
   
   .tool-intro-content {
-    font-size: 16px;
-    color: #666666;
+      font-size: 16px;
+      color: #666666;
   }
   /*管理工具样式  end*/
   /*优化师样式  start*/
   
   .optimization-master {
-    position: relative;
-    background-color: #ebf0f2;
+      position: relative;
+      background-color: #ebf0f2;
   }
   
   .master-title {
-    margin-top: 120px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 120px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .master-subtitle {
-    margin-top: 34px;
-    margin-bottom: 58px;
-    font-size: 22px;
-    color: #1d2a2f;
+      margin-top: 34px;
+      margin-bottom: 58px;
+      font-size: 22px;
+      color: #1d2a2f;
   }
   
   .optimization-master button {
-    width: 300px;
-    height: 50px;
-    margin-bottom: 120px;
-    border-radius: 2px;
-    background-color: #27b8bd;
-    color: #ffffff !important;
-    font-size: 16px;
+      width: 300px;
+      height: 50px;
+      margin-bottom: 120px;
+      border-radius: 2px;
+      background-color: #27b8bd;
+      color: #ffffff !important;
+      font-size: 16px;
   }
   
   .swiper-container {
-    width: 100%;
-    height: 352px;
-    margin-bottom: 60px;
+      width: 100%;
+      height: 352px;
+      margin-bottom: 60px;
   }
   
   .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    border-radius: 6px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: flex-start;
-    justify-content: flex-start;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      border-radius: 6px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: flex-start;
+      justify-content: flex-start;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
   }
   
   .swiper-pagination-bullet-active {
-    opacity: 1;
-    background: #147477;
-    width: 20px;
-    border-radius: 5px;
+      opacity: 1;
+      background: #147477;
+      width: 20px;
+      border-radius: 5px;
   }
   
   .swiper-slide-content {
-    height: 100%;
-    padding: 9% 6% 0 6%;
+      height: 100%;
+      padding: 9% 6% 0 6%;
   }
   
   .swiper-item-title {
-    font-size: 22px;
-    color: #333333;
+      font-size: 22px;
+      color: #333333;
   }
   
   .swiper-item-content {
-    font-size: 16px;
-    color: #808080;
+      font-size: 16px;
+      color: #808080;
   }
   
   .swiper-button-next {
-    right: 21% !important;
-    width: 56px !important;
-    height: 38px !important;
-    opacity: 0.6;
-    background-color: #000000;
-    background-image: none !important;
+      right: 21% !important;
+      width: 56px !important;
+      height: 38px !important;
+      opacity: 0.6;
+      background-color: #000000;
+      background-image: none !important;
   }
   
   .swiper-button-prev {
-    left: 21% !important;
-    width: 56px !important;
-    height: 38px !important;
-    opacity: 0.6;
-    background-color: #000000;
-    background-image: none !important;
-    transform: rotate(180deg);
+      left: 21% !important;
+      width: 56px !important;
+      height: 38px !important;
+      opacity: 0.6;
+      background-color: #000000;
+      background-image: none !important;
+      transform: rotate(180deg);
   }
   /*优化师样式  end*/
   /*更多品牌样式  start*/
   
   .more-brand {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #ffffff;
   }
   
   .brand-title {
-    margin-top: 120px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 120px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .brand-row {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
   }
   
   .brand-btn {
-    display: flex;
-    justify-content: center;
+      display: flex;
+      justify-content: center;
   }
   
   .brand-btn button {
-    width: 300px;
-    height: 50px;
-    margin-bottom: 120px;
-    border-radius: 2px;
-    background-color: #27b8bd;
-    color: #ffffff !important;
-    font-size: 16px;
+      width: 300px;
+      height: 50px;
+      margin-bottom: 120px;
+      border-radius: 2px;
+      background-color: #27b8bd;
+      color: #ffffff !important;
+      font-size: 16px;
   }
   /*更多品牌样式  end*/
   /*营销全球样式  start*/
   
   .marketing-global {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    background-color: #ebf0f2;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: #ebf0f2;
   }
   
   .global-title {
-    margin-top: 122px;
-    margin-bottom: 0px;
-    font-size: 40px;
-    color: #1d2a2f;
+      margin-top: 122px;
+      margin-bottom: 0px;
+      font-size: 40px;
+      color: #1d2a2f;
   }
   
   .global-content {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin-top: 60px;
-    margin-bottom: 112px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      margin-top: 60px;
+      margin-bottom: 112px;
   }
   
   .global-item {
-    display: flex;
-    flex-direction: column;
-    height: 228px;
-    background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      height: 228px;
+      background-color: #ffffff;
   }
   
   .global-item p {
-    font-size: 22px;
-    color: #1d2a2f;
-    margin-top: 48px;
+      font-size: 22px;
+      color: #1d2a2f;
+      margin-top: 48px;
   }
   
   .global-btn {
-    display: flex;
-    justify-content: center;
-    margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      margin-top: 38px;
   }
   
   .global-btn button {
-    width: 202px;
-    height: 40px;
-    border-radius: 2px;
-    background-color: #27b8bd;
-    color: #ffffff !important;
-    font-size: 16px;
+      width: 202px;
+      height: 40px;
+      border-radius: 2px;
+      background-color: #27b8bd;
+      color: #ffffff !important;
+      font-size: 16px;
   }
   /*营销全球样式  end*/

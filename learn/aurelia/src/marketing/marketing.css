@@ -1,0 +1,95 @@
+/*marketing-header start*/
+
+.marketing-header {
+    position: relative;
+    background-color: #fff;
+}
+
+
+/*marketing-header end*/
+
+
+/*marketing-arrow start*/
+
+.marketing-arrow {
+    position: relative;
+    background-color: #ebf0f2;
+}
+
+.intro-title {
+    margin-top: 26px;
+    font-size: 22px;
+    color: #1d2a2f;
+}
+
+.intro-text {
+    font-size: 18px;
+    color: #808080;
+}
+
+
+/*marketing-arrow end*/
+
+
+/*business-intro start*/
+
+.business-intro {
+    position: relative;
+    background-color: #fff;
+}
+
+
+/*business-intro end*/
+
+
+/*building-website start*/
+
+.building-website {
+    position: relative;
+    background-color: #ebf0f2;
+}
+
+.building-website table {
+    font-size: 22px;
+    color: #fff;
+}
+
+.building-website table th {
+    text-align: center;
+}
+
+.building-website table tr th,
+td {
+    height: 80px;
+    line-height: 80px;
+    border-color: #ccc !important;
+    padding: 0;
+}
+
+.building-website table thead th {
+    background-color: #1b8d91;
+    border: none;
+}
+
+.building-website table thead th:first-child {
+    width: 30%;
+}
+
+.building-website table tbody th {
+    background-color: #27b8bd;
+    border: none;
+}
+
+.building-website table tbody td {
+    padding: 29px 0;
+}
+
+
+/*building-website end*/
+/*media-account start*/
+.icon-text{
+	margin-top: 10px;
+	font-size: 18px;
+	color: #3c4a4f;
+}
+/*media-account end*/
