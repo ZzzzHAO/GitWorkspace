@@ -107,6 +107,7 @@ let 和 const 命令
   let getTempItem = id => ({ id: id, name: "Temp" });
 ```
 6.箭头函数的一个用处是简化回调函数。
+```js
   // 正常函数写法
   [1,2,3].map(function (x) {
     return x * x;
@@ -114,7 +115,7 @@ let 和 const 命令
 
   // 箭头函数写法
   [1,2,3].map(x => x * x);
-
+```
 7.箭头函数有几个使用注意点：
   （1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。（this对象的指向是可变的，但是在箭头函数中，它是固定的。）
 
@@ -125,6 +126,7 @@ let 和 const 命令
   （4）不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
 
 8.this指向的固定化，并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。正是因为它没有this，所以也就不能用作构造函数。
+```js
   // ES6
   function foo() {
     setTimeout(() => {
@@ -140,8 +142,10 @@ let 和 const 命令
       console.log('id:', _this.id);
     }, 100);
   }
+```
 
 9.请问下面的代码之中有几个this？
+```js
   function foo() {
     return () => {
       return () => {
@@ -157,6 +161,7 @@ let 和 const 命令
   var t1 = f.call({id: 2})()(); // id: 1
   var t2 = f().call({id: 3})(); // id: 1
   var t3 = f()().call({id: 4}); // id: 1
+```
   上面代码之中，只有一个this，就是函数foo的this，所以t1、t2、t3都输出同样的结果。因为所有的内层函数都是箭头函数，都没有自己的this，它们的this其实都是最外层foo函数的this。
 
 数组的扩展
@@ -168,6 +173,7 @@ let 和 const 命令
 对象的扩展
 =========
 1.简介表示（属性、方法）
+```js
   var foo = 'bar';
   var baz = {foo};
   baz // {foo: "bar"}
@@ -188,8 +194,9 @@ let 和 const 命令
       return "Hello!";
     }
   };
-
+```
 2.ES6 允许字面量定义对象时，用表达式作为对象的属性名，即把表达式放在方括号内。表达式还可以用于定义方法名。
+```js
   let propKey = 'foo';
 
   let obj = {
@@ -204,15 +211,16 @@ let 和 const 命令
   };
 
   obj.hello() // hi
-
+```
 3.Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
 
 4.Object.assign方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。
 
 5.Object.assign可以用来处理数组，但是会把数组视为对象。
+```js
   Object.assign([1, 2, 3], [4, 5])
   // [4, 5, 3]
-
+```
 6.Object.assign方法用途
   （1）为对象添加属性
   （2）为对象添加方法
@@ -234,15 +242,18 @@ let 和 const 命令
 
 11.对象的扩展运算符
   （1）解构赋值 (解构赋值必须是最后一个参数，否则会报错。)
+ ```js
     let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
     x // 1
     y // 2
     z // { a: 3, b: 4 }
+```
   （2）扩展运算符（...）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。
+```js
     let z = { a: 3, b: 4 };
     let n = { ...z };
     n // { a: 3, b: 4 }
-
+```
 12.Null 传导运算符 ?.
 
 Symbol
@@ -258,15 +269,19 @@ Set
 2.Set 函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化。
 
 3.也展示了一种去除数组重复成员的方法。
+```js
   [...new Set(array)] // 去除数组的重复成员
+```
 
 4.向Set加入值的时候，不会发生类型转换，它类似于精确相等运算符（===），主要的区别是NaN等于自身，而精确相等运算符认为NaN不等于自身。
+```js
   let set = new Set();
   let a = NaN;
   let b = NaN;
   set.add(a);
   set.add(b);
   set // Set {NaN}
+```
 
 5.Set 实例的属性和方法
   （1）实例属性：
@@ -305,6 +320,7 @@ Map
 Promise对象
 =========
 1.Promise对象象实现Ajax操作的例子
+```js
   var getJSON = function(url) {
     var promise = new Promise(function(resolve, reject){
       var client = new XMLHttpRequest();
@@ -334,8 +350,9 @@ Promise对象
   }, function(error) {
     console.error('出错了', error);
   });
-
+```
 2.调用resolve或reject并不会终结 Promise 的参数函数的执行。
+```js
   new Promise((resolve, reject) => {
     resolve(1);
     console.log(2);
@@ -344,17 +361,21 @@ Promise对象
   });
   // 2
   // 1
+ ```
   上面代码中，调用resolve(1)以后，后面的console.log(2)还是会执行，并且会首先打印出来。这是因为立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。
 
 3.then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。因此可以采用链式写法，即then方法后面再调用另一个then方法。
+```js
   getJSON("/posts.json").then(function(json) {
     return json.post;
   }).then(function(post) {
     // ...
   });
+```
   上面的代码使用then方法，依次指定了两个回调函数。第一个回调函数完成以后，会将返回结果作为参数，传入第二个回调函数。
 
 4.Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个catch语句捕获。
+```js
   getJSON('/post/1.json').then(function(post) {
     return getJSON(post.commentURL);
   }).then(function(comments) {
@@ -362,6 +383,7 @@ Promise对象
   }).catch(function(error) {
     // 处理前面三个Promise产生的错误
   });
+```
   上面代码中，一共有三个Promise对象：一个由getJSON产生，两个由then产生。它们之中任何一个抛出的错误，都会被最后一个catch捕获。
 
 5.一般来说，不要在then方法里面定义Reject状态的回调函数（即then的第二个参数），总是使用catch方法。
@@ -402,6 +424,7 @@ Generator 函数
 4.yield表达式后面的表达式，只有当调用next方法、内部指针指向该语句时才会执行，因此等于为 JavaScript 提供了手动的“惰性求值”（Lazy Evaluation）的语法功能。
 
 5.for...of循环可以自动遍历 Generator 函数时生成的Iterator对象，且此时不再需要调用next方法。
+```js
   function *foo() {
     yield 1;
     yield 2;
@@ -415,7 +438,7 @@ Generator 函数
     console.log(v);
   }
   // 1 2 3 4 5
-
+```
 6.Promise 的写法只是回调函数的改进，使用then方法以后，异步任务的两段执行看得更清楚了，除此以外，并无新意。
 
   Promise 的最大问题是代码冗余，原来的任务被 Promise 包装了一下，不管什么操作，一眼看去都是一堆then，原来的语义变得很不清楚。
@@ -433,11 +456,12 @@ async 函数
 3.async函数返回的 Promise 对象，必须等到内部所有await命令后面的 Promise 对象执行完，才会发生状态改变，除非遇到return语句或者抛出错误。也就是说，只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。
 
 4.只要一个await语句后面的 Promise 变为reject，那么整个async函数都会中断执行。
+```js
   async function f() {
     await Promise.reject('出错了');
     await Promise.resolve('hello world'); // 不会执行
   }
-
+```
 Class 的基本语法
 =========
 1.类的内部所有定义的方法，都是不可枚举的（non-enumerable）。这一点与 ES5 的行为不一致。
@@ -449,6 +473,7 @@ Class 的基本语法
 4.类必须使用new调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用new也可以执行。
 
 5.与函数一样，类也可以使用表达式的形式定义。
+```js
   const MyClass = class Me {
     getClassName() {
       return Me.name;
@@ -457,17 +482,21 @@ Class 的基本语法
   let inst = new MyClass();
   inst.getClassName() // Me
   Me.name // ReferenceError: Me is not defined
+```
   上面代码使用表达式定义了一个类。需要注意的是，这个类的名字是MyClass而不是Me，Me只在 Class 的内部代码可用，指代当前类。
 
 6.类不存在变量提升（hoist），这一点与 ES5 完全不同。
+```js
   {
     let Foo = class {};
     class Bar extends Foo {
     }
   }
+```
   上面的代码不会报错，因为Bar继承Foo的时候，Foo已经有定义了。但是，如果存在class的提升，上面代码就会报错，因为class会被提升到代码头部，而let命令是不提升的，所以导致Bar继承Foo的时候，Foo还没有定义。
 
 7.类的方法内部如果含有this，它默认指向类的实例。但是，必须非常小心，一旦单独使用该方法，很可能报错。
+```js
   class Logger {
     printName(name = 'there') {
       this.print(`Hello ${name}`);
@@ -481,10 +510,12 @@ Class 的基本语法
   const logger = new Logger();
   const { printName } = logger;
   printName(); // TypeError: Cannot read property 'print' of undefined
+```
   上面代码中，priantName方法中的this，默认指向Logger类的实例。但是，如果将这个方法提取出来单独使用，this会指向该方法运行时所在的环境，因为找不到print方法而导致报错。
 
 8.Class 的静态方法
   类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
+```js
   class Foo {
     static classMethod() {
       return 'hello';
@@ -496,11 +527,13 @@ Class 的基本语法
   var foo = new Foo();
   foo.classMethod()
   // TypeError: foo.classMethod is not a function
+```
   上面代码中，Foo类的classMethod方法前有static关键字，表明该方法是一个静态方法，可以直接在Foo类上调用（Foo.classMethod()），而不是在Foo类的实例上调用。如果在实例上调用静态方法，会抛出一个错误，表示不存在该方法。
 
 9.静态方法可以与非静态方法重名。
 
 10.父类的静态方法，可以被子类继承。
+```js
   class Foo {
     static classMethod() {
       return 'hello';
@@ -511,10 +544,11 @@ Class 的基本语法
   }
 
   Bar.classMethod() // 'hello'
-
+```
 Class 的继承
 =========
 1.子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
+```js
   class Point { /* ... */ }
 
   class ColorPoint extends Point {
@@ -523,10 +557,11 @@ Class 的继承
   }
 
   let cp = new ColorPoint(); // ReferenceError
-
+```
 2.ES5 的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（Parent.apply(this)）。ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
 
 3.如果子类没有定义constructor方法，这个方法会被默认添加，代码如下。也就是说，不管有没有显式定义，任何一个子类都有constructor方法。
+```js
   class ColorPoint extends Point {
   }
 
@@ -536,8 +571,9 @@ Class 的继承
       super(...args);
     }
   }
-
+```
 4.在子类的构造函数中，只有调用super之后，才可以使用this关键字，否则会报错。这是因为子类实例的构建，是基于对父类实例加工，只有super方法才能返回父类实例。
+```js
   class Point {
     constructor(x, y) {
       this.x = x;
@@ -552,8 +588,9 @@ Class 的继承
       this.color = color; // 正确
     }
   }
-
+```
 5.ES6 规定，通过super调用父类的方法时，super会绑定子类的this。
+```js
   class A {
     constructor() {
       this.x = 1;
@@ -575,10 +612,11 @@ Class 的继承
 
   let b = new B();
   b.m() // 2
-
+```
 Module语法
 =========
 1.ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西
+```js
 // CommonJS模块
 let { stat, exists, readFile } = require('fs');
 
@@ -587,11 +625,13 @@ let _fs = require('fs');
 let stat = _fs.stat;
 let exists = _fs.exists;
 let readfile = _fs.readfile;
+```
 上面代码的实质是整体加载fs模块（即加载fs的所有方法），生成一个对象（_fs），然后再从这个对象上面读取3个方法。这种加载称为“运行时加载”，因为只有运行时才能得到这个对象，导致完全没办法在编译时做“静态优化”。
 import { stat, exists, readFile } from 'fs';
 上面代码的实质是从fs模块加载3个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。
 
 2.由于import是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。
+```js
 // 报错
 import { 'f' + 'oo' } from 'my_module';
 
@@ -605,7 +645,7 @@ if (x === 1) {
 } else {
   import { foo } from 'module2';
 }
-
+```
 3.import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置。
 import {myMethod} from 'util';
 上面代码中，util是模块文件名，由于不带有路径，必须通过配置，告诉引擎怎么取到这个模块。
@@ -617,9 +657,11 @@ Module 的加载实现
 1.默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到<script>标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。
 
 如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载，下面就是两种异步加载的语法。
+```js
 
 <script src="path/to/myModule.js" defer></script>
 <script src="path/to/myModule.js" async></script>
+```
 上面代码中，<script>标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。
 
 defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer是“渲染完再执行”，async是“下载完就执行”。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。
@@ -628,7 +670,7 @@ defer与async的区别是：前者要等到整个页面正常渲染结束，才�
 CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
 
 3.如果不指定绝对路径，Node 加载 ES6 模块会依次寻找以下脚本，与require()的规则一致。
-
+```js
 import './foo';
 // 依次寻找
 //   ./foo.js
@@ -645,3 +687,4 @@ import 'baz';
 //   ../node_modules/baz/package.json
 //   ../node_modules/baz/index.js
 // 再上一级目录
+```js
