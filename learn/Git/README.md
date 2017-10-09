@@ -1,13 +1,13 @@
-**git init** //把当前这个目录变成Git可以管理的仓库
-**ls -ah** //查看目录 包含隐藏文件
-**git add file** //把文件添加到暂存区
-**git commit -m "comment"** //提交到本地版本库
-**git diff file** //查看修改内容
-**git diff HEAD -- file** //查看工作区和版本库里面最新版的区别
-**git log** //可以查看提交历史，以便确定要回退到哪个版本。
-**git log --pretty=oneline** //可以查看提交历史  (每个版本占一行)
-**git log --graph** //可以看到分支合并图
-**git reset --hard HEAD^** //会退到上个版本，回退n个版本就写n个'^'或者简写成'HEAD~n'
++**git init** //把当前这个目录变成Git可以管理的仓库
++**ls -ah** //查看目录 包含隐藏文件
++**git add file** //把文件添加到暂存区
++**git commit -m "comment"** //提交到本地版本库
++**git diff file** //查看修改内容
++**git diff HEAD -- file** //查看工作区和版本库里面最新版的区别
++**git log** //可以查看提交历史，以便确定要回退到哪个版本。
++**git log --pretty=oneline** //可以查看提交历史  (每个版本占一行)
++**git log --graph** //可以看到分支合并图
++**git reset --hard HEAD^** //会退到上个版本，回退n个版本就写n个'^'或者简写成'HEAD~n'
 **git reset HEAD file** //可以把暂存区的修改撤销掉，重新放回工作区
 **git reflog** //记录你的每一次命令，查看命令历史，以便确定要回到未来的哪个版本。
 **git rm file** //删除文件，也可以用'git add file'达到相同的目的(先物理删除文件，再执行此命令)
