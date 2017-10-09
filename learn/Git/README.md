@@ -1,4 +1,4 @@
-+ **git init** //把当前这个目录变成Git可以管理的仓库
++ ** `git init` ** //把当前这个目录变成Git可以管理的仓库
 + **ls -ah** //查看目录 包含隐藏文件
 + **git add file** //把文件添加到暂存区
 + **git commit -m "comment"** //提交到本地版本库
