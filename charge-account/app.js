@@ -12,7 +12,13 @@ App({
       syncURL: 'https://wd4116701793ovirsj.wilddogio.com',
       authDomain: 'wd4116701793ovirsj.wilddog.com'
     }
-    wilddog.initializeApp(config)
+    wilddog.initializeApp(config);
+
+    wilddog.auth().signInWeapp().then(function (user) {
+      console.log(user)
+    }).catch(function (err) {
+
+    })
     // 登录
     wx.login({
       success: res => {
