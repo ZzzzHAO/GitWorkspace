@@ -1,11 +1,18 @@
 //app.js
+import wilddog from './wilddog-weapp-all'
 App({
   onLaunch: function () {
+    console.log(wilddog)
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    var config = {
+      syncURL: 'https://wd4116701793ovirsj.wilddogio.com',
+      authDomain: 'wd4116701793ovirsj.wilddog.com'
+    }
+    wilddog.initializeApp(config)
     // 登录
     wx.login({
       success: res => {
