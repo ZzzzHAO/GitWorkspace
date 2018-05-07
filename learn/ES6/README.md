@@ -689,7 +689,30 @@ Module语法
     ```
     上面代码的实质是从fs模块加载3个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。
 
-2. 由于import是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。
+2. 需要特别注意的是，export命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系。
+    ```js
+    // 报错
+    export 1;
+
+    // 报错
+    var m = 1;
+    export m;
+    ```
+    上面两种写法都会报错，因为没有提供对外的接口。第一种写法直接输出1，第二种写法通过变量m，还是直接输出1。
+    ```js
+    // 写法一
+    export var m = 1;
+
+    // 写法二
+    var m = 1;
+    export {m};
+
+    // 写法三
+    var n = 1;
+    export {n as m};
+    ```
+    上面三种写法都是正确的，规定了对外的接口m。其他脚本可以通过这个接口，取到值1。它们的实质是，在接口名与模块内部变量之间，建立了一一对应的关系。
+3. 由于import是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。
     ```js
     // 报错
     import { 'f' + 'oo' } from 'my_module';
@@ -705,24 +728,81 @@ Module语法
       import { foo } from 'module2';
     }
     ```
-3. import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置。
+4. import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略。如果只是模块名，不带有路径，那么必须有配置文件，告诉 JavaScript 引擎该模块的位置。
     ```js
     import {myMethod} from 'util';
     ```
     上面代码中，util是模块文件名，由于不带有路径，必须通过配置，告诉引擎怎么取到这个模块。
 
-4. ES6 的模块自动采用严格模式，不管你有没有在模块头部加上"use strict";。
+5. import命令具有提升效果，会提升到整个模块的头部，首先执行。
 
+6. ES6 的模块自动采用严格模式，不管你有没有在模块头部加上"use strict";。
+
+7. import语句会执行所加载的模块，因此可以有下面的写法。
+    ```js
+    import 'lodash';
+    ```
+    上面代码仅仅执行lodash模块，但是不输入任何值。如果多次重复执行同一句import语句，那么只会执行一次，而不会执行多次。
+
+8. 除了指定加载某个输出值，还可以使用整体加载，即用星号（*）指定一个对象，所有输出值都加载在这个对象上面。
+
+9. 比较一下默认输出和正常输出。
+    ```js
+        // 第一组
+    export default function crc32() { // 输出
+      // ...
+    }
+
+    import crc32 from 'crc32'; // 输入
+
+    // 第二组
+    export function crc32() { // 输出
+      // ...
+    };
+
+    import {crc32} from 'crc32'; // 输入
+    ```
+    上面代码的两组写法，第一组是使用export default时，对应的import语句不需要使用大括号；第二组是不使用export default时，对应的import语句需要使用大括号。
+
+10. 本质上，export default就是输出一个叫做default的变量或方法，然后系统允许你为它取任意名字。所以，下面的写法是有效的。
+    ```js
+    // modules.js
+    function add(x, y) {
+      return x * y;
+    }
+    export {add as default};
+    // 等同于
+    // export default add;
+
+    // app.js
+    import { default as xxx } from 'modules';
+    // 等同于
+    // import xxx from 'modules';
+    ```
+11. 有了export default命令，输入模块时就非常直观了，以输入 lodash 模块为例。
+    ```js
+    import _, { each, each as forEach } from 'lodash';
+    ```
+
+12. 如果在一个模块之中，先输入后输出同一个模块，import语句可以与export语句写在一起。
+
+    ```js
+    export { foo, bar } from 'my_module';
+
+    // 等同于
+    import { foo, bar } from 'my_module';
+    export { foo, bar };
+    ```
 Module 的加载实现
 =========
-1. 默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到<script>标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。
+1. 默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。
 
     如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载，下面就是两种异步加载的语法。
-    ```js
+    ```html
     <script src="path/to/myModule.js" defer></script>
     <script src="path/to/myModule.js" async></script>
     ```
-    上面代码中，<script>标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。
+    上面代码中，script标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令。
 
     defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer是“渲染完再执行”，async是“下载完就执行”。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。
 
