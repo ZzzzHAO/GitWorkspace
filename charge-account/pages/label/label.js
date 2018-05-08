@@ -98,7 +98,7 @@ Page({
   },
   goNext:function(e){
     wx.reLaunch({
-      url: '../pie/pie'
+      url: '../pie/index'
     })
   }
 })
