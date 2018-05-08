@@ -1,2 +1,18 @@
-<!--pages/label/label.wxml-->
-<text>pages/label/label.wxml</text>
+<!--index.wxml-->
+<view class="container1">
+  <view class='category-block'>
+    <text selectable='false'>
+      消费分类：
+    </text>
+    <view class='radio-content'>
+    <view class='radio-group'>
+     <button wx:for="{{items}}" size='default' type='primary' wx:key="{{item.id}}" plain="{{!item.checked}}" bindtap="check" data-id="{{item.id}}">
+        {{item.value}}
+      </button>
+    </view>
+    </view>
+  </view>
+  <view class='btn-block'>
+    <button size='default' type='primary' bindtap="goNext" wx:if='{{isVisible}}'>完成</button>
+  </view>
+</view>

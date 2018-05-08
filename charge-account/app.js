@@ -2,7 +2,6 @@
 import wilddog from './wilddog-weapp-all'
 App({
   onLaunch: function () {
-    console.log(wilddog)
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
