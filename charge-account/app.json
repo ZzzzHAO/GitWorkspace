@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/amount/index",
     "pages/logs/logs",
-    "pages/label/label",
-    "pages/pie/index"
+    "pages/category/index",
+    "pages/statistics/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

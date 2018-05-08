@@ -65,7 +65,7 @@ Page({
   //页面跳转
   goNext: function (e) {
     wx.navigateTo({
-      url: '../label/label?amount=' + this.data.amount,
+      url: '../category/index?amount=' + this.data.amount,
     })
   }
 })
