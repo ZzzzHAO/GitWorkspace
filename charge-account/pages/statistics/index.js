@@ -3,19 +3,32 @@ import * as echarts from '../../ec-canvas/echarts';
 const app = getApp();
 
 function initChart(canvas, width, height) {
+  const size = height * 0.45;
   const chart = echarts.init(canvas, null, {
     width: width,
-    height: 500
+    height: size
   });
   canvas.setChart(chart);
 
   var option = {
-    backgroundColor: "#ffffff",
+    title: {
+      text: '本月消费：',
+      x: 'center',
+      top: '5%'
+    },
+    backgroundColor: "#f6f6f6",
     color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
+    legend: {
+      orient: 'horizontal',
+      bottom: '2%',
+      x: 'center',
+      data: ['北京', '武汉', '杭州', '广州', '上海']
+    },
     series: [{
       label: {
         normal: {
-          fontSize: 14
+          fontSize: 14,
+          formatter: '{d}%'
         }
       },
       type: 'pie',
