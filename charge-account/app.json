@@ -3,12 +3,15 @@
     "pages/amount/index",
     "pages/logs/logs",
     "pages/category/index",
-    "pages/statistics/index"
+    "pages/statistics/index",
+    "pages/leftSwiperDel/index",
+    "pages/detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "disableScroll":true
   }
 }

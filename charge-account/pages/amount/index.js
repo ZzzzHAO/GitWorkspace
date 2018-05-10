@@ -67,5 +67,10 @@ Page({
     wx.navigateTo({
       url: '../category/index?amount=' + this.data.amount,
     })
+  },
+  goStatistics:function(e){
+    wx.navigateTo({
+      url: '../statistics/index'
+    })
   }
 })

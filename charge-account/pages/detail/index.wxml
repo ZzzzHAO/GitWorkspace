@@ -1,0 +1,16 @@
+<!--pages/detail/index.wxml-->
+<scroll-view scroll-y style="height: 35%;">
+    <view class="table">
+        <view class="tr">
+            <view class="th">类别</view>
+            <view class="th">花费</view>
+            <view class="th">日期</view>
+        </view>
+        <swider-left class="tr" wx:for="{{costList}}" wx:key="{{index}}" bind:sliderLeftStart="handleSliderLeftStart" bind:change="handleChange"
+            bind:delete="handleDelete" data-index="{{index}}" open="{{item.isOpen}}" >
+            <view class="td">{{item.category}}</view>
+            <view class="td">{{item.cost}}</view>
+            <view class="td">{{item.date}}</view>
+        </swider-left>
+    </view>
+</scroll-view>

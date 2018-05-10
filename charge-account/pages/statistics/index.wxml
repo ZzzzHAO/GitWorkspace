@@ -1,4 +1,21 @@
 <!--index.wxml-->
 <view class="wrap">
-  <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas> 
+  <scroll-view scroll-y style="height: 35%;">
+    <view class="table">
+      <view class="tr" wx:for="{{7}}" wx:key="{{item}}">
+        <view class="td">饮食</view>
+        <view class="td">600.20</view>
+        <view class="td">18.33%</view>
+      </view>
+    </view>
+  </scroll-view>
+  <scroll-view scroll-x style="height: 20%;">
+    <view scroll-x class="month-list">
+      <view wx:for="{{monthList}}" wx:key="{{index}}" data-index="{{index}}" class="month-item">
+        {{item.year}}年{{item.month}}月
+      </view>
+    </view>
+  </scroll-view>
+  <text class="show-detail" wx:if="{{isShow}}" bindtap="showDetail">查看流水</text>
 </view>

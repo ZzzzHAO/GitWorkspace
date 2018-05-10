@@ -10,7 +10,7 @@
   </view>
   <view class='btn-block'>
     <button size='default' type='primary' bindtap="goNext" disabled='{{isDisabled}}' >下一步</button>
-    <text>
+    <text bindtap="goStatistics">
       查看记录
     </text>
   </view>

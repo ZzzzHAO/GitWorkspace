@@ -43,6 +43,12 @@
 					"name": "饼图",
 					"pathName": "pages/statistics/index",
 					"query": "amount=2"
+				},
+				{
+					"id": -1,
+					"name": "消费流水",
+					"pathName": "pages/detail/index",
+					"query": "amount=2"
 				}
 			]
 		}

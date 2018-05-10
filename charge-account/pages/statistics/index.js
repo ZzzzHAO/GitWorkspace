@@ -1,20 +1,30 @@
 import * as echarts from '../../ec-canvas/echarts';
+import {
+  getMonthList
+} from '../../utils/util';
+import {
+  wilddog
+} from '../../wilddog'
 
 const app = getApp();
 
 function initChart(canvas, width, height) {
-  const size = height * 0.45;
   const chart = echarts.init(canvas, null, {
     width: width,
-    height: size
+    height: height
   });
   canvas.setChart(chart);
-
+  chart.on('click', function (params) {
+    console.log(params);
+  });
   var option = {
     title: {
       text: '本月消费：',
-      x: 'center',
-      top: '5%'
+      x: 'left',
+      top: '2%',
+      textStyle: {
+        fontSize: '15'
+      }
     },
     backgroundColor: "#f6f6f6",
     color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
@@ -22,7 +32,8 @@ function initChart(canvas, width, height) {
       orient: 'horizontal',
       bottom: '2%',
       x: 'center',
-      data: ['北京', '武汉', '杭州', '广州', '上海']
+      data: ['北京', '武汉', '杭州', '广州', '上海'],
+      selectedMode:false
     },
     series: [{
       label: {
@@ -49,8 +60,7 @@ function initChart(canvas, width, height) {
       }, {
         value: 38,
         name: '上海'
-      },
-      ],
+      }, ],
       itemStyle: {
         emphasis: {
           shadowBlur: 10,
@@ -70,16 +80,36 @@ Page({
     return {
       title: 'ECharts 可以在微信小程序中使用啦！',
       path: '/pages/index/index',
-      success: function () { },
-      fail: function () { }
+      success: function () {},
+      fail: function () {}
     }
   },
   data: {
     ec: {
       onInit: initChart
-    }
+    },
+    monthList: getMonthList(new Date('6/16/2017'), new Date()),
+    isShow:true
   },
 
-  onReady() {
+  onReady() {},
+  onLoad: function (option) {
+    const _this = this;
+    let monthList = [];
+    const query = wilddog.sync().ref('servertimestamp').once('value')
+      .then(function (snapshot) {
+        monthList = getMonthList(new Date('6/16/2017'), new Date(snapshot.val()));
+        _this.setData({
+          monthList: monthList
+        })
+      })
+      .catch(function (err) {
+        console.info(err);
+      });
+  },
+  showDetail: function (e) {
+    wx.navigateTo({
+      url: '../detail/index'
+    })
   }
 });
