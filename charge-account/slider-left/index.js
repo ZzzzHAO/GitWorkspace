@@ -20,6 +20,7 @@ exports.default = Component({
       type: Number,
       value: 75
     },
+    
     // 菜单是否打开了，true表示打开，false表示关闭
     open: {
       type: Boolean,
@@ -36,7 +37,6 @@ exports.default = Component({
     }
 
   },
-
   /**
    * 组件的初始数据
    */
