@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="wrap">
-   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas> 
+  <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas> 
   <scroll-view scroll-y style="height: 35%;">
     <view class="table">
       <view class="tr" wx:for="{{7}}" wx:key="{{item}}">
@@ -17,5 +17,5 @@
       </view>
     </view>
   </scroll-view>
-  <text class="show-detail" wx:if="{{isShow}}" bindtap="showDetail">查看流水</text>
+  <text class="show-detail" bindtap="showDetail">查看流水</text>
 </view>

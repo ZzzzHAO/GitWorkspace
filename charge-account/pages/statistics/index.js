@@ -88,8 +88,7 @@ Page({
     ec: {
       onInit: initChart
     },
-    monthList: getMonthList(new Date('6/16/2017'), new Date()),
-    isShow:true
+    monthList: getMonthList(new Date('6/16/2017'), new Date())
   },
 
   onReady() {},

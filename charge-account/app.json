@@ -4,7 +4,6 @@
     "pages/logs/logs",
     "pages/category/index",
     "pages/statistics/index",
-    "pages/leftSwiperDel/index",
     "pages/detail/index"
   ],
   "window": {

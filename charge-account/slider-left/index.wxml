@@ -1,11 +1,6 @@
-<movable-area class="slider-left-item" style="width:{{openWidth * 2 + 750}}rpx;margin-left:-75px;">
-  <movable-view class="slider-left-content"
-    damping="100"
-    x="{{x}}"
-    direction="horizontal"
-    bind:touchstart="handleTouchestart"
-    bind:touchend="handleTouchend"
-    bind:change="handleChange">
+<movable-area class="slider-left-item" style="width:900rpx;margin-left:-150rpx;">
+  <movable-view class="slider-left-content" damping="100" x="{{x*2}}rpx" direction="horizontal" bind:touchstart="handleTouchestart"
+    bind:touchend="handleTouchend" bind:change="handleChange">
     <slot></slot>
   </movable-view>
   <view class='slider-left-handle'>
