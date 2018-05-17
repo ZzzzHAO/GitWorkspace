@@ -138,7 +138,7 @@ Page({
         ref.push({
           amouont: this.data.amount,
           category: this.data.category,
-          time: timeStamp,
+          timeStamp: timeStamp,
           year: date.getFullYear(),
           month: date.getMonth() + 1,
           date: date.getDate()
