@@ -8,15 +8,9 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs);
-
-    wilddog.auth().signInWeapp().then(function (user) {
-      var currentServerTime = wilddog.sync().ref("servertimestamp");
-      //存入当前云端时间戳
-      currentServerTime.set(wilddog.sync().ServerValue.TIMESTAMP);
-
-    }).catch(function (err) {
-
-    })
+    var currentServerTime = wilddog.sync().ref("servertimestamp");
+    //存入当前云端时间戳
+    currentServerTime.set(wilddog.sync().ServerValue.TIMESTAMP);
     // 登录
     wx.login({
       success: res => {

@@ -1,4 +1,13 @@
-// pages/label/label.js
+// pages/category/index.js
+import {
+  wilddog
+} from '../../wilddog'
+
+import {
+  getServerTime
+} from '../../utils/util'
+//获取应用实例
+const app = getApp()
 Page({
 
   /**
@@ -7,17 +16,40 @@ Page({
   data: {
     isVisible: false,
     amount: '',
-    items: [
-      { id: 1, value: '饮食' },
-      { id: 2, value: '网购' },
-      { id: 3, value: '线下消费' },
-      { id: 4, value: '房租' },
-      { id: 5, value: '水费' },
-      { id: 6, value: '电费' },
-      { id: 7, value: '煤气' },
-      { id: 8, value: '其他' },
+    items: [{
+        id: 1,
+        value: '饮食'
+      },
+      {
+        id: 2,
+        value: '网购'
+      },
+      {
+        id: 3,
+        value: '线下消费'
+      },
+      {
+        id: 4,
+        value: '房租'
+      },
+      {
+        id: 5,
+        value: '水费'
+      },
+      {
+        id: 6,
+        value: '电费'
+      },
+      {
+        id: 7,
+        value: '煤气'
+      },
+      {
+        id: 8,
+        value: '其他'
+      },
     ],
-    category:''
+    category: ''
   },
 
   /**
@@ -83,22 +115,43 @@ Page({
   check: function (e) {
     const id = e.target.dataset.id;
     const items = this.data.items;
-    items.forEach(function(item){
-      if(item.id === id){
+    items.forEach(function (item) {
+      if (item.id === id) {
         item.checked = true;
-      }else{
+      } else {
         item.checked = false;
       }
     })
     this.setData({
       items: items,
       category: id,
-      isVisible:true
+      isVisible: true
     })
   },
-  goNext:function(e){
-    wx.reLaunch({
-      url: '../statistics/index'
+  goNext: function (e) {
+    const timePromise = getServerTime();
+    timePromise.then((timeStamp) => {
+      const date = new Date(timeStamp);
+      const uid = app.globalData.userInfo.uid;
+      if (uid) {
+        const ref = wilddog.sync().ref('users/' + uid);
+        ref.push({
+          amouont: this.data.amount,
+          category: this.data.category,
+          time: timeStamp,
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          date: date.getDate()
+        }, function (error) {
+          if (error == null) {
+            wx.reLaunch({
+              url: '../statistics/index'
+            })
+          }
+        })
+      } else {
+
+      }
     })
   }
 })

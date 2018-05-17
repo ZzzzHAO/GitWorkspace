@@ -1,3 +1,6 @@
+import {
+  wilddog
+} from '../wilddog'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -68,7 +71,20 @@ const getMonthList = (beginDate, endDate) => {
   return monthList;
 }
 
+const getServerTime = () => {
+  //存入当前云端时间戳
+  var currentServerTime = wilddog.sync().ref("servertimestamp");
+  currentServerTime.set(wilddog.sync().ServerValue.TIMESTAMP);
+  const promise = new Promise(function (reslove, reject) {
+    wilddog.sync().ref('servertimestamp').once('value', function (data) {
+      reslove(data.val())
+    })
+  });
+  return promise;
+}
+
 module.exports = {
   formatTime: formatTime,
-  getMonthList: getMonthList
+  getMonthList: getMonthList,
+  getServerTime: getServerTime
 }
