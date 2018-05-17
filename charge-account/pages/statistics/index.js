@@ -1,6 +1,7 @@
 import * as echarts from '../../ec-canvas/echarts';
 import {
-  getMonthList
+  getMonthList,
+  getServerTime
 } from '../../utils/util';
 import {
   wilddog
@@ -33,7 +34,7 @@ function initChart(canvas, width, height) {
       bottom: '2%',
       x: 'center',
       data: ['北京', '武汉', '杭州', '广州', '上海'],
-      selectedMode:false
+      selectedMode: false
     },
     series: [{
       label: {
@@ -95,11 +96,16 @@ Page({
   onLoad: function (option) {
     const _this = this;
     let monthList = [];
-    const query = wilddog.sync().ref('servertimestamp').once('value')
-      .then(function (snapshot) {
-        monthList = getMonthList(new Date('6/16/2017'), new Date(snapshot.val()));
-        _this.setData({
-          monthList: monthList
+    const severTimePromise = getServerTime();
+    severTimePromise.then(function (timeStamp) {
+        const uid = app.globalData.userInfo.uid;
+        const ref = wilddog.sync().ref('users/' + uid);
+        ref.once('value', function (snapchat) {
+          let startTime = snapchat.val().startTime.value;
+          monthList = getMonthList(new Date(startTime), new Date(timeStamp));
+          _this.setData({
+            monthList: monthList
+          })
         })
       })
       .catch(function (err) {

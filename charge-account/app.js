@@ -39,7 +39,6 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    currentServerTime:''
+    userInfo: null
   }
 })

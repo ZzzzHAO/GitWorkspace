@@ -70,14 +70,15 @@ const getMonthList = (beginDate, endDate) => {
   }
   return monthList;
 }
-
 const getServerTime = () => {
-  //存入当前云端时间戳
-  var currentServerTime = wilddog.sync().ref("servertimestamp");
-  currentServerTime.set(wilddog.sync().ServerValue.TIMESTAMP);
+  var serverTsRef = wilddog.sync().ref("/.info/serverTimeOffset");
   const promise = new Promise(function (reslove, reject) {
-    wilddog.sync().ref('servertimestamp').once('value', function (data) {
-      reslove(data.val())
+    serverTsRef.once('value', function (snapshot) {
+      // 获取时钟偏差
+      var offset = snapshot.val();
+      // 可进一步计算出云端时间
+      var serverTime = (new Date).getTime() + offset;
+      reslove(serverTime)
     })
   });
   return promise;

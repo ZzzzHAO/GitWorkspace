@@ -135,8 +135,15 @@ Page({
       const uid = app.globalData.userInfo.uid;
       if (uid) {
         const ref = wilddog.sync().ref('users/' + uid);
+        ref.child('startTime').once('value', function (data) {
+          if (data.val() === null) {
+            ref.child('startTime').set({
+              value: timeStamp
+            })
+          }
+        })
         ref.push({
-          amouont: this.data.amount,
+          amount: this.data.amount,
           category: this.data.category,
           timeStamp: timeStamp,
           year: date.getFullYear(),
