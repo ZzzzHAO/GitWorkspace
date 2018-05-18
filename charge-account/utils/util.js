@@ -16,7 +16,7 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
+//获取月份列表
 const getMonthList = (beginDate, endDate) => {
   const monthList = [];
   const endY = endDate.getFullYear();
@@ -70,22 +70,83 @@ const getMonthList = (beginDate, endDate) => {
   }
   return monthList;
 }
-const getServerTime = () => {
+//获取服务器时间戳
+const getServerTime = (callback = function () {}) => {
   var serverTsRef = wilddog.sync().ref("/.info/serverTimeOffset");
-  const promise = new Promise(function (reslove, reject) {
-    serverTsRef.once('value', function (snapshot) {
-      // 获取时钟偏差
-      var offset = snapshot.val();
-      // 可进一步计算出云端时间
-      var serverTime = (new Date).getTime() + offset;
-      reslove(serverTime)
-    })
+  serverTsRef.once('value', function (snapshot) {
+    // 获取时钟偏差
+    var offset = snapshot.val();
+    // 可进一步计算出云端时间
+    var serverTime = (new Date).getTime() + offset;
+    callback(serverTime)
+  })
+}
+
+//野狗登录
+const wilddogLogin = (callback = function () {}) => {
+  wx.showLoading({
+    title: '请稍候...',
+    mask: true
   });
-  return promise;
+  wilddog.auth().signInWeapp(function (err, user) {
+    if (user) {
+      wx.hideLoading();
+      //登录后获取用户数据
+      _getUserData(user);
+      //执行回调
+      callback(user);
+    } else {
+      wx.hideLoading();
+      wx.showToast({
+        title: '网络不给力，请重试(501)'
+      })
+    }
+  })
+}
+//获取用户数据
+const _getUserData = (user) => {
+  const app = getApp();
+  const ref = wilddog.sync().ref('users/' + user.uid);
+  if (!app.globalData.userInfo) {
+    //用户数据存入全局变量
+    app.globalData.userInfo = user;
+  }
+  ref.on('value', (snapshot) => {
+    const data = snapshot.val() || {};
+    app.globalData.userData = data;
+    console.log(data);
+  })
+}
+//设置用户数据
+const setUserData = (key, value, callback = function () {}) => {
+  const app = getApp();
+  const uid = app.globalData.userInfo.uid;
+  if (uid) {
+    const ref = wilddog.sync().ref('users/' + uid + '/' + key);
+    ref.set(value, function (error) {
+      if (error === null) {
+        callback()
+      } else {
+        wx.showToast({
+          title: '系统错误，请重试（001）',
+          mask: true
+        })
+      }
+    })
+  } else {
+    //重新登录野狗 获取user
+    wilddogLogin()
+    wx.showToast({
+      title: '系统错误，请重试（002）',
+      mask: true
+    })
+  }
 }
 
 module.exports = {
   formatTime: formatTime,
   getMonthList: getMonthList,
-  getServerTime: getServerTime
+  getServerTime: getServerTime,
+  wilddogLogin: wilddogLogin,
+  setUserData: setUserData
 }

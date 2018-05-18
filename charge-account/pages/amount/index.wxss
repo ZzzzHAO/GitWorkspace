@@ -2,6 +2,7 @@
 .amount-block{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .amount-block text{
   text-align: center;
@@ -17,11 +18,40 @@
   bottom: 100rpx;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
 }
 .btn-block button{
+  width: 400rpx;
+}
+.check-records{
+  margin-top: 50rpx;
+  font-size: 30rpx;
+}
+.auth-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10%;
+}
+.auth-block .title{
+  font-size: 40rpx;
+  font-weight: 200;
+}
+.auth-block .sub-title{
+  font-size: 40rpx;
+  font-weight: 200;
+}
+.auth-block .auth-list{
+  font-size: 30rpx;
+}
+.auth-block .auth-btn{
+  position: absolute;
+  bottom: 200rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   width: 80%;
 }
-.btn-block text{
-  text-align: center;
+.auth-btn button{
+  width: 300rpx;
 }

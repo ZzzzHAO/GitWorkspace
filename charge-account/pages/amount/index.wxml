@@ -1,17 +1,29 @@
 <!--index.wxml-->
 <view class="container">
-  <view class='amount-block'>
+  <view wx:if="{{!hasUserInfo}}" class="auth-block">
+    <text class="title" selectable='false'>
+      您好
+    </text>
+    <text class="sub-title" selectable='false'>
+      为了更好地为您记录，请授权一下相关权限：
+    </text>
+    <text class="auth-list" selectable='false'>
+      获得你的公开信息（昵称、头像等）
+    </text>
+    <view class="auth-btn">
+      <button size='default' type='primary' open-type="getUserInfo" bindgetuserinfo="auth">去授权</button>
+    </view>
+  </view>
+  <view wx:else class='amount-block'>
     <text selectable='false'>
       请输入金额：
     </text>
     <view class="section">
       <input class='amount-input' type='digit' confirm-type='done' auto-focus bindinput='amtInput' />
     </view>
-  </view>
-  <view class='btn-block'>
-    <button size='default' type='primary' open-type="getUserInfo" bindgetuserinfo="goNext" disabled='{{isDisabled}}' >下一步</button>
-    <text bindtap="goStatistics">
-      查看记录
-    </text>
+    <view class='btn-block'>
+      <button size='default' type='primary' bindtap="goNext" disabled='{{isDisabled}}'>下一步</button>
+      <view class="check-records" bindtap="goStatistics">查看记录</view>
+    </view>
   </view>
 </view>

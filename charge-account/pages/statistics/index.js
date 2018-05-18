@@ -96,21 +96,17 @@ Page({
   onLoad: function (option) {
     const _this = this;
     let monthList = [];
-    const severTimePromise = getServerTime();
-    severTimePromise.then(function (timeStamp) {
-        const uid = app.globalData.userInfo.uid;
-        const ref = wilddog.sync().ref('users/' + uid);
-        ref.once('value', function (snapchat) {
-          let startTime = snapchat.val().startTime.value;
-          monthList = getMonthList(new Date(startTime), new Date(timeStamp));
-          _this.setData({
-            monthList: monthList
-          })
+    getServerTime((serverTime) => {
+      const uid = app.globalData.userInfo.uid;
+      const ref = wilddog.sync().ref('users/' + uid);
+      ref.once('value', function (snapchat) {
+        let startTime = snapchat.val().startTime;
+        monthList = getMonthList(new Date(startTime), new Date(serverTime));
+        _this.setData({
+          monthList: monthList
         })
       })
-      .catch(function (err) {
-        console.info(err);
-      });
+    });
   },
   showDetail: function (e) {
     wx.navigateTo({

@@ -4,7 +4,8 @@ import {
 } from '../../wilddog'
 
 import {
-  getServerTime
+  getServerTime,
+  setUserData
 } from '../../utils/util'
 //获取应用实例
 const app = getApp()
@@ -128,37 +129,30 @@ Page({
       isVisible: true
     })
   },
+  //记录提交并跳转
   goNext: function (e) {
-    const timePromise = getServerTime();
-    timePromise.then((timeStamp) => {
-      const date = new Date(timeStamp);
-      const uid = app.globalData.userInfo.uid;
-      if (uid) {
-        const ref = wilddog.sync().ref('users/' + uid);
-        ref.child('startTime').once('value', function (data) {
-          if (data.val() === null) {
-            ref.child('startTime').set({
-              value: timeStamp
-            })
-          }
-        })
-        ref.push({
-          amount: this.data.amount,
-          category: this.data.category,
-          timeStamp: timeStamp,
-          year: date.getFullYear(),
-          month: date.getMonth() + 1,
-          date: date.getDate()
-        }, function (error) {
-          if (error == null) {
-            wx.reLaunch({
-              url: '../statistics/index'
-            })
-          }
-        })
-      } else {
-
+    const user = app.globalData.userInfo;
+    const userData = app.globalData.userData;
+    getServerTime((serverTime) => {
+      const date = new Date(serverTime);
+      const startTime = userData.startTime;
+      const costList = userData.costList || [];
+      if (!startTime) {
+        setUserData('startTime', serverTime);
       }
-    })
+      costList.push({
+        amount: this.data.amount,
+        category: this.data.category,
+        timeStamp: serverTime,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        date: date.getDate()
+      })
+      setUserData('costList', costList, () => {
+        wx.reLaunch({
+          url: '../statistics/index'
+        })
+      });
+    });
   }
 })
