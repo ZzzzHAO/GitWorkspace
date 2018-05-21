@@ -49,7 +49,9 @@ Page({
           monthList: monthList
         })
         this.pieComponent = this.selectComponent('#mychart-dom-pie');
-        this.initChart();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        this.initChart(year, month);
       });
     })
   },
@@ -64,6 +66,8 @@ Page({
     this.setData({
       monthList: monthList
     })
+    console.log(monthList[id]);
+    this.initChart(monthList[id].year, monthList[id].month)
   },
   //获取某个月份的花费列表
   getCostList: function (year, month) {
@@ -117,8 +121,6 @@ Page({
     const costList = this.getCostList(year, month); //获取当前月份花费列表
     const legendData = this.getLegendData(costList); //获取类别列表
     const seriesData = this.getSeriesData(costList); //获取饼图数据列表
-    console.log(legendData);
-    console.log(seriesData);
     return {
       legendData: legendData,
       seriesData: seriesData
@@ -129,64 +131,58 @@ Page({
       url: '../detail/index'
     })
   },
-  initChart: function () {
+  initChart: function (year, month) {
     this.pieComponent.init((canvas, width, height) => {
       // 初始化图表
       const pieChart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
-      pieChart.setOption(this.getPieOption());
+      pieChart.setOption(this.getPieOption(year, month));
       // 注意这里一定要返回 chart 实例，否则会影响事件处理等
       return pieChart;
     });
   },
   //获取options
-  getPieOption: function () {
-    // getServerTime((serverTime) => {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth() + 1;
-
-      const EchartsData = this.setEchartsData(year, month);
-      return {
-        title: {
-          text: '本月消费：',
-          x: 'left',
-          top: '2%',
-          textStyle: {
-            fontSize: '15'
+  getPieOption: function (year, month) {
+    const EchartsData = this.setEchartsData(year, month);
+    return {
+      title: {
+        text: '本月消费：',
+        x: 'left',
+        top: '2%',
+        textStyle: {
+          fontSize: '15'
+        }
+      },
+      backgroundColor: "#f6f6f6",
+      color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
+      legend: {
+        orient: 'horizontal',
+        bottom: '2%',
+        x: 'center',
+        data: EchartsData.legendData,
+        selectedMode: false
+      },
+      series: [{
+        label: {
+          normal: {
+            fontSize: 14,
+            formatter: '{d}%'
           }
         },
-        backgroundColor: "#f6f6f6",
-        color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
-        legend: {
-          orient: 'horizontal',
-          bottom: '2%',
-          x: 'center',
-          data: EchartsData.legendData,
-          selectedMode: false
-        },
-        series: [{
-          label: {
-            normal: {
-              fontSize: 14,
-              formatter: '{d}%'
-            }
-          },
-          type: 'pie',
-          center: ['50%', '50%'],
-          radius: [0, '60%'],
-          data: EchartsData.seriesData,
-          itemStyle: {
-            emphasis: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 2, 2, 0.3)'
-            }
+        type: 'pie',
+        center: ['50%', '50%'],
+        radius: [0, '60%'],
+        data: EchartsData.seriesData,
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 2, 2, 0.3)'
           }
-        }]
-      }
-    // });
+        }
+      }]
+    }
   }
 });
