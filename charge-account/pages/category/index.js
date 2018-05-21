@@ -8,6 +8,7 @@ import {
   setUserData,
   getUserData
 } from '../../utils/util'
+import categoryList from '../../utils/dictionary'
 //获取应用实例
 const app = getApp()
 Page({
@@ -18,39 +19,7 @@ Page({
   data: {
     isVisible: false,
     amount: '',
-    items: [{
-        id: 1,
-        value: '饮食'
-      },
-      {
-        id: 2,
-        value: '网购'
-      },
-      {
-        id: 3,
-        value: '线下消费'
-      },
-      {
-        id: 4,
-        value: '房租'
-      },
-      {
-        id: 5,
-        value: '水费'
-      },
-      {
-        id: 6,
-        value: '电费'
-      },
-      {
-        id: 7,
-        value: '煤气'
-      },
-      {
-        id: 8,
-        value: '其他'
-      },
-    ],
+    items: categoryList,
     category: ''
   },
 

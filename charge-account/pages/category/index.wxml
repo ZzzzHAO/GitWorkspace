@@ -7,7 +7,7 @@
     <view class='radio-content'>
     <view class='radio-group'>
      <button wx:for="{{items}}" size='default' type='primary' wx:key="{{item.id}}" plain="{{!item.checked}}" bindtap="check" data-id="{{item.id}}">
-        {{item.value}}
+        {{item.name}}
       </button>
     </view>
     </view>

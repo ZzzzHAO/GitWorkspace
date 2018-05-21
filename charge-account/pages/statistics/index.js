@@ -2,80 +2,14 @@ import * as echarts from '../../ec-canvas/echarts';
 import {
   getMonthList,
   getServerTime,
-  getUserData
+  getUserData,
+  getCategoryName
 } from '../../utils/util';
 import {
   wilddog
 } from '../../wilddog'
 
 const app = getApp();
-
-function initChart(canvas, width, height) {
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  });
-  canvas.setChart(chart);
-  chart.on('click', function (params) {
-    console.log(params);
-  });
-  var option = {
-    title: {
-      text: '本月消费：',
-      x: 'left',
-      top: '2%',
-      textStyle: {
-        fontSize: '15'
-      }
-    },
-    backgroundColor: "#f6f6f6",
-    color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
-    legend: {
-      orient: 'horizontal',
-      bottom: '2%',
-      x: 'center',
-      data: ['北京', '武汉', '杭州', '广州', '上海'],
-      selectedMode: false
-    },
-    series: [{
-      label: {
-        normal: {
-          fontSize: 14,
-          formatter: '{d}%'
-        }
-      },
-      type: 'pie',
-      center: ['50%', '50%'],
-      radius: [0, '60%'],
-      data: [{
-        value: 55,
-        name: '北京'
-      }, {
-        value: 20,
-        name: '武汉'
-      }, {
-        value: 10,
-        name: '杭州'
-      }, {
-        value: 20,
-        name: '广州'
-      }, {
-        value: 38,
-        name: '上海'
-      }],
-      itemStyle: {
-        emphasis: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 2, 2, 0.3)'
-        }
-      }
-    }]
-  };
-
-  chart.setOption(option);
-  return chart;
-}
 
 Page({
   onShareAppMessage: function (res) {
@@ -88,10 +22,12 @@ Page({
   },
   data: {
     ec: {
-      onInit: initChart
+      lazyLoad: true // 延迟加载
     },
     monthList: getMonthList(new Date('6/16/2017'), new Date()),
-    costList: []
+    costList: [],
+    legendData: [],
+    seriesData: []
   },
 
   onReady() {},
@@ -104,15 +40,20 @@ Page({
         costList: costList,
       })
       getServerTime((serverTime) => {
-        monthList = getMonthList(new Date('6/6/2017'), new Date(serverTime)).reverse();
+        const st = new Date(startTime),
+          now = new Date(serverTime);
+
+        monthList = getMonthList(st, now).reverse(); //获取月份列表
         monthList[0].active = true; //默认当前月份
-        console.log(monthList);
         this.setData({
           monthList: monthList
         })
+        this.pieComponent = this.selectComponent('#mychart-dom-pie');
+        this.initChart();
       });
     })
   },
+  //选择某个月份
   pick: function (e) {
     const id = e.target.dataset.index;
     const monthList = this.data.monthList;
@@ -124,24 +65,128 @@ Page({
       monthList: monthList
     })
   },
+  //获取某个月份的花费列表
   getCostList: function (year, month) {
     const costList = [];
-    for (let i = 0; i < this.data.costList; i++) {
+    for (let i = 0; i < this.data.costList.length; i++) {
       if (this.data.costList[i].year == year && this.data.costList[i].month == month) {
         costList.push(this.data.costList[i])
       }
     }
     return costList;
   },
-  getCategoryList: function (costList) {
-    const categoryList = [];
+  //获取类别列表
+  getLegendData: function (costList) {
+    const categoryNameList = [];
     for (let i = 0; i < costList.length; i++) {
-      
+      let category = costList[i].category;
+      let name = getCategoryName(category);
+      if (categoryNameList.indexOf(name) == -1) {
+        categoryNameList.push(name);
+      }
+    }
+    return categoryNameList;
+  },
+  //初始化饼图数据列表
+  initSeriesData: function (categoryNameList) {
+    const seriesData = [];
+    for (let i = 0; i < categoryNameList.length; i++) {
+      let legendItem = {};
+      legendItem.name = categoryNameList[i]
+      legendItem.value = 0;
+      seriesData.push(legendItem);
+    }
+    return seriesData;
+  },
+  //获取饼图数据列表
+  getSeriesData: function (costList) {
+    const categoryNameList = this.getLegendData(costList);
+    const seriesData = this.initSeriesData(categoryNameList);
+    for (let i = 0; i < seriesData.length; i++) {
+      for (let j = 0; j < costList.length; j++) {
+        const name = getCategoryName(costList[j].category)
+        if (seriesData[i].name === name) {
+          seriesData[i].value += Number(costList[j].amount);
+        }
+      }
+    }
+    return seriesData;
+  },
+  //设置echarts数据
+  setEchartsData: function (year, month) {
+    const costList = this.getCostList(year, month); //获取当前月份花费列表
+    const legendData = this.getLegendData(costList); //获取类别列表
+    const seriesData = this.getSeriesData(costList); //获取饼图数据列表
+    console.log(legendData);
+    console.log(seriesData);
+    return {
+      legendData: legendData,
+      seriesData: seriesData
     }
   },
   showDetail: function (e) {
     wx.navigateTo({
       url: '../detail/index'
     })
+  },
+  initChart: function () {
+    this.pieComponent.init((canvas, width, height) => {
+      // 初始化图表
+      const pieChart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      pieChart.setOption(this.getPieOption());
+      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+      return pieChart;
+    });
+  },
+  //获取options
+  getPieOption: function () {
+    // getServerTime((serverTime) => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+
+      const EchartsData = this.setEchartsData(year, month);
+      return {
+        title: {
+          text: '本月消费：',
+          x: 'left',
+          top: '2%',
+          textStyle: {
+            fontSize: '15'
+          }
+        },
+        backgroundColor: "#f6f6f6",
+        color: ["#37A2DA", "#32C5E9", "#67E0E3", "#91F2DE", "#FFDB5C", "#FF9F7F"],
+        legend: {
+          orient: 'horizontal',
+          bottom: '2%',
+          x: 'center',
+          data: EchartsData.legendData,
+          selectedMode: false
+        },
+        series: [{
+          label: {
+            normal: {
+              fontSize: 14,
+              formatter: '{d}%'
+            }
+          },
+          type: 'pie',
+          center: ['50%', '50%'],
+          radius: [0, '60%'],
+          data: EchartsData.seriesData,
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 2, 2, 0.3)'
+            }
+          }
+        }]
+      }
+    // });
   }
 });

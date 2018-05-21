@@ -1,6 +1,7 @@
 import {
   wilddog
 } from '../wilddog'
+import categoryList from './dictionary'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -168,6 +169,17 @@ const setUserData = (key, value, callback = function () {}) => {
     })
   }
 }
+const getCategoryName = (id) => {
+  let name = "";
+  let length = categoryList.length;
+  for (let i = 0; i < length; i++) {
+    if (id === categoryList[i].id) {
+      name = categoryList[i].name;
+      break;
+    }
+  }
+  return name;
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -175,5 +187,6 @@ module.exports = {
   getServerTime: getServerTime,
   wilddogLogin: wilddogLogin,
   setUserData: setUserData,
-  getUserData: getUserData
+  getUserData: getUserData,
+  getCategoryName: getCategoryName
 }
