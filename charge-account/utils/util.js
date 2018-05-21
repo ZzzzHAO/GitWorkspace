@@ -84,6 +84,7 @@ const getServerTime = (callback = function () {}) => {
 
 //野狗登录
 const wilddogLogin = (callback = function () {}) => {
+  const app = getApp();
   wx.showLoading({
     title: '请稍候...',
     mask: true
@@ -91,54 +92,79 @@ const wilddogLogin = (callback = function () {}) => {
   wilddog.auth().signInWeapp(function (err, user) {
     if (user) {
       wx.hideLoading();
+      //用户数据存入全局变量
+      app.globalData.userInfo = user;
       //登录后获取用户数据
-      _getUserData(user);
+      getUserData();
       //执行回调
       callback(user);
     } else {
       wx.hideLoading();
-      wx.showToast({
-        title: '网络不给力，请重试(501)'
+      wx.showModal({
+        content: '网络不给力，请重试(501)',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            wilddogLogin();
+          }
+        }
       })
     }
   })
 }
-//获取用户数据
-const _getUserData = (user) => {
+//获取当前用户
+const getUser = () => {
   const app = getApp();
-  const ref = wilddog.sync().ref('users/' + user.uid);
-  if (!app.globalData.userInfo) {
-    //用户数据存入全局变量
-    app.globalData.userInfo = user;
+  const user = app.globalData.userInfo;
+  return user;
+}
+//获取用户数据
+const getUserData = (callback = function () {}) => {
+  const app = getApp();
+  const user = getUser();
+  if (user) {
+    const ref = wilddog.sync().ref('users/' + user.uid);
+    ref.once('value', (snapshot) => {
+      const data = snapshot.val() || {};
+      console.log(data);
+      callback(data);
+    })
+  } else {
+    wx.showModal({
+      content: '系统错误，请重试（001）',
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          wilddogLogin();
+        }
+      }
+    })
   }
-  ref.on('value', (snapshot) => {
-    const data = snapshot.val() || {};
-    app.globalData.userData = data;
-    console.log(data);
-  })
 }
 //设置用户数据
 const setUserData = (key, value, callback = function () {}) => {
-  const app = getApp();
-  const uid = app.globalData.userInfo.uid;
-  if (uid) {
-    const ref = wilddog.sync().ref('users/' + uid + '/' + key);
+  const user = getUser();
+  if (user) {
+    const ref = wilddog.sync().ref('users/' + user.uid + '/' + key);
     ref.set(value, function (error) {
       if (error === null) {
         callback()
       } else {
-        wx.showToast({
-          title: '系统错误，请重试（001）',
-          mask: true
+        wx.showModal({
+          content: '系统错误，请重试（002）',
+          showCancel: false
         })
       }
     })
   } else {
-    //重新登录野狗 获取user
-    wilddogLogin()
-    wx.showToast({
-      title: '系统错误，请重试（002）',
-      mask: true
+    wx.showModal({
+      content: '系统错误，请重试（003）',
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          wilddogLogin();
+        }
+      }
     })
   }
 }
@@ -148,5 +174,6 @@ module.exports = {
   getMonthList: getMonthList,
   getServerTime: getServerTime,
   wilddogLogin: wilddogLogin,
-  setUserData: setUserData
+  setUserData: setUserData,
+  getUserData: getUserData
 }

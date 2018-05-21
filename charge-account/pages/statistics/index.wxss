@@ -47,6 +47,16 @@ ec-canvas {
   margin-right: 5rpx;
   background-color: #f6f6f6;
 }
+.month-item-active{
+  width: 225rpx;
+  height:225rpx;
+  line-height:225rpx;
+  text-align: center;
+  border: 1rpx solid #333;
+  border-radius: 10rpx;
+  margin-right: 5rpx;
+  background-color:#377ef0;
+}
 .show-detail{
   position: absolute;
   top: 2%;

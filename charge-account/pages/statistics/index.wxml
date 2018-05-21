@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="wrap">
-  <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas> 
+  <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
   <scroll-view scroll-y style="height: 35%;">
     <view class="table">
       <view class="tr" wx:for="{{7}}" wx:key="{{item}}">
@@ -12,7 +12,7 @@
   </scroll-view>
   <scroll-view scroll-x style="height: 20%;">
     <view scroll-x class="month-list">
-      <view wx:for="{{monthList}}" wx:key="{{index}}" data-index="{{index}}" class="month-item">
+      <view wx:for="{{monthList}}" wx:key="{{index}}" data-index="{{index}}" bindtap="pick" class="{{item.active==true?'month-item-active':'month-item'}}">
         {{item.year}}年{{item.month}}月
       </view>
     </view>

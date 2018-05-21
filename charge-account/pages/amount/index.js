@@ -49,8 +49,9 @@ Page({
         })
       })
     } else {
-      wx.showToast({
-        title: '获取用户信息失败，请重试(001)'
+      wx.showModal({
+        content: '获取用户信息失败，请重试(001)',
+        showCancel:false
       })
     }
   },

@@ -5,7 +5,8 @@ import {
 
 import {
   getServerTime,
-  setUserData
+  setUserData,
+  getUserData
 } from '../../utils/util'
 //获取应用实例
 const app = getApp()
@@ -131,28 +132,28 @@ Page({
   },
   //记录提交并跳转
   goNext: function (e) {
-    const user = app.globalData.userInfo;
-    const userData = app.globalData.userData;
-    getServerTime((serverTime) => {
-      const date = new Date(serverTime);
-      const startTime = userData.startTime;
-      const costList = userData.costList || [];
-      if (!startTime) {
-        setUserData('startTime', serverTime);
-      }
-      costList.push({
-        amount: this.data.amount,
-        category: this.data.category,
-        timeStamp: serverTime,
-        year: date.getFullYear(),
-        month: date.getMonth() + 1,
-        date: date.getDate()
-      })
-      setUserData('costList', costList, () => {
-        wx.reLaunch({
-          url: '../statistics/index'
+    getUserData((userData) => {
+      getServerTime((serverTime) => {
+        const date = new Date(serverTime);
+        const startTime = userData.startTime;
+        const costList = userData.costList || [];
+        if (!startTime) {
+          setUserData('startTime', serverTime);
+        }
+        costList.push({
+          amount: this.data.amount,
+          category: this.data.category,
+          timeStamp: serverTime,
+          year: date.getFullYear(),
+          month: date.getMonth() + 1,
+          date: date.getDate()
         })
+        setUserData('costList', costList, () => {
+          wx.reLaunch({
+            url: '../statistics/index'
+          })
+        });
       });
-    });
+    })
   }
 })

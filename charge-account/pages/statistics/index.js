@@ -1,7 +1,8 @@
 import * as echarts from '../../ec-canvas/echarts';
 import {
   getMonthList,
-  getServerTime
+  getServerTime,
+  getUserData
 } from '../../utils/util';
 import {
   wilddog
@@ -61,7 +62,7 @@ function initChart(canvas, width, height) {
       }, {
         value: 38,
         name: '上海'
-      }, ],
+      }],
       itemStyle: {
         emphasis: {
           shadowBlur: 10,
@@ -89,24 +90,54 @@ Page({
     ec: {
       onInit: initChart
     },
-    monthList: getMonthList(new Date('6/16/2017'), new Date())
+    monthList: getMonthList(new Date('6/16/2017'), new Date()),
+    costList: []
   },
 
   onReady() {},
   onLoad: function (option) {
-    const _this = this;
     let monthList = [];
-    getServerTime((serverTime) => {
-      const uid = app.globalData.userInfo.uid;
-      const ref = wilddog.sync().ref('users/' + uid);
-      ref.once('value', function (snapchat) {
-        let startTime = snapchat.val().startTime;
-        monthList = getMonthList(new Date(startTime), new Date(serverTime));
-        _this.setData({
+    getUserData((userData) => {
+      const costList = userData.costList || [];
+      const startTime = userData.startTime;
+      this.setData({
+        costList: costList,
+      })
+      getServerTime((serverTime) => {
+        monthList = getMonthList(new Date('6/6/2017'), new Date(serverTime)).reverse();
+        monthList[0].active = true; //默认当前月份
+        console.log(monthList);
+        this.setData({
           monthList: monthList
         })
-      })
-    });
+      });
+    })
+  },
+  pick: function (e) {
+    const id = e.target.dataset.index;
+    const monthList = this.data.monthList;
+    for (let i = 0; i < monthList.length; i++) {
+      monthList[i].active = false;
+    }
+    monthList[id].active = true;
+    this.setData({
+      monthList: monthList
+    })
+  },
+  getCostList: function (year, month) {
+    const costList = [];
+    for (let i = 0; i < this.data.costList; i++) {
+      if (this.data.costList[i].year == year && this.data.costList[i].month == month) {
+        costList.push(this.data.costList[i])
+      }
+    }
+    return costList;
+  },
+  getCategoryList: function (costList) {
+    const categoryList = [];
+    for (let i = 0; i < costList.length; i++) {
+      
+    }
   },
   showDetail: function (e) {
     wx.navigateTo({
