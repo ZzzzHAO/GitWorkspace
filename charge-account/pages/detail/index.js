@@ -1,48 +1,32 @@
 // pages/detail/index.js
+
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    costList: [{
-      id: '1',
-      category: '饮食1',
-      cost: '100.2',
-      date: '2017/02/05'
-    }, {
-      id: '2',
-      category: '饮食2',
-      cost: '100.2',
-      date: '2017/02/05'
-    }, {
-      id: '3',
-      category: '饮食3',
-      cost: '100.2',
-      date: '2017/02/05'
-    }, {
-      id: '4',
-      category: '饮食4',
-      cost: '100.2',
-      date: '2017/02/05'
-    }, {
-      id: '5',
-      category: '饮食5',
-      cost: '100.2',
-      date: '2017/02/05'
-    }, {
-      id: '6',
-      category: '饮食6',
-      cost: '100.2',
-      date: '2017/02/05'
-    }]
+    costList: [],
+    srollHeight:'600'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.getSystemInfo({
+      success:  (res) =>{
+        var height = res.screenHeight;
+        this.setData({
+          srollHeight: height
+        });
+      }
+    })
+    this.setData({
+      costList: app.globalData.selectedMonthData
+    })
   },
 
   /**
@@ -109,16 +93,16 @@ Page({
     })
   },
   handleChange: function (isOpen) {
-    console.log('显示/关闭了菜单:',isOpen);
+    console.log('显示/关闭了菜单:', isOpen);
   },
 
   handleDelete: function (e) {
-    console.log('点击删除了',e)
+    console.log('点击删除了', e)
     let list = this.data.costList;
     let index = e.target.dataset.index;
-    list.splice(index,1);
+    list.splice(index, 1);
     this.setData({
-      costList:list
+      costList: list
     })
   },
 })

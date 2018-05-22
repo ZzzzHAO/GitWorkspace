@@ -11,6 +11,7 @@ import {
   wilddog
 } from '../../wilddog'
 
+const app = getApp();
 let seriesDataCatch = []; //缓存变量 用于填充列表data
 
 Page({
@@ -151,7 +152,6 @@ Page({
       });
 
       pieChart.setOption(this.getPieOption(year, month));
-      console.log(seriesDataCatch);
       //设置seriesData 用于列表渲染
       this.setData({
         seriesData: seriesDataCatch
@@ -206,6 +206,9 @@ Page({
   },
   //饼状图展示控制
   pieComponentCtrl: function (year, month) {
+    const costList = this.getCostList(year, month);
+    //把选中月份花费列表缓存到全局
+    app.globalData.selectedMonthData = costList;
     const EchartsData = this.getEchartsData(year, month);
     if (EchartsData.legendData.length == 0 || EchartsData.seriesData.length == 0) {
       this.setData({
