@@ -15,47 +15,60 @@
 
 ec-canvas {
   width: 100%;
-  height: 45%;
+  height: 50%;
 }
-
+.not-found{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-wrap{
+  height: 30%;
+}
 .table {
   font-size: 30rpx;
   border: none;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .td,
 .th {
   border: none;
+  border-bottom: 1rpx solid #f6f6f6;
 }
-
-.month-list {
-  height:100%;
+.month-list-wrap{
+  height: 20%;
   width: 100%;
+  background-color:#f6f6f6;
+}
+.month-list {
   display: flex;
   display: -webkit-box; 
   flex-direction: column;
-  padding:5rpx;
+  padding-top: 20rpx;
 }
 
 .month-item {
-  width: 225rpx;
-  height:225rpx;
-  line-height:225rpx;
+  width: 200rpx;
+  height:200rpx;
+  line-height:200rpx;
   text-align: center;
   border: 1rpx solid #333;
   border-radius: 10rpx;
   margin-right: 5rpx;
-  background-color: #f6f6f6;
+  background-color: #37b9ff;
 }
 .month-item-active{
-  width: 225rpx;
-  height:225rpx;
-  line-height:225rpx;
+  width: 200rpx;
+  height:200rpx;
+  line-height:200rpx;
   text-align: center;
   border: 1rpx solid #333;
   border-radius: 10rpx;
   margin-right: 5rpx;
-  background-color:#377ef0;
+  background-color:#39a0f5;
 }
 .show-detail{
   position: absolute;
