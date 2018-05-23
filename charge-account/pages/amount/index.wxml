@@ -19,10 +19,10 @@
       请输入金额：
     </text>
     <view class="section">
-      <input class='amount-input' type='digit' confirm-type='done' auto-focus bindinput='amtInput' />
+      <input class='amount-input' type='digit' confirm-type='done' bindinput='amtInput' />
     </view>
     <view class='btn-block'>
-      <button size='default' type='primary' bindtap="goNext" disabled='{{isDisabled}}'>下一步</button>
+      <button size='default' bindtap="goNext" disabled='{{isDisabled}}'>下一步</button>
       <view class="check-records" bindtap="goStatistics">查看记录</view>
     </view>
   </view>

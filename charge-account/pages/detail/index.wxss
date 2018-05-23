@@ -1,1 +1,5 @@
 /* pages/detail/index.wxss */
+
+.th {
+    background-color: #37b9ff
+}

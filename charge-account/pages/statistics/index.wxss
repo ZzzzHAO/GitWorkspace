@@ -17,15 +17,18 @@ ec-canvas {
   width: 100%;
   height: 50%;
 }
-.not-found{
+
+.not-found {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.table-wrap{
+
+.table-wrap {
   height: 30%;
 }
+
 .table {
   font-size: 30rpx;
   border: none;
@@ -36,45 +39,52 @@ ec-canvas {
 .td,
 .th {
   border: none;
-  border-bottom: 1rpx solid #f6f6f6;
 }
-.month-list-wrap{
+
+.tr {
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.month-list-wrap {
   height: 20%;
   width: 100%;
-  background-color:#f6f6f6;
+  background-color: #f6f6f6;
 }
+
 .month-list {
   display: flex;
-  display: -webkit-box; 
+  display: -webkit-box;
   flex-direction: column;
   padding-top: 20rpx;
 }
 
 .month-item {
   width: 200rpx;
-  height:200rpx;
-  line-height:200rpx;
+  height: 200rpx;
+  line-height: 200rpx;
   text-align: center;
   border: 1rpx solid #333;
   border-radius: 10rpx;
   margin-right: 5rpx;
   background-color: #37b9ff;
 }
-.month-item-active{
+
+.month-item-active {
   width: 200rpx;
-  height:200rpx;
-  line-height:200rpx;
+  height: 200rpx;
+  line-height: 200rpx;
   text-align: center;
   border: 1rpx solid #333;
   border-radius: 10rpx;
   margin-right: 5rpx;
-  background-color:#39a0f5;
+  background-color: #39a0f5;
 }
-.show-detail{
+
+.show-detail {
   position: absolute;
   top: 2%;
   right: 3%;
   font-size: 30rpx;
-  color:#4183c4;
+  color: #4183c4;
   z-index: 100000000;
 }

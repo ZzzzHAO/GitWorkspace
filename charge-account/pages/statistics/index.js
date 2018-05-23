@@ -1,18 +1,19 @@
-import * as echarts from '../../ec-canvas/echarts';
+import * as echarts from '../../components/ec-canvas/echarts';
 import {
   getMonthList,
-  getServerTime,
-  getUserData,
   getCategoryName,
   getCategoryColor,
   calculate
-} from '../../utils/util';
+} from '../../tools/util';
 import {
-  wilddog
-} from '../../wilddog'
+  getServerTime,
+  getStartTime,
+  getCostList
+} from '../../api/index';
 
 const app = getApp();
 let seriesDataCatch = []; //缓存变量 用于填充列表data
+let costList = [];
 
 Page({
   data: {
@@ -20,25 +21,21 @@ Page({
       lazyLoad: true // 延迟加载
     },
     monthList: getMonthList(new Date('1/1/2018'), new Date()), //月份列表 默认从2018/1/1至当前客户端月份
-    costList: [], //用户所有记账数据
     hasData: false, //选中月是否有记账数据
     seriesData: [] //列表渲染数据
   },
   onLoad: function (option) {
+
+  },
+  onShow: function () {
     let monthList = [];
-    getUserData((userData) => {
-      //用户所有记账记录
-      const costList = userData.costList || [];
-      //用户开始记账时间戳
-      const startTime = userData.startTime;
-      this.setData({
-        costList: costList,
-      })
-      getServerTime((serverTime) => {
+    getServerTime((data) => {
+      //服务器当前时间
+      const now = new Date(data);
+      //获取用户开始有记录的时间
+      getStartTime((data) => {
         //用户开始记账时间
         const st = new Date('1/1/2018');
-        //服务器当前时间
-        const now = new Date(serverTime);
         //获取月份列表
         monthList = getMonthList(st, now).reverse();
         //默认当前月份
@@ -46,37 +43,48 @@ Page({
         this.setData({
           monthList: monthList
         })
-        const year = now.getFullYear();
-        const month = now.getMonth() + 1;
+      })
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      getCostList({
+        year: year,
+        month: month
+      }, (data) => {
+        //用户所有记账记录
+        costList = data || [];
         //当前月份饼状图展示逻辑
-        this.pieComponentCtrl(year, month);
-      });
-    })
+        this.pieComponentCtrl();
+      })
+    });
+  },
+  onUnload: function () {
+    //直接返回首页
+    // wx.navigateBack({
+    //   delta: 2
+    // })
   },
   //选择某个月份
   pick: function (e) {
     //月份列表选中样式控制
     const id = e.target.dataset.index;
     const monthList = this.data.monthList;
+    const selectedMonth = monthList[id];
     for (let i = 0; i < monthList.length; i++) {
       monthList[i].active = false;
     }
-    monthList[id].active = true;
+    selectedMonth.active = true;
     this.setData({
       monthList: monthList
     })
-    //选中月份饼状图展示逻辑
-    this.pieComponentCtrl(monthList[id].year, monthList[id].month);
-  },
-  //获取某个月份的记账记录列表
-  getCostList: function (year, month) {
-    const costList = [];
-    for (let i = 0; i < this.data.costList.length; i++) {
-      if (this.data.costList[i].year == year && this.data.costList[i].month == month) {
-        costList.push(this.data.costList[i])
-      }
-    }
-    return costList;
+    getCostList({
+      year: selectedMonth.year,
+      month: selectedMonth.month
+    }, (data) => {
+      //用户所有记账记录
+      costList = data || [];
+      //选中月份饼状图展示逻辑
+      this.pieComponentCtrl();
+    })
   },
   //获取消费类别列表
   getLegendData: function (costList) {
@@ -126,8 +134,7 @@ Page({
     return colorData;
   },
   //封装echarts options所需数据
-  getEchartsData: function (year, month) {
-    const costList = this.getCostList(year, month); //获取当前月份花费列表
+  getEchartsData: function () {
     const legendData = this.getLegendData(costList); //获取类别列表
     const seriesData = this.getSeriesData(costList); //获取饼图数据列表
     const colorData = this.getColorData(legendData); //获取饼图对应颜色列表
@@ -143,7 +150,7 @@ Page({
     })
   },
   //画布初始化
-  initChart: function (year, month) {
+  initChart: function () {
     this.pieComponent.init((canvas, width, height) => {
       // 初始化图表
       const pieChart = echarts.init(canvas, null, {
@@ -151,7 +158,7 @@ Page({
         height: height
       });
 
-      pieChart.setOption(this.getPieOption(year, month));
+      pieChart.setOption(this.getPieOption());
       //设置seriesData 用于列表渲染
       this.setData({
         seriesData: seriesDataCatch
@@ -161,8 +168,8 @@ Page({
     });
   },
   //获取options
-  getPieOption: function (year, month) {
-    const EchartsData = this.getEchartsData(year, month);
+  getPieOption: function () {
+    const EchartsData = this.getEchartsData();
     return {
       backgroundColor: "#f6f6f6",
       color: EchartsData.colorData,
@@ -205,12 +212,10 @@ Page({
     }
   },
   //饼状图展示控制
-  pieComponentCtrl: function (year, month) {
-    const costList = this.getCostList(year, month);
+  pieComponentCtrl: function () {
     //把选中月份花费列表缓存到全局
     app.globalData.selectedMonthData = costList;
-    const EchartsData = this.getEchartsData(year, month);
-    if (EchartsData.legendData.length == 0 || EchartsData.seriesData.length == 0) {
+    if (costList.length == 0) {
       this.setData({
         hasData: false
       })
@@ -220,7 +225,7 @@ Page({
       })
       //初始化pie图
       this.pieComponent = this.selectComponent('#mychart-dom-pie');
-      this.initChart(year, month);
+      this.initChart();
       seriesDataCatch = []; //清空数据
     }
   }

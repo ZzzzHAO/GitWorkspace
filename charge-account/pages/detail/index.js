@@ -1,5 +1,10 @@
 // pages/detail/index.js
-
+import {
+  getCategoryName
+} from '../../tools/util'
+import {
+  removeRecord
+} from '../../api/index'
 const app = getApp();
 
 Page({
@@ -8,26 +13,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    costList: [],
-    srollHeight:'600'
+    costList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    wx.getSystemInfo({
-      success:  (res) =>{
-        var height = res.screenHeight;
-        this.setData({
-          srollHeight: height
-        });
-      }
-    })
-    this.setData({
-      costList: app.globalData.selectedMonthData
-    })
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -43,7 +35,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let costList = app.globalData.selectedMonthData;
+    for (let i = 0; i < costList.length; i++) {
+      let category = costList[i].category;
+      costList[i].categoryName = getCategoryName(category);
+    }
+    this.setData({
+      costList: costList
+    })
   },
 
   /**
@@ -100,9 +99,12 @@ Page({
     console.log('点击删除了', e)
     let list = this.data.costList;
     let index = e.target.dataset.index;
-    list.splice(index, 1);
-    this.setData({
-      costList: list
+    let delItem = e.target.dataset.item
+    removeRecord(delItem, () => {
+      list.splice(index, 1);
+      this.setData({
+        costList: list
+      })
     })
   },
 })

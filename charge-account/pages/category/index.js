@@ -1,16 +1,11 @@
 // pages/category/index.js
 import {
-  wilddog
-} from '../../wilddog'
-
-import {
-  getServerTime,
-  setUserData,
-  getUserData
-} from '../../utils/util'
-import categoryList from '../../utils/dictionary'
+  addCostRecord
+} from '../../api/index'
+import categoryList from '../../tools/dictionary'
 //获取应用实例
-const app = getApp()
+const app = getApp(); //app实例
+let amount = 0; //记账金额
 Page({
 
   /**
@@ -18,8 +13,7 @@ Page({
    */
   data: {
     isVisible: false,
-    amount: '',
-    items: categoryList,
+    categories: categoryList,
     category: ''
   },
 
@@ -27,9 +21,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      amount: options.amount
-    })
+    amount = options.amount
+    console.log(amount);
   },
 
   /**
@@ -43,7 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(amount);
   },
 
   /**
@@ -83,10 +76,10 @@ Page({
   /**
    * 用户选择消费类型
    */
-  check: function (e) {
+  checkCategory: function (e) {
     const id = e.target.dataset.id;
-    const items = this.data.items;
-    items.forEach(function (item) {
+    const categories = this.data.categories;
+    categories.forEach(function (item) {
       if (item.id === id) {
         item.checked = true;
       } else {
@@ -94,35 +87,21 @@ Page({
       }
     })
     this.setData({
-      items: items,
+      categories: categories, //更新categories 渲染选中效果
       category: id,
       isVisible: true
     })
   },
   //记录提交并跳转
-  goNext: function (e) {
-    getUserData((userData) => {
-      getServerTime((serverTime) => {
-        const date = new Date(serverTime);
-        const startTime = userData.startTime;
-        const costList = userData.costList || [];
-        if (!startTime) {
-          setUserData('startTime', serverTime);
-        }
-        costList.push({
-          amount: this.data.amount,
-          category: this.data.category,
-          timeStamp: serverTime,
-          year: date.getFullYear(),
-          month: date.getMonth() + 1,
-          date: date.getDate()
-        })
-        setUserData('costList', costList, () => {
-          wx.reLaunch({
-            url: '../statistics/index'
-          })
-        });
-      });
+  submit: function (e) {
+    const costRecord = {
+      amount: amount,
+      category: this.data.category
+    }
+    addCostRecord(costRecord, () => {
+      wx.redirectTo({
+        url: '../statistics/index'
+      })
     })
   }
 })

@@ -22,6 +22,7 @@
 }
 .btn-block button{
   width: 400rpx;
+  background-color: #37b9ff;
 }
 .check-records{
   margin-top: 50rpx;

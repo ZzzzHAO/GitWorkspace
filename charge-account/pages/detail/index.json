@@ -1,5 +1,5 @@
 {
     "usingComponents": {
-      "swider-left": "../../slider-left/index"
+      "swider-left": "../../components/slider-left/index"
     }
 }

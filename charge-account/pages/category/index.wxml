@@ -6,13 +6,13 @@
     </text>
     <view class='radio-content'>
     <view class='radio-group'>
-     <button wx:for="{{items}}" size='default' type='primary' wx:key="{{item.id}}" plain="{{!item.checked}}" bindtap="check" data-id="{{item.id}}">
+     <button wx:for="{{categories}}" size='default' type='primary' wx:key="{{item.id}}" plain="{{!item.checked}}" bindtap="checkCategory" data-id="{{item.id}}">
         {{item.name}}
       </button>
     </view>
     </view>
   </view>
   <view class='btn-block'>
-    <button size='default' type='primary' bindtap="goNext" wx:if='{{isVisible}}'>完成</button>
+    <button size='default' type='primary' bindtap="submit" wx:if='{{isVisible}}'>完成</button>
   </view>
 </view>

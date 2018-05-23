@@ -1,16 +1,13 @@
 //index.js
 import {
-  wilddog
-} from '../../wilddog'
-import{
   wilddogLogin
-} from '../../utils/util'
+} from '../../api/index'
 //获取应用实例
 const app = getApp()
 
 Page({
   data: {
-    amount: '',
+    amount: 0,
     isDisabled: true,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -24,6 +21,7 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
+        console.info('-----------------userInfoReadyCallback--------------------');
         this.setData({
           hasUserInfo: true
         })
@@ -32,13 +30,18 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          app.globalData.userInfo = res.userInfo;
           this.setData({
             hasUserInfo: true
           })
         }
       })
     }
+  },
+  onShow:function(){
+    this.setData({
+      amount: 0
+    })
   },
   //授权获取公共信息并且登录野狗
   auth: function (e) {
@@ -50,8 +53,8 @@ Page({
       })
     } else {
       wx.showModal({
-        content: '获取用户信息失败，请重试(001)',
-        showCancel:false
+        content: '获取用户信息失败，请重试',
+        showCancel: false
       })
     }
   },
@@ -63,10 +66,15 @@ Page({
   },
   //金额输入函数
   amtInput: function (e) {
-    if (e.detail.value > 0) {
+    let amt = Number(e.detail.value)
+    if (e.detail.value && e.detail.value > 0) {
       this.setData({
         amount: e.detail.value,
         isDisabled: false
+      })
+    }else{
+      this.setData({
+        isDisabled: true
       })
     }
   },

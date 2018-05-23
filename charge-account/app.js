@@ -1,10 +1,10 @@
 //app.js
 import {
   wilddog
-} from './wilddog'
+} from './lib/wilddog'
 import {
   wilddogLogin
-} from './utils/util'
+} from './api/index'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -38,6 +38,7 @@ App({
         }
       }
     })
+    //重写Number toFixed方法 修复精度问题
     Number.prototype.toFixed = function (n) {
       var power = Math.pow(10, n);
       var fixed = (Math.round(this * power) / power).toString();
@@ -49,7 +50,7 @@ App({
     };
   },
   globalData: {
-    userInfo: null,
-    selectedMonthData:[]
+    userInfo: null, //用户信息
+    selectedMonthData: [] //缓存选中月份记账记录
   }
 })
