@@ -19,7 +19,7 @@
       请输入金额：
     </text>
     <view class="section">
-      <input class='amount-input' type='digit' confirm-type='done' bindinput='amtInput' />
+      <input class='amount-input' type='digit' confirm-type='done' value="{{amount}}" confirm-type="done" bindinput='amtInput' />
     </view>
     <view class='btn-block'>
       <button size='default' bindtap="goNext" disabled='{{isDisabled}}'>下一步</button>

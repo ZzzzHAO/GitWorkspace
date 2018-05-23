@@ -3,3 +3,12 @@
 .th {
     background-color: #37b9ff
 }
+
+.td,
+.th {
+    border: none;
+}
+
+.tr {
+    border: 1px solid #f6f6f6
+}

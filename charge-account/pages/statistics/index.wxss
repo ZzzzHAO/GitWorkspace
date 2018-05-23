@@ -15,7 +15,7 @@
 
 ec-canvas {
   width: 100%;
-  height: 50%;
+  height: 40vh;
 }
 
 .not-found {
@@ -26,7 +26,7 @@ ec-canvas {
 }
 
 .table-wrap {
-  height: 30%;
+  height: 40vh;
 }
 
 .table {
@@ -41,43 +41,39 @@ ec-canvas {
   border: none;
 }
 
-.tr {
-  border-bottom: 1px solid #f6f6f6;
-}
-
-.month-list-wrap {
+/* .month-list-wrap {
   height: 20%;
   width: 100%;
-  background-color: #f6f6f6;
-}
+  background-color: #fff;
+} */
 
 .month-list {
   display: flex;
   display: -webkit-box;
   flex-direction: column;
-  padding-top: 20rpx;
+  padding-left: 5rpx;
 }
 
 .month-item {
-  width: 200rpx;
-  height: 200rpx;
-  line-height: 200rpx;
+  width: 20vh;
+  height: 20vh;
+  line-height: 20vh;
   text-align: center;
-  border: 1rpx solid #333;
+  /* border: 1rpx solid #333; */
   border-radius: 10rpx;
   margin-right: 5rpx;
-  background-color: #37b9ff;
+  background-color: #f6f6f6;
 }
 
 .month-item-active {
-  width: 200rpx;
-  height: 200rpx;
-  line-height: 200rpx;
+  width: 20vh;
+  height: 20vh;
+  line-height: 20vh;
   text-align: center;
-  border: 1rpx solid #333;
+  /* border: 1rpx solid #333; */
   border-radius: 10rpx;
   margin-right: 5rpx;
-  background-color: #39a0f5;
+  background-color: #7f7f7f;
 }
 
 .show-detail {

@@ -3,11 +3,11 @@ import {
   wilddogLogin
 } from '../../api/index'
 //获取应用实例
-const app = getApp()
-
+const app = getApp(); //app实例
+const reg = /^[0-9]+(.[0-9]{2})?$/; //匹配金额正则
 Page({
   data: {
-    amount: 0,
+    amount: '',
     isDisabled: true,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -38,9 +38,9 @@ Page({
       })
     }
   },
-  onShow:function(){
+  onShow: function () {
     this.setData({
-      amount: 0
+      amount: ''
     })
   },
   //授权获取公共信息并且登录野狗
@@ -66,13 +66,12 @@ Page({
   },
   //金额输入函数
   amtInput: function (e) {
-    let amt = Number(e.detail.value)
-    if (e.detail.value && e.detail.value > 0) {
+    if (e.detail.value) {
       this.setData({
         amount: e.detail.value,
         isDisabled: false
       })
-    }else{
+    } else {
       this.setData({
         isDisabled: true
       })
@@ -80,9 +79,17 @@ Page({
   },
   //页面跳转
   goNext: function (e) {
-    wx.navigateTo({
-      url: '../category/index?amount=' + this.data.amount
-    })
+    let amt = this.data.amount;
+    if (reg.test(amt)) {
+      wx.navigateTo({
+        url: '../category/index?amount=' + this.data.amount
+      })
+    } else {
+      wx.showModal({
+        content: '金额格式错误，请重新输入。（最多两位小数）',
+        showCancel: false
+      })
+    }
   },
   goStatistics: function (e) {
     wx.navigateTo({

@@ -171,34 +171,37 @@ Page({
   getPieOption: function () {
     const EchartsData = this.getEchartsData();
     return {
-      backgroundColor: "#f6f6f6",
+      backgroundColor: "#fff",
       color: EchartsData.colorData,
-      legend: {
-        orient: 'horizontal',
-        bottom: '0',
-        x: 'center',
-        data: EchartsData.legendData,
-        selectedMode: false
-      },
+      // legend: {
+      //   orient: 'vertical',
+      //   bottom: '0',
+      //   x: 'center',
+      //   data: EchartsData.legendData,
+      //   selectedMode: false
+      // },
       series: [{
         label: {
           normal: {
+            show:true,
+            position:'outside',
             //获取echarts 数据 用于列表渲染
             formatter: function (params) {
               const item = {};
               item.name = params.data.name;
               item.value = params.data.value;
               item.percent = params.percent;
-              //不知道为什么执行两次 所以只push一次
+              //不知道为什么执行两次 所以只push一次 
               if (seriesDataCatch.length < EchartsData.legendData.length) {
                 seriesDataCatch.push(item);
               }
-              return item.name + ':' + item.percent + '%'
+              return item.name;
+              // return item.name + ':' + item.percent + '%'
             }
           }
         },
         type: 'pie',
-        center: ['50%', '43%'],
+        center: ['50%', '50%'],
         radius: [0, '60%'],
         data: EchartsData.seriesData,
         itemStyle: {
