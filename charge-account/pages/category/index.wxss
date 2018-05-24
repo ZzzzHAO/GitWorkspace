@@ -21,21 +21,44 @@
 .btn-block button {
   width: 80%;
 }
-.radio-content{
+
+.radio-content {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 70rpx;
-}
-.radio-group{
-  width: 80%;
-  display: flex;
-  flex-direction: row;
+  margin-top: 20rpx;
   flex-wrap: wrap;
+  font-size:30rpx;
 }
-.radio-group button{
+
+.category-item-checked {
   width: 180rpx;
   height: 80rpx;
+  background-color: #56abe4;
+  border: none;
+  border-radius: 10rpx;
   line-height: 80rpx;
-  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.category-wrap {
+  width: 250rpx;
+  height: 140rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-item {
+  width: 180rpx;
+  height: 80rpx;
+  background-color: #fff;
+  border: 1px solid #56abe4;
+  border-radius: 10rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+.btn-block button{
+  width: 400rpx;
+  background-color: #56abe4;
 }

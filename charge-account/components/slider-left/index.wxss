@@ -31,7 +31,7 @@
 }
 
 .handle-delete {
-  background-color: red;
+  background-color: #56abe4;
   width: 150rpx;
   display: flex;
   align-items: center;

@@ -19,7 +19,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    let costList = app.globalData.selectedMonthData;
+    let year = costList[0].year;
+    let month = costList[0].month;
+    for (let i = 0; i < costList.length; i++) {
+      let category = costList[i].category;
+      costList[i].categoryName = getCategoryName(category);
+    }
+    this.setData({
+      costList: costList
+    })
+    wx.setNavigationBarTitle({
+      title: year + "年" + month + "月消费流水"
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -34,16 +48,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    let costList = app.globalData.selectedMonthData;
-    for (let i = 0; i < costList.length; i++) {
-      let category = costList[i].category;
-      costList[i].categoryName = getCategoryName(category);
-    }
-    this.setData({
-      costList: costList
-    })
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

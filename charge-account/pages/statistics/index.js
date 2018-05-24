@@ -182,13 +182,6 @@ Page({
     return {
       backgroundColor: "#fff",
       color: EchartsData.colorData,
-      // legend: {
-      //   orient: 'vertical',
-      //   bottom: '0',
-      //   x: 'center',
-      //   data: EchartsData.legendData,
-      //   selectedMode: false
-      // },
       series: [{
         label: {
           normal: {

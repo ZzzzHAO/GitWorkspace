@@ -1,6 +1,6 @@
 <!--pages/detail/index.wxml-->
 <view class="table">
-  <view class="tr" style="height:7vh">
+  <view class="tr" style="height:7vh;border-bottom:1rpx solid #f6f6f6;background-color: #f6f6f6;">
     <view class="th">类别</view>
     <view class="th">花费</view>
     <view class="th">日期</view>
