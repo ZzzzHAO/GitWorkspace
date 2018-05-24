@@ -4,12 +4,18 @@
   <view wx:else class="not-found" style="height:50%;background-color:#f6f6f6">
     <text>对不起，暂无记录</text>
   </view>
-  <scroll-view scroll-y  class="table-wrap" wx:if="{{hasData}}">
+  <scroll-view scroll-y class="table-wrap" wx:if="{{hasData}}">
     <view class="table">
       <view class="tr" wx:for="{{seriesData}}" wx:key="{{item}}">
-        <view class="td">{{item.name}}</view>
+        <view class="td" style="display: flex;align-items: center;">
+          <view class="color-block" style="background-color:{{item.color}}"></view>
+          <text>{{item.name}}</text>
+        </view>
         <view class="td">{{item.value}}元</view>
         <view class="td">{{item.percent}}%</view>
+      </view>
+      <view class="tr">
+        <view class="td show-detail" bindtap="showDetail">查看流水</view>
       </view>
     </view>
   </scroll-view>
@@ -23,5 +29,4 @@
       </view>
     </view>
   </scroll-view>
-  <text class="show-detail" bindtap="showDetail">查看流水</text>
 </view>

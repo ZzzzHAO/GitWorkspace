@@ -39,9 +39,7 @@ Page({
     }
   },
   onShow: function () {
-    this.setData({
-      amount: ''
-    })
+    
   },
   //授权获取公共信息并且登录野狗
   auth: function (e) {

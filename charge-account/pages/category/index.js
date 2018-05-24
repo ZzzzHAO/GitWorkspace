@@ -98,6 +98,12 @@ Page({
       category: this.data.category
     }
     addCostRecord(costRecord, () => {
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
+      prevPage.setData({
+        amount: '',
+        isDisabled: true
+      }) // 清空首页金额
       wx.redirectTo({
         url: '../statistics/index'
       })

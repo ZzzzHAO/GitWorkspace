@@ -22,12 +22,27 @@ Page({
     },
     monthList: getMonthList(new Date('1/1/2018'), new Date()), //月份列表 默认从2018/1/1至当前客户端月份
     hasData: false, //选中月是否有记账数据
-    seriesData: [] //列表渲染数据
+    seriesData: [], //列表渲染数据
+    currentYear: new Date().getFullYear(),
+    currentMonth: new Date().getMonth() + 1
   },
   onLoad: function (option) {
-
+    this.setDefaultMonth();
+    getServerTime((data) => {
+      //服务器当前时间
+      const now = new Date(data);
+      this.setData({
+        currentYear: now.getFullYear(),
+        currentMonth: now.getMonth() + 1,
+      })
+      this.getCurrentRecords();
+    });
   },
   onShow: function () {
+    this.getCurrentRecords();
+  },
+  //第一次进入 设置默认选中月份
+  setDefaultMonth: function () {
     let monthList = [];
     getServerTime((data) => {
       //服务器当前时间
@@ -44,24 +59,19 @@ Page({
           monthList: monthList
         })
       })
-      const year = now.getFullYear();
-      const month = now.getMonth() + 1;
-      getCostList({
-        year: year,
-        month: month
-      }, (data) => {
-        //用户所有记账记录
-        costList = data || [];
-        //当前月份饼状图展示逻辑
-        this.pieComponentCtrl();
-      })
     });
   },
-  onUnload: function () {
-    //直接返回首页
-    // wx.navigateBack({
-    //   delta: 2
-    // })
+  //获取当前月份记录
+  getCurrentRecords: function () {
+    getCostList({
+      year: this.data.currentYear,
+      month: this.data.currentMonth
+    }, (data) => {
+      //用户所有记账记录
+      costList = data || [];
+      //当前月份饼状图展示逻辑
+      this.pieComponentCtrl();
+    })
   },
   //选择某个月份
   pick: function (e) {
@@ -74,17 +84,11 @@ Page({
     }
     selectedMonth.active = true;
     this.setData({
-      monthList: monthList
+      monthList: monthList,
+      currentYear: selectedMonth.year,
+      currentMonth: selectedMonth.month
     })
-    getCostList({
-      year: selectedMonth.year,
-      month: selectedMonth.month
-    }, (data) => {
-      //用户所有记账记录
-      costList = data || [];
-      //选中月份饼状图展示逻辑
-      this.pieComponentCtrl();
-    })
+    this.getCurrentRecords();
   },
   //获取消费类别列表
   getLegendData: function (costList) {
@@ -160,6 +164,11 @@ Page({
 
       pieChart.setOption(this.getPieOption());
       //设置seriesData 用于列表渲染
+      for (let i = 0; i < seriesDataCatch.length; i++) {
+        let name = seriesDataCatch[i].name;
+        let color = getCategoryColor(name);
+        seriesDataCatch[i].color = color;
+      }
       this.setData({
         seriesData: seriesDataCatch
       })
@@ -183,8 +192,8 @@ Page({
       series: [{
         label: {
           normal: {
-            show:true,
-            position:'outside',
+            show: true,
+            position: 'outside',
             //获取echarts 数据 用于列表渲染
             formatter: function (params) {
               const item = {};
