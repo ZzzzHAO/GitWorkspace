@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="wrap">
+  <view class="show-detail" bindtap="showDetail">查看流水</view>
   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" wx:if="{{hasData}}"></ec-canvas>
   <view wx:else class="not-found" style="height:40vh;background-color:#f6f6f6">
     <text>对不起，暂无记录</text>
@@ -14,12 +15,9 @@
         <view class="td">{{item.value}}元</view>
         <view class="td">{{item.percent}}%</view>
       </view>
-      <view class="tr" style="border-bottom:none">
-        <view class="td show-detail" bindtap="showDetail">查看流水</view>
-      </view>
     </view>
   </scroll-view>
-  <view wx:else class="not-found" style="height:40vh;background-color:#fff">
+  <view wx:else class="not-found" style="height:35vh;background-color:#fff">
     <text>对不起，暂无记录</text>
   </view>
   <scroll-view scroll-x class="month-list-wrap">

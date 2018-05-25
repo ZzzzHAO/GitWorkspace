@@ -8,14 +8,18 @@ import {
 
 //获取服务器时间戳
 const getServerTime = (callback = function () {}) => {
-    let serverTsRef = wilddog.sync().ref("/.info/serverTimeOffset");
+    const serverTsRef = wilddog.sync().ref("/.info/serverTimeOffset");
+    const timestamp = new Date().getTime();
+    console.info('--------------请求服务器时间开始' + timestamp + '---------------');
     serverTsRef.once('value', function (snapshot) {
+        console.info('--------------请求服务器时间成功' + timestamp + '---------------');
         // 获取时钟偏差
         let offset = snapshot.val();
         // 可进一步计算出云端时间
         let serverTime = (new Date).getTime() + offset;
         callback(serverTime)
     }, function (error) {
+        console.info('--------------请求服务器时间失败' + timestamp + '---------------');
         //获取系统时间报错
         wx.showModal({
             content: '系统错误，请重试（001）',
@@ -27,11 +31,13 @@ const getServerTime = (callback = function () {}) => {
 const wilddogLogin = (callback = function () {}) => {
     const app = getApp(); //app实例
     wx.showLoading({
-        title: '请稍候...',
         mask: true
     });
+    const timestamp = new Date().getTime();
+    console.info('--------------登录开始' + timestamp + '---------------');
     wilddog.auth().signInWeapp(function (err, user) {
         if (user) {
+            console.info('--------------登陆成功' + timestamp + '---------------');
             wx.hideLoading();
             //用户数据存入全局变量
             app.globalData.userInfo = user;
@@ -40,6 +46,7 @@ const wilddogLogin = (callback = function () {}) => {
             //执行回调
             callback(user);
         } else {
+            console.info('--------------登录失败' + timestamp + '---------------');
             wx.hideLoading();
             wx.showModal({
                 content: '网络不给力，请重试(501)',
@@ -57,10 +64,14 @@ const wilddogLogin = (callback = function () {}) => {
 const getUserData = (successCallback = function () {}, failCallback = function () {}) => {
     const user = getUser();
     const ref = wilddog.sync().ref('users/' + user.uid);
+    const timestamp = new Date().getTime();
+    console.info('--------------获取用户所有数据开始' + timestamp + '---------------');
     ref.once('value', (snapshot) => {
+        console.info('--------------获取用户所有数据成功' + timestamp + '---------------');
         const data = snapshot.val() || {};
         successCallback(data);
     }, function (error) {
+        console.info('--------------获取用户所有数据失败' + timestamp + '---------------');
         wx.showModal({
             content: '系统错误，请重试（002）',
             showCancel: false
@@ -84,14 +95,18 @@ const getCostList = (params, successCallback = function () {}, failCallback = fu
         refUrl = 'users/' + user.uid + '/' + year;
     }
     const ref = wilddog.sync().ref(refUrl);
+    const timestamp = new Date().getTime();
+    console.info('--------------获取用户记账记录开始' + timestamp + '---------------');
     ref.once('value', (snapshot) => {
-        let data = snapshot.val();
+        console.info('--------------获取用户记账记录成功' + timestamp + '---------------');
+        const data = snapshot.val();
         if (month) {
             successCallback(data);
         } else {
-
+            //TODO 方便以后以年来统计
         }
     }, function (error) {
+        console.info('--------------获取用户记账记录失败' + timestamp + '---------------');
         wx.showModal({
             content: '系统错误，请重试（003）',
             showCancel: false
@@ -110,15 +125,19 @@ const addCostRecord = (params, successCallback = function () {}, failCallback = 
         //如果之前没有记账记录 则记录开始时间
         getStartTime((startTime) => {
             if (startTime === null) {
-                let ref = wilddog.sync().ref('users/' + user.uid + '/startTime');
+                const ref = wilddog.sync().ref('users/' + user.uid + '/startTime');
+                const timestamp = new Date().getTime();
+                console.info('--------------记录用户第一笔记账时间开始' + timestamp + '---------------');
                 ref.set(serverTime, function (error) {
                     if (error !== null) {
+                        console.info('--------------记录用户第一笔记账时间失败' + timestamp + '---------------');
                         wx.showModal({
                             content: '系统错误，请重试（004）',
                             showCancel: false
                         })
                         return;
                     }
+                    console.info('--------------记录用户第一笔记账时间成功' + timestamp + '---------------');
                 })
             }
         })
@@ -133,10 +152,14 @@ const addCostRecord = (params, successCallback = function () {}, failCallback = 
             params.date = date; //存入月份
             value.push(params);
             let ref = wilddog.sync().ref('users/' + user.uid + '/' + year + '/' + month + '/costList');
+            const timestamp = new Date().getTime();
+            console.info('--------------添加记账记录开始' + timestamp + '---------------');
             ref.set(value, function (error) {
                 if (error === null) {
+                    console.info('--------------添加记账记录成功' + timestamp + '---------------');
                     successCallback();
                 } else {
+                    console.info('--------------添加记账记录失败' + timestamp + '---------------');
                     wx.showModal({
                         content: '系统错误，请重试（005）',
                         showCancel: false
@@ -172,10 +195,14 @@ const removeRecord = (params, successCallback = function () {}, failCallback = f
         }
         value.splice(m, 1);
         let ref = wilddog.sync().ref('users/' + user.uid + '/' + year + '/' + month + '/costList');
+        const timestamp = new Date().getTime();
+        console.info('--------------删除记账记录开始' + timestamp + '---------------');
         ref.set(value, function (error) {
             if (error === null) {
+                console.info('--------------删除记账记录成功' + timestamp + '---------------');
                 successCallback();
             } else {
+                console.info('--------------删除记账记录失败' + timestamp + '---------------');
                 wx.showModal({
                     content: '系统错误，请重试（007）',
                     showCancel: false
@@ -191,10 +218,14 @@ const removeRecord = (params, successCallback = function () {}, failCallback = f
 const getStartTime = (successCallback = function () {}, failCallback = function () {}) => {
     const user = getUser();
     const ref = wilddog.sync().ref('users/' + user.uid + '/startTime');
+    const timestamp = new Date().getTime();
+    console.info('--------------获取用户第一笔记账时间开始' + timestamp + '---------------');
     ref.once('value', (snapshot) => {
+        console.info('--------------获取用户第一笔记账时间成功' + timestamp + '---------------');
         let data = snapshot.val();
         successCallback(data);
     }, function (error) {
+        console.info('--------------获取用户第一笔记账时间失败' + timestamp + '---------------');
         wx.showModal({
             content: '系统错误，请重试（006）',
             showCancel: false

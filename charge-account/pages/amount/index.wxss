@@ -23,6 +23,7 @@
 .btn-block button{
   width: 400rpx;
   background-color: #56abe4;
+  color: #fff;
 }
 .check-records{
   margin-top: 50rpx;
@@ -56,4 +57,5 @@
 .auth-btn button{
   width: 400rpx;
   background-color: #56abe4;
+  color: #fff;
 }

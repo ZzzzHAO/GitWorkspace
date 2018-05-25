@@ -101,15 +101,25 @@ Page({
   },
 
   handleDelete: function (e) {
-    console.log('点击删除了', e)
-    let list = this.data.costList;
-    let index = e.target.dataset.index;
-    let delItem = e.target.dataset.item
-    removeRecord(delItem, () => {
-      list.splice(index, 1);
-      this.setData({
-        costList: list
-      })
+    wx.showModal({
+      title: '您确定要删除该记录？',
+      success: (res) => {
+        if (res.confirm) {
+          let list = this.data.costList;
+          let index = e.target.dataset.index;
+          let delItem = e.target.dataset.item
+          removeRecord(delItem, () => {
+            wx.showToast({
+              title: '删除成功！',
+              mask: true
+            })
+            list.splice(index, 1);
+            this.setData({
+              costList: list
+            })
+          })
+        }
+      }
     })
   },
 })

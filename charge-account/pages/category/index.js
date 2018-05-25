@@ -34,9 +34,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    console.log(amount);
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -98,15 +96,21 @@ Page({
       category: this.data.category
     }
     addCostRecord(costRecord, () => {
-      let pages = getCurrentPages();
-      let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
-      prevPage.setData({
-        amount: '',
-        isDisabled: true
-      }) // 清空首页金额
-      wx.redirectTo({
-        url: '../statistics/index'
+      wx.showToast({
+        title: '记账成功！',
+        mask: true
       })
+      setTimeout(() => {
+        let pages = getCurrentPages();
+        let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
+        prevPage.setData({
+          amount: '',
+          isDisabled: true
+        }) // 清空首页金额
+        wx.redirectTo({
+          url: '../statistics/index'
+        })
+      }, 1500)
     })
   }
 })
