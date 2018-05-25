@@ -41,6 +41,14 @@ Page({
   onShow: function () {
     
   },
+  //转发信息
+  onShareAppMessage: function (res) {
+    return {
+      title: '快来记账吧，养成记账好习惯！',
+      path: '/pages/amount/index',
+      imageUrl:'../../image/schnauzer.jpg'
+    }
+  },
   //授权获取公共信息并且登录野狗
   auth: function (e) {
     if (e.detail.userInfo) {

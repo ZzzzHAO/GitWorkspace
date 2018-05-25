@@ -78,11 +78,13 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //转发信息
+  onShareAppMessage: function (res) {
+    return {
+      title: '快来记账吧，养成记账好习惯！',
+      path: '/pages/amount/index',
+      imageUrl:'../../image/schnauzer.jpg'
+    }
   },
   handleSliderLeftStart: function (e) {
     console.log('开始左滑', e.target.dataset.index)

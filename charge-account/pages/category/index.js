@@ -70,6 +70,14 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //转发信息
+  onShareAppMessage: function (res) {
+    return {
+      title: '快来记账吧，养成记账好习惯！',
+      path: '/pages/amount/index',
+      imageUrl:'../../image/schnauzer.jpg'
+    }
+  },
   /**
    * 用户选择消费类型
    */

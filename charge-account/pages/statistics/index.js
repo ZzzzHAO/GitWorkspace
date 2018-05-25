@@ -41,6 +41,14 @@ Page({
   onShow: function () {
     this.getCurrentRecords();
   },
+  //转发信息
+  onShareAppMessage: function (res) {
+    return {
+      title: '快来记账吧，养成记账好习惯！',
+      path: '/pages/amount/index',
+      imageUrl: '../../image/schnauzer.jpg'
+    }
+  },
   //第一次进入 设置默认选中月份
   setDefaultMonth: function () {
     let monthList = [];
