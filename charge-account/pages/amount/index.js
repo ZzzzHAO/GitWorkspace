@@ -4,7 +4,7 @@ import {
 } from '../../api/index'
 //获取应用实例
 const app = getApp(); //app实例
-const reg = /^[0-9]+(.[0-9]{2})?$/; //匹配金额正则
+const reg = /^[0-9]+(.[0-9]{1,2})?$/; //匹配金额正则
 Page({
   data: {
     amount: '',

@@ -23,13 +23,14 @@ ec-canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 79vh;
+  height: 83vh;
   background-color: #fff;
   font-size: 40rpx;
+  color: #575757;
 }
 
 .table-wrap {
-  height: 32vh;
+  height: 38vh;
 }
 
 .table {
@@ -63,24 +64,21 @@ ec-canvas {
 }
 
 .month-item {
-  width: 20vh;
-  height: 20vh;
-  line-height: 20vh;
+  width: 15vh;
+  height: 15vh;
   text-align: center;
   border-radius: 10rpx;
   margin-right: 5rpx;
   background-color: #fff;
   border: 1px solid #56abe4;
   color: #56abe4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1vh;
 }
 
-.month-item-active {
-  width: 20vh;
-  height: 20vh;
-  line-height: 20vh;
-  text-align: center;
-  border-radius: 10rpx;
-  margin-right: 5rpx;
+.active {
   background-color: #56abe4;
   border: 1px solid #56abe4;
   color: #fff;
@@ -90,8 +88,16 @@ ec-canvas {
   width: 100%;
   font-size: 30rpx;
   color: #56abe4;
-  height: 7vh;
-  line-height: 7vh;
+  height: 5vh;
+  line-height: 5vh;
   text-align: right;
   padding-right: 40rpx;
+}
+
+.month {
+  font-size: 50rpx;
+}
+
+.year {
+  font-size: 30rpx;
 }

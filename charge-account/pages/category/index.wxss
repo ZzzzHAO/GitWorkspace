@@ -6,29 +6,23 @@
 }
 
 .category-block text {
-  text-align: center;
-  font-size: 50rpx;
+  font-size: 70rpx;
+  padding-left: 10%;
+  font-weight: 500;
+  color: #56abe4;
 }
 
-.btn-block {
-  position: absolute;
-  bottom: 100rpx;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
 
-.btn-block button {
-  width: 80%;
-}
+
 
 .radio-content {
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: center;
   margin-top: 20rpx;
   flex-wrap: wrap;
   font-size: 30rpx;
+  padding: 10%;
+  justify-content: space-between;
 }
 
 .category-item-checked {
@@ -43,10 +37,9 @@
 }
 
 .category-wrap {
-  width: 250rpx;
-  height: 140rpx;
+  width: 180rpx;
+  height: 120rpx;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -60,9 +53,19 @@
   text-align: center;
   color: #56abe4;
 }
+.btn-block {
+  position: absolute;
+  bottom: 200rpx;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
 
 .btn-block button {
   width: 400rpx;
   background-color: #56abe4;
   color: #fff;
+  height: 115rpx;
+  line-height: 115rpx;
+  font-size: 50rpx;
 }

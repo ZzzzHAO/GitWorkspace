@@ -84,7 +84,7 @@ Page({
   //选择某个月份
   pick: function (e) {
     //月份列表选中样式控制
-    const id = e.target.dataset.index;
+    const id = e.currentTarget.dataset.index;
     const monthList = this.data.monthList;
     const selectedMonth = monthList[id];
     for (let i = 0; i < monthList.length; i++) {

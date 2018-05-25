@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="wrap">
-  <view class="show-detail" bindtap="showDetail"  wx:if="{{hasData}}">查看流水</view>
+  <view class="show-detail" bindtap="showDetail" wx:if="{{hasData}}">查看流水</view>
   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" wx:if="{{hasData}}"></ec-canvas>
   <scroll-view scroll-y class="table-wrap" wx:if="{{hasData}}">
     <view class="table">
@@ -19,8 +19,13 @@
   </view>
   <scroll-view scroll-x class="month-list-wrap">
     <view scroll-x class="month-list">
-      <view wx:for="{{monthList}}" wx:key="{{index}}" data-index="{{index}}" bindtap="pick" class="{{item.active==true?'month-item-active':'month-item'}}">
-        {{item.year}}年{{item.month}}月
+      <view wx:for="{{monthList}}" wx:key="{{index}}" data-index="{{index}}" bindtap="pick" class="month-item {{item.active==true?'active':'month-item'}}">
+        <view class="month">
+          {{item.month}}月
+        </view>
+        <view class="year">
+          {{item.year}}
+        </view>
       </view>
     </view>
   </scroll-view>

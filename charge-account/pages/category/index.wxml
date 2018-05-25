@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="wrap">
   <view class='category-block'>
     <text selectable='false'>
       消费分类
