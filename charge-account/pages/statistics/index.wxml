@@ -17,7 +17,7 @@
       </view>
     </view>
   </scroll-view>
-  <view wx:else class="not-found" style="height:33vh;background-color:#fff">
+  <view wx:else class="not-found" style="height:32vh;background-color:#fff">
     <text>对不起，暂无记录</text>
   </view>
   <scroll-view scroll-x class="month-list-wrap">

@@ -26,7 +26,7 @@ ec-canvas {
 }
 
 .table-wrap {
-  height: 33vh;
+  height: 32vh;
 }
 
 .table {
@@ -87,8 +87,8 @@ ec-canvas {
   width:100%;
   font-size: 30rpx;
   color: #56abe4;
-  height:6vh;
-  line-height:6vh;
+  height:7vh;
+  line-height:7vh;
   text-align:right;
   padding-right:40rpx;
 }
