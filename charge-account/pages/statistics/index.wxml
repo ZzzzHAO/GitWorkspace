@@ -1,10 +1,7 @@
 <!--index.wxml-->
 <view class="wrap">
-  <view class="show-detail" bindtap="showDetail">查看流水</view>
+  <view class="show-detail" bindtap="showDetail"  wx:if="{{hasData}}">查看流水</view>
   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" wx:if="{{hasData}}"></ec-canvas>
-  <view wx:else class="not-found" style="height:40vh;background-color:#f6f6f6">
-    <text>对不起，暂无记录</text>
-  </view>
   <scroll-view scroll-y class="table-wrap" wx:if="{{hasData}}">
     <view class="table">
       <view class="tr" wx:for="{{seriesData}}" wx:key="{{item}}">
@@ -17,8 +14,8 @@
       </view>
     </view>
   </scroll-view>
-  <view wx:else class="not-found" style="height:32vh;background-color:#fff">
-    <text>对不起，暂无记录</text>
+  <view wx:else class="not-found">
+    <text>对不起，暂无记录。</text>
   </view>
   <scroll-view scroll-x class="month-list-wrap">
     <view scroll-x class="month-list">

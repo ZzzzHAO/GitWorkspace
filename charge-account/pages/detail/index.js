@@ -20,19 +20,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let costList = app.globalData.selectedMonthData;
-    let year = costList[0].year;
-    let month = costList[0].month;
-    for (let i = 0; i < costList.length; i++) {
-      let category = costList[i].category;
-      costList[i].categoryName = getCategoryName(category);
-    }
-    this.setData({
-      costList: costList
-    })
+    //设置页面title
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
+    let year = prevPage.data.currentYear;
+    let month = prevPage.data.currentMonth;
     wx.setNavigationBarTitle({
       title: year + "年" + month + "月消费流水"
     })
+    //设置页面数据
+    let costList = app.globalData.selectedMonthData;
+    if (costList.length > 0) {
+      for (let i = 0; i < costList.length; i++) {
+        let category = costList[i].category;
+        costList[i].categoryName = getCategoryName(category);
+      }
+      this.setData({
+        costList: costList,
+      })
+    }
   },
 
   /**
@@ -83,7 +89,7 @@ Page({
     return {
       title: '快来记账吧，养成记账好习惯！',
       path: '/pages/amount/index',
-      imageUrl:'../../image/schnauzer.jpg'
+      imageUrl: '../../image/schnauzer.jpg'
     }
   },
   handleSliderLeftStart: function (e) {
