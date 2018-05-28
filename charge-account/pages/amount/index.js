@@ -39,14 +39,14 @@ Page({
     }
   },
   onShow: function () {
-    
+
   },
   //转发信息
   onShareAppMessage: function (res) {
     return {
       title: '快来记账吧，养成记账好习惯！',
       path: '/pages/amount/index',
-      imageUrl:'../../image/schnauzer.jpg'
+      imageUrl: '../../image/schnauzer.jpg'
     }
   },
   //授权获取公共信息并且登录野狗
@@ -60,7 +60,8 @@ Page({
     } else {
       wx.showModal({
         content: '获取用户信息失败，请重试',
-        showCancel: false
+        showCancel: false,
+        confirmColor:'#56abe4'
       })
     }
   },
@@ -93,7 +94,8 @@ Page({
     } else {
       wx.showModal({
         content: '金额格式错误，请重新输入。（最多两位小数）',
-        showCancel: false
+        showCancel: false,
+        confirmColor:'#56abe4'
       })
     }
   },

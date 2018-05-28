@@ -92,11 +92,16 @@ Page({
     }
     selectedMonth.active = true;
     this.setData({
-      monthList: monthList,
-      currentYear: selectedMonth.year,
-      currentMonth: selectedMonth.month
+      monthList: monthList
     })
-    this.getCurrentRecords();
+    //如果点击的是相同的 则不去拉数据
+    if (selectedMonth.year !== this.data.currentYear || selectedMonth.month !== this.data.currentMonth) {
+      this.setData({
+        currentYear: selectedMonth.year,
+        currentMonth: selectedMonth.month
+      })
+      this.getCurrentRecords();
+    }
   },
   //获取消费类别列表
   getLegendData: function (costList) {

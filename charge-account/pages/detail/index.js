@@ -110,7 +110,8 @@ Page({
 
   handleDelete: function (e) {
     wx.showModal({
-      title: '您确定要删除该记录？',
+      content: '您确定要删除该记录？',
+      confirmColor:'#56abe4',
       success: (res) => {
         if (res.confirm) {
           let list = this.data.costList;
