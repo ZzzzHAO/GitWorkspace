@@ -12,9 +12,6 @@
   color: #56abe4;
 }
 
-
-
-
 .radio-content {
   width: 80%;
   display: flex;
@@ -53,19 +50,31 @@
   text-align: center;
   color: #56abe4;
 }
+
 .btn-block {
   position: absolute;
   bottom: 200rpx;
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
 }
 
 .btn-block button {
   width: 400rpx;
-  background-color: #56abe4;
-  color: #fff;
   height: 115rpx;
   line-height: 115rpx;
   font-size: 50rpx;
+  border: 1px solid #56abe4;
+}
+
+.remark {
+  margin-bottom: 30rpx;
+  background-color: #fff;
+  color: #56abe4;
+}
+
+.done {
+  background-color: #56abe4;
+  color: #fff;
 }

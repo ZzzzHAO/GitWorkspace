@@ -11,6 +11,7 @@
     </view>
   </view>
   <view class='btn-block'>
-    <button bindtap="submit" wx:if='{{isVisible}}'>完成</button>
+    <button class="remark" bindtap="submit" wx:if='{{isVisible}}'>备注一下</button>
+    <button class="done" bindtap="submit" wx:if='{{isVisible}}'>完成</button>
   </view>
 </view>
