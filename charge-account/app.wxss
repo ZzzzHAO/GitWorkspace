@@ -1,5 +1,9 @@
 /**app.wxss**/
 
+button {
+  margin: 0;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -9,6 +13,41 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 }
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 70rpx;
+  font-weight: 500;
+  color: #56abe4;
+}
+
+.sub-title {
+  font-size: 36rpx;
+  font-weight: 400;
+  color: #56abe4;
+}
+
+.next-btn {
+  width: 400rpx;
+  background-color: #56abe4;
+  color: #fff;
+  height: 115rpx;
+  line-height: 115rpx;
+  font-size: 50rpx;
+  border: 1px solid #56abe4;
+}
+
+/* table样式 start */
 
 .table {
   border: 1px solid #dadada;
@@ -38,3 +77,79 @@
   background-color: #dadada;
   border-right: 1px solid #fff;
 }
+
+/* table样式 end */
+
+/* flex布局 start */
+
+.flex-row-start {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-row-end {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.flex-row-around {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-row-between {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.flex-column-start {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-column-end {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.flex-column-around {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-column-between {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* flex布局 end */

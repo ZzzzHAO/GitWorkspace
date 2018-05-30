@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="wrap">
+<view class="wrap" style="padding:0">
   <view class="show-detail" bindtap="showDetail" wx:if="{{hasData}}">查看流水</view>
   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" wx:if="{{hasData}}"></ec-canvas>
   <scroll-view scroll-y class="table-wrap" wx:if="{{hasData}}">

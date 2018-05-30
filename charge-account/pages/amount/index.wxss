@@ -1,62 +1,29 @@
 /**index.wxss**/
 
-button {
-  width: 400rpx;
-  background-color: #56abe4;
-  color: #fff;
-  margin-left: 0;
-  height: 115rpx;
-  line-height: 115rpx;
-  font-size: 50rpx;
-}
-
-.title {
-  font-size: 70rpx;
-  font-weight: 500;
-  color: #56abe4;
-}
-
-.amount-block {
-  display: flex;
-  flex-direction: column;
-  padding: 10%;
-}
-
-.auth-block {
-  display: flex;
-  flex-direction: column;
-  padding: 10%;
-}
-
-.auth-block .sub-title {
-  font-size: 36rpx;
-  font-weight: 400;
-  color: #56abe4;
-}
-
-.auth-block .auth-btn {
+.auth-btn-wrap {
   margin-top: 110rpx;
 }
 
-.amount-input {
+.input-wrap {
   margin-top: 100rpx;
+}
+
+.amount-input {
   color: #56abe4;
   border-bottom: 1px solid #56abe4;
   font-size: 70rpx;
   height: 100rpx;
+  line-height: 100rpx;
 }
 
-.btn-block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.next-btn-wrap {
   position: absolute;
   bottom: 200rpx;
   width: 80%;
 }
 
-.btn-block button {
-  margin: auto;
+.next-btn-wrap button {
+  border: none;
 }
 
 .check-records {

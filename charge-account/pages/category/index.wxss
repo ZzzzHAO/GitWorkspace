@@ -1,25 +1,15 @@
 /* pages/label/label.wxss */
 
-.category-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.category-block text {
-  font-size: 70rpx;
-  padding-left: 10%;
-  font-weight: 500;
-  color: #56abe4;
-}
-
 .radio-content {
-  width: 80%;
-  display: flex;
   margin-top: 20rpx;
-  flex-wrap: wrap;
   font-size: 30rpx;
-  padding: 10%;
-  justify-content: space-between;
+}
+
+.category-wrap {
+  width: 180rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
 }
 
 .category-item-checked {
@@ -31,13 +21,6 @@
   line-height: 80rpx;
   text-align: center;
   color: #fff;
-}
-
-.category-wrap {
-  width: 180rpx;
-  height: 120rpx;
-  display: flex;
-  align-items: center;
 }
 
 .category-item {
@@ -53,19 +36,12 @@
 
 .btn-block {
   position: absolute;
+  width: 80%;
   bottom: 200rpx;
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: center;
-}
-
-.btn-block button {
-  width: 400rpx;
-  height: 115rpx;
-  line-height: 115rpx;
-  font-size: 50rpx;
-  border: 1px solid #56abe4;
+  align-items: center;
 }
 
 .remark {

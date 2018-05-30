@@ -4,13 +4,14 @@
     "pages/logs/logs",
     "pages/category/index",
     "pages/statistics/index",
-    "pages/detail/index"
+    "pages/detail/index",
+    "pages/remark/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#56abe4",
     "navigationBarTitleText": "欧豆豆记账",
     "navigationBarTextStyle": "white",
-    "disableScroll":true
+    "disableScroll": true
   }
 }

@@ -1,17 +1,17 @@
 <!--index.wxml-->
 <view class="wrap">
-  <view class='category-block'>
-    <text selectable='false'>
+  <view class='flex-column-start'>
+    <text class="title" selectable='false'>
       消费分类
     </text>
-    <view class='radio-content'>
-      <view wx:for="{{categories}}" wx:key="{{item.id}}" class="category-wrap">
+    <view class='flex-row-between radio-content'>
+      <view wx:for="{{categoryList}}" wx:key="{{item.id}}" class="category-wrap">
         <view class="{{item.checked?'category-item-checked':'category-item'}}" bindtap="checkCategory" data-id="{{item.id}}">{{item.name}}</view>
       </view>
     </view>
   </view>
   <view class='btn-block'>
-    <button class="remark" bindtap="submit" wx:if='{{isVisible}}'>备注一下</button>
-    <button class="done" bindtap="submit" wx:if='{{isVisible}}'>完成</button>
+    <button class="remark next-btn" bindtap="goRemark" wx:if='{{isVisible}}'>备注一下</button>
+    <button class="done next-btn" bindtap="submit" wx:if='{{isVisible}}'>完成</button>
   </view>
 </view>

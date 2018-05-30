@@ -12,16 +12,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isVisible: false,
-    categories: categoryList,
-    category: ''
+    isVisible: false, //btn显隐控制标志位
+    categoryList: categoryList, //消费类别List
+    category: '', //已选消费类别
+    amount: 0 //记账金额
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    amount = options.amount;
+    this.setData({
+      amount: options.amount
+    })
   },
 
   /**
@@ -83,7 +86,7 @@ Page({
    */
   checkCategory: function (e) {
     const id = e.target.dataset.id;
-    const categories = this.data.categories;
+    const categories = this.data.categoryList;
     categories.forEach(function (item) {
       if (item.id === id) {
         item.checked = true;
@@ -92,7 +95,7 @@ Page({
       }
     })
     this.setData({
-      categories: categories, //更新categories 渲染选中效果
+      categoryList: categories, //更新categories 渲染选中效果
       category: id,
       isVisible: true
     })
@@ -100,7 +103,7 @@ Page({
   //记录提交并跳转
   submit: function (e) {
     const costRecord = {
-      amount: amount,
+      amount: this.data.amount,
       category: this.data.category
     }
     addCostRecord(costRecord, () => {
@@ -112,13 +115,18 @@ Page({
         let pages = getCurrentPages();
         let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
         prevPage.setData({
-          amount: '',
-          isDisabled: true
-        }) // 清空首页金额
+          amount: '', // 清空首页金额
+          isDisabled: true //禁用首页按钮
+        })
         wx.redirectTo({
           url: '../statistics/index'
         })
       }, 1500)
+    })
+  },
+  goRemark: function () {
+    wx.navigateTo({
+      url: '../remark/index?amount=' + this.data.amount + 'category=' + this.data.category
     })
   }
 })
