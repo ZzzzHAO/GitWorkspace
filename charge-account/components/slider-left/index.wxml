@@ -1,9 +1,10 @@
 <movable-area class="slider-left-item" style="width:900rpx;margin-left:-150rpx;">
   <movable-view class="slider-left-content" damping="100" x="{{x*2}}rpx" direction="horizontal" bind:touchstart="handleTouchestart"
     bind:touchend="handleTouchend" bind:change="handleChange">
-    <slot></slot>
+    <slot name="before"></slot>
   </movable-view>
   <view class='slider-left-handle'>
     <view bind:tap="handleDelete" class='handle-delete'>删除</view>
   </view>
 </movable-area>
+<slot name="after"></slot>

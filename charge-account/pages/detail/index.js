@@ -111,7 +111,7 @@ Page({
   handleDelete: function (e) {
     wx.showModal({
       content: '您确定要删除该记录？',
-      confirmColor:'#56abe4',
+      confirmColor: '#56abe4',
       success: (res) => {
         if (res.confirm) {
           let list = this.data.costList;
@@ -131,4 +131,15 @@ Page({
       }
     })
   },
+  triggerRemark: function (e) {
+    const id = e.currentTarget.dataset.index;
+    let costList = this.data.costList;
+    for (let i = 0; i < costList.length; i++) {
+      costList[i].remarkVisiable = false;
+    }
+    costList[id].remarkVisiable = true;
+    this.setData({
+      costList: costList
+    })
+  }
 })

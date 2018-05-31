@@ -49,6 +49,12 @@
 					"name": "消费流水",
 					"pathName": "pages/detail/index",
 					"query": "amount=2"
+				},
+				{
+					"id": -1,
+					"name": "备注",
+					"pathName": "pages/remark/index",
+					"query": "amount=2&category=1"
 				}
 			]
 		}

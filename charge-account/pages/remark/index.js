@@ -1,4 +1,7 @@
 // pages/remark/index.js
+import {
+  addCostRecord
+} from '../../api/index'
 Page({
 
   /**
@@ -7,7 +10,8 @@ Page({
   data: {
     amount: 0,
     category: 1,
-    remark: ''
+    remark: '',
+    charLength: 0
   },
 
   /**
@@ -18,6 +22,7 @@ Page({
       amount: options.amount,
       category: options.category
     })
+    console.log(options);
   },
 
   /**
@@ -67,5 +72,43 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  //输入长度监听
+  remarkInput: function (e) {
+    if (e.detail.value) {
+      this.setData({
+        charLength: e.detail.value.length,
+        remark: e.detail.value
+      })
+    } else {
+      this.setData({
+        charLength: 0
+      })
+    }
+  },
+  //记录提交并跳转
+  submit: function (e) {
+    const costRecord = {
+      amount: this.data.amount,
+      category: parseInt(this.data.category),
+      remark: this.data.remark
+    }
+    addCostRecord(costRecord, () => {
+      wx.showToast({
+        title: '记账成功！',
+        mask: true
+      })
+      setTimeout(() => {
+        // let pages = getCurrentPages();
+        // let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
+        // prevPage.setData({
+        //   amount: '', // 清空首页金额
+        //   isDisabled: true //禁用首页按钮
+        // })
+        wx.reLaunch({
+          url: '../statistics/index'
+        })
+      }, 1500)
+    })
   }
 })

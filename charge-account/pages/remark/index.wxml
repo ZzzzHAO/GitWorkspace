@@ -1,2 +1,15 @@
 <!--pages/remark/index.wxml-->
-<text>pages/remark/index.wxml</text>
+<view class="wrap">
+    <view class="flex-column-start">
+        <text class="title" selectable='false'>
+            备注一下
+        </text>
+        <textarea maxlength="50" bindinput="remarkInput" class="remark-input" placeholder="具体干了什么，还是希望记下来的吧！" />
+        <view class="char-limit">
+            {{charLength}}/50
+        </view>
+    </view>
+    <view class='btn-block'>
+        <button class="done next-btn" bindtap="submit">完成</button>
+    </view>
+</view>

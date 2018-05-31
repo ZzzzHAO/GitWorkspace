@@ -112,13 +112,13 @@ Page({
         mask: true
       })
       setTimeout(() => {
-        let pages = getCurrentPages();
-        let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
-        prevPage.setData({
-          amount: '', // 清空首页金额
-          isDisabled: true //禁用首页按钮
-        })
-        wx.redirectTo({
+        // let pages = getCurrentPages();
+        // let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
+        // prevPage.setData({
+        //   amount: '', // 清空首页金额
+        //   isDisabled: true //禁用首页按钮
+        // })
+        wx.reLaunch({
           url: '../statistics/index'
         })
       }, 1500)
@@ -126,7 +126,7 @@ Page({
   },
   goRemark: function () {
     wx.navigateTo({
-      url: '../remark/index?amount=' + this.data.amount + 'category=' + this.data.category
+      url: '../remark/index?amount=' + this.data.amount + '&category=' + this.data.category
     })
   }
 })

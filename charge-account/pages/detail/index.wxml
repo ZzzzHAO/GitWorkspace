@@ -8,11 +8,14 @@
   <scroll-view scroll-y style="height:93vh">
     <swider-left wx:for="{{costList}}" wx:key="{{index}}" bind:sliderLeftStart="handleSliderLeftStart" bind:change="handleChange"
       bind:delete="handleDelete" data-index="{{index}}" data-item="{{item}}" open="{{item.isOpen}}">
-      <view class='tr'>
+      <view slot="before" class='tr' data-index="{{index}}" bindtap="triggerRemark">
         <view class="td">{{item.categoryName}}</view>
         <view class="td">{{item.amount}}元</view>
         <view class="td">{{item.year}}/{{item.month}}/{{item.date}}</view>
       </view>
+      <scroll-view scroll-y slot="after" class="remark" wx:if="{{item.remarkVisiable}}">
+        *备注：{{item.remark||'暂时没有备注'}}
+      </scroll-view>
     </swider-left>
   </scroll-view>
 </view>

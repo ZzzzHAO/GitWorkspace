@@ -8,7 +8,9 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.default = Component({
-
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  },
   properties: {
     // 阈值，往左移动超过则显示菜单项，否则隐藏（一般为菜单宽的40%）
     moveThreshold: {
@@ -20,7 +22,7 @@ exports.default = Component({
       type: Number,
       value: 75
     },
-    
+
     // 菜单是否打开了，true表示打开，false表示关闭
     open: {
       type: Boolean,
@@ -61,16 +63,22 @@ exports.default = Component({
     handleTouchend: function () {
       // 如果松开手指的时候，已经被拖拽到最左边或者最右边，则不处理
       if (this.data.currentX === 0) {
-        this.setData({ open: true })
+        this.setData({
+          open: true
+        })
         return
       }
       if (this.data.currentX === this.data.openWidth) {
-        this.setData({ open: false })
+        this.setData({
+          open: false
+        })
         return
       }
       // 如果当前菜单是打开的，只要往右移动的距离大于0就马上关闭菜单
       if (this.data.open && this.data.currentX > 0) {
-        this.setData({ open: false })
+        this.setData({
+          open: false
+        })
         return
       }
 
@@ -81,12 +89,16 @@ exports.default = Component({
           x: this.data.openWidth
         })
       } else {
-        this.setData({ open: true })
+        this.setData({
+          open: true
+        })
       }
     },
     // 点击删除按钮触发的事件
     handleDelete: function () {
-      this.setData({ open: false })
+      this.setData({
+        open: false
+      })
       this.triggerEvent('delete')
     },
     // 开始左滑时触发（轻触摸的时候也会触发），主要用于显示当前删除按钮前先 隐藏掉其它项的删除按钮
