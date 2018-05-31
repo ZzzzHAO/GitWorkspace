@@ -52,7 +52,7 @@ const wilddogLogin = (successCallback = function () {}, failCallback = function 
             //记录用户信息
             setUserInfo(user);
             //登录后获取用户数据
-            getUserData();
+            // getUserData();
             //执行回调
         } else {
             console.info('--------------登录失败' + timestamp + '---------------');

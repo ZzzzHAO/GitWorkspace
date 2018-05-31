@@ -1,9 +1,7 @@
 <!--index.wxml-->
 <view class="wrap">
   <view wx:if="{{!hasUserInfo}}" class="flex-column-start">
-    <text class="title" selectable='false'>
-      您好，欢迎使用！
-    </text>
+    <view class="title">您好，欢迎使用！</view>
     <text class="sub-title" selectable='false'>
       为了更好地为您记录，请允许授权相关权限：
     </text>
@@ -11,10 +9,8 @@
       <button class="next-btn" size='default' open-type="getUserInfo" bindgetuserinfo="auth">去授权</button>
     </view>
   </view>
-  <view wx:else class='flex-column-start'>
-    <text class="title" selectable='false'>
-      消费金额
-    </text>
+  <view wx:else class='flex-column-start width-100'>
+    <view class="title">消费金额</view>
     <view class="input-wrap">
       <input class='amount-input' maxlength="8" type='digit' confirm-type='done' value="{{amount}}" confirm-type="done" bindinput='amtInput'
       />

@@ -51,6 +51,7 @@ App({
   },
   globalData: {
     userInfo: null, //用户信息
-    selectedMonthData: [] //缓存选中月份记账记录
+    selectedMonthData: [], //缓存选中月份记账记录
+    goStatistics: false //去统计页标志位
   }
 })

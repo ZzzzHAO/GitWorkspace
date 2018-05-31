@@ -39,7 +39,15 @@ Page({
     }
   },
   onShow: function () {
-
+    //去统计页
+    if (app.globalData.goStatistics) {
+      wx.navigateTo({
+        url: '../statistics/index',
+        success: function () {
+          app.globalData.goStatistics = false; //还原标志位
+        }
+      })
+    }
   },
   //转发信息
   onShareAppMessage: function (res) {
@@ -61,7 +69,7 @@ Page({
       wx.showModal({
         content: '获取用户信息失败，请重试',
         showCancel: false,
-        confirmColor:'#56abe4'
+        confirmColor: '#56abe4'
       })
     }
   },
@@ -95,7 +103,7 @@ Page({
       wx.showModal({
         content: '金额格式错误，请重新输入。（最多两位小数）',
         showCancel: false,
-        confirmColor:'#56abe4'
+        confirmColor: '#56abe4'
       })
     }
   },

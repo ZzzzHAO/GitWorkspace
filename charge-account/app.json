@@ -8,10 +8,9 @@
     "pages/remark/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#56abe4",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "蜜蜂记账",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "disableScroll": true
   }
 }

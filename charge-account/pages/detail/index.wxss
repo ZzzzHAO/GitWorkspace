@@ -22,7 +22,8 @@
     padding-top:20rpx;
     padding-left:20rpx;
     padding-right:20rpx;
-    height: 100rpx;
+    padding-bottom:20rpx;
+    height: 120rpx;
     box-sizing: border-box;
     color: #333;
     background-color: #f6f6f6;

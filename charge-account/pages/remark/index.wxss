@@ -4,9 +4,9 @@
     margin-top: 50rpx;
     font-size: 35rpx;
     color: #808080;
-    border: 1rpx solid #f6f6f6;
-    padding: 10rpx;
+    box-sizing: border-box;
 }
+
 .btn-block {
     position: absolute;
     width: 80%;
@@ -15,9 +15,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  .char-limit{
-      text-align: right;
-      color: #808080;
-      font-size: 35rpx;
-  }
+}
+
+.char-limit {
+    text-align: right;
+    color: #808080;
+    font-size: 35rpx;
+}

@@ -1,9 +1,7 @@
 <!--index.wxml-->
 <view class="wrap">
-  <view class='flex-column-start'>
-    <text class="title" selectable='false'>
-      消费分类
-    </text>
+  <view class='flex-column-start width-100'>
+    <view class="title">消费分类</view>
     <view class='flex-row-between radio-content'>
       <view wx:for="{{categoryList}}" wx:key="{{item.id}}" class="category-wrap">
         <view class="{{item.checked?'category-item-checked':'category-item'}}" bindtap="checkCategory" data-id="{{item.id}}">{{item.name}}</view>

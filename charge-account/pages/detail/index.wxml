@@ -14,7 +14,7 @@
         <view class="td">{{item.year}}/{{item.month}}/{{item.date}}</view>
       </view>
       <scroll-view scroll-y slot="after" class="remark" wx:if="{{item.remarkVisiable}}">
-        *备注：{{item.remark||'暂时没有备注'}}
+        备注：{{item.remark||'暂时没有备注'}}
       </scroll-view>
     </swider-left>
   </scroll-view>

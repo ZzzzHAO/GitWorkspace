@@ -107,21 +107,28 @@ Page({
       category: this.data.category
     }
     addCostRecord(costRecord, () => {
-      wx.showToast({
-        title: '记账成功！',
-        mask: true
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
+      prevPage.setData({
+        amount: '', // 清空首页金额
+        isDisabled: true //禁用首页按钮
       })
-      setTimeout(() => {
-        // let pages = getCurrentPages();
-        // let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
-        // prevPage.setData({
-        //   amount: '', // 清空首页金额
-        //   isDisabled: true //禁用首页按钮
-        // })
-        wx.reLaunch({
-          url: '../statistics/index'
-        })
-      }, 1500)
+      wx.showModal({
+        content: '记账成功！',
+        mask: true,
+        cancelText: '再记一笔',
+        confirmText: '完成',
+        confirmColor: '#56abe4',
+        success: function (res) {
+          if (res.confirm) {
+            wx.redirectTo({
+              url: '../statistics/index'
+            })
+          } else if (res.cancel) {
+            wx.navigateBack();
+          }
+        }
+      })
     })
   },
   goRemark: function () {

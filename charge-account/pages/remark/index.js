@@ -2,6 +2,7 @@
 import {
   addCostRecord
 } from '../../api/index'
+const app = getApp();
 Page({
 
   /**
@@ -35,9 +36,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -94,21 +93,31 @@ Page({
       remark: this.data.remark
     }
     addCostRecord(costRecord, () => {
-      wx.showToast({
-        title: '记账成功！',
-        mask: true
+      let pages = getCurrentPages();
+      let homePage = pages[pages.length - 3]; //上一个页面（父页面）
+      homePage.setData({
+        amount: '', // 清空首页金额
+        isDisabled: true //禁用首页按钮
       })
-      setTimeout(() => {
-        // let pages = getCurrentPages();
-        // let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
-        // prevPage.setData({
-        //   amount: '', // 清空首页金额
-        //   isDisabled: true //禁用首页按钮
-        // })
-        wx.reLaunch({
-          url: '../statistics/index'
-        })
-      }, 1500)
+      wx.showModal({
+        content: '记账成功！',
+        mask: true,
+        cancelText: '再记一笔',
+        confirmText: '完成',
+        confirmColor: '#56abe4',
+        success: function (res) {
+          if (res.confirm) {
+            app.globalData.goStatistics = true;//全局标记 记账完成 去统计页
+            wx.navigateBack({
+              delta: 2
+            })
+          } else if (res.cancel) {
+            wx.navigateBack({
+              delta: 2
+            })
+          }
+        }
+      })
     })
   }
 })
