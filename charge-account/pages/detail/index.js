@@ -134,10 +134,14 @@ Page({
   triggerRemark: function (e) {
     const id = e.currentTarget.dataset.index;
     let costList = this.data.costList;
-    for (let i = 0; i < costList.length; i++) {
-      costList[i].remarkVisiable = false;
+    if (costList[id].remarkVisiable) {
+      costList[id].remarkVisiable = !costList[id].remarkVisiable;
+    } else {
+      for (let i = 0; i < costList.length; i++) {
+        costList[i].remarkVisiable = false;
+      }
+      costList[id].remarkVisiable = true;
     }
-    costList[id].remarkVisiable = true;
     this.setData({
       costList: costList
     })
