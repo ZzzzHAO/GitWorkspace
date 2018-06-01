@@ -23,7 +23,6 @@ Page({
       amount: options.amount,
       category: options.category
     })
-    console.log(options);
   },
 
   /**
@@ -75,9 +74,10 @@ Page({
   //输入长度监听
   remarkInput: function (e) {
     if (e.detail.value) {
+      const val = e.detail.value.trim();
       this.setData({
         charLength: e.detail.value.length,
-        remark: e.detail.value
+        remark: val
       })
     } else {
       this.setData({
@@ -107,7 +107,7 @@ Page({
         confirmColor: '#56abe4',
         success: function (res) {
           if (res.confirm) {
-            app.globalData.goStatistics = true;//全局标记 记账完成 去统计页
+            app.globalData.goStatistics = true; //全局标记 记账完成 去统计页
             wx.navigateBack({
               delta: 2
             })
