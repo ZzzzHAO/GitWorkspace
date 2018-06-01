@@ -1,6 +1,9 @@
 <!--index.wxml-->
 <view class="wrap" style="padding:0">
-  <view class="show-detail" bindtap="showDetail" wx:if="{{hasData}}">查看流水</view>
+  <view class="flex-row-between info-bar" bindtap="showDetail" wx:if="{{hasData}}">
+    <view class="cost-sum">本月共消费：¥{{costSum}}</view>
+    <view class="show-detail">查看流水</view>
+  </view>
   <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" wx:if="{{hasData}}"></ec-canvas>
   <scroll-view scroll-y class="table-wrap" wx:if="{{hasData}}">
     <view class="table">

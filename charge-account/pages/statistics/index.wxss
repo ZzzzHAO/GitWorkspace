@@ -83,17 +83,20 @@ ec-canvas {
   border: 1px solid #56abe4;
   color: #fff;
 }
-
-.show-detail {
-  width: 100%;
-  font-size: 30rpx;
-  color: #56abe4;
+.info-bar{
   height: 5vh;
   line-height: 5vh;
-  text-align: right;
-  padding-right: 40rpx;
+  width: 100%;
 }
-
+.show-detail {
+  color: #56abe4;
+  font-size: 30rpx;
+  margin-right: 30rpx;
+}
+.cost-sum{
+  font-size: 36rpx;
+  margin-left: 30rpx;
+}
 .month {
   font-size: 50rpx;
 }

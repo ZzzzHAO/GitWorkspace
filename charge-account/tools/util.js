@@ -174,12 +174,32 @@ const calculate = (symbol, arg1, arg2) => {
   }
 
 }
-
+const formatMoney = (value, type) => {
+  if (/[^0-9\.]/.test(value))
+    return "0";
+  if (value == null || value == "")
+    return "0";
+  value = value.toString().replace(/^(\d*)$/, "$1.");
+  value = (value + "00").replace(/(\d*\.\d\d)\d*/, "$1");
+  value = value.replace(".", ",");
+  var re = /(\d)(\d{3},)/;
+  while (re.test(value))
+    value = value.replace(re, "$1,$2");
+  value = value.replace(/,(\d\d)$/, ".$1");
+  if (type == 0) { // 不带小数位(默认是有小数位)
+    var a = value.split(".");
+    if (a[1] == "00") {
+      value = a[0];
+    }
+  }
+  return value;
+}
 export {
   formatTime,
   getMonthList,
   getUser,
   getCategoryName,
   getCategoryColor,
-  calculate
+  calculate,
+  formatMoney
 }

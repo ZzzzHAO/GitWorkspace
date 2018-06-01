@@ -21,10 +21,8 @@ Page({
    */
   onLoad: function (options) {
     //设置页面title
-    let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 2]; //上一个页面（父页面）
-    let year = prevPage.data.currentYear;
-    let month = prevPage.data.currentMonth;
+    let year = options.year;
+    let month = options.month;
     wx.setNavigationBarTitle({
       title: year + "年" + month + "月消费流水"
     })
