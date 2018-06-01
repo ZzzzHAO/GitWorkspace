@@ -2,7 +2,7 @@
 <view class="wrap">
 	<view class="flex-column-start width-100">
 		<view class="title">备注一下</view>
-		<textarea maxlength="50" bindinput="remarkInput" class="remark-input width-100" placeholder="具体干了些什么呢，还是希望记下来的吧！" />
+		<textarea maxlength="50" bindinput="remarkInput" class="remark-input width-100" placeholder-style="color:#bbb" placeholder="具体干了些什么呢，还是希望记下来的吧！" />
 		<view class="char-limit">
 			{{charLength}}/50
 		</view>

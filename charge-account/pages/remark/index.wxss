@@ -19,6 +19,6 @@
 
 .char-limit {
     text-align: right;
-    color: #808080;
+    color: #bbb;
     font-size: 35rpx;
 }

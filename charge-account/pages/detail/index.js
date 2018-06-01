@@ -33,6 +33,7 @@ Page({
         let category = costList[i].category;
         costList[i].categoryName = getCategoryName(category);
       }
+      costList = costList.reverse(); //最新的在前
       this.setData({
         costList: costList,
       })
