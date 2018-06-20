@@ -54,7 +54,7 @@ Page({
     return {
       title: '快来记账吧，养成记账好习惯！',
       path: '/pages/amount/index',
-      imageUrl: '../../image/schnauzer.jpg'
+      imageUrl: '../../image/bee.jpg'
     }
   },
   //授权获取公共信息并且登录野狗
